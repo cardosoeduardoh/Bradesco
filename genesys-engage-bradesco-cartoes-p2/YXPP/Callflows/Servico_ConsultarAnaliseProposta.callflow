@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:datatypes="http://studio.genesyslab.com/common/datatypes/" xmlns:gvp="http://studio.genesyslab.com/gvp/" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xsi:schemaLocation="http://studio.genesyslab.com/common/datatypes/ http://studio.genesyslab.com/common/#//datatypes">
+  <gvp:CallflowDiagram xmi:id="_RF4M8IobEeG_nt9_QYQUcg" name="Servico_ConsultarAnaliseProposta" designedUsing="Composer 8.1.561.16" callflowType="Subcallflow">
+    <history>8.1.3</history>
+    <history>8.1.300.78</history>
+    <blocks xmi:type="gvp:EntryBlock" xmi:id="_0TDncMlhEeKE2tP5OBlA8w" name="Entry1_Servico_ConsultarAnaliseProposta" starting="true" category="Entry" scripts="'+gScriptsPath+'funcoes.js|'+gScriptsPath+'funcoesDataHora.js|funcoesMenusPP.js|funcoesFrasesPP.js" applicationRoot="../src/ComposerRoot.vxml">
+      <exceptions>connection.disconnect.hangup</exceptions>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbYOTvEe2I48J-uzfZdA" name="ANI" value="getANI()" description="ANI associated with the calling party." type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbYeTvEe2I48J-uzfZdA" name="ap_url" value="''" description="Enter Description" type="User"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbYuTvEe2I48J-uzfZdA" name="APP_ASR_LANGUAGE" value="'pt-BR'" description="ASR Language" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbY-TvEe2I48J-uzfZdA" name="APP_LANGUAGE" value="'pt-BR'" description="Application Language" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbZOTvEe2I48J-uzfZdA" name="CallUUID" value="session.connection.uuid" description="Universal ID" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbZeTvEe2I48J-uzfZdA" name="COMPOSER_WSSTUBBING" value="'0'" description="Flag to control WebServices Stubbing. '1' - ON" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbZuTvEe2I48J-uzfZdA" name="DNIS" value="getDNIS()" description="DNIS associated with Called phone number" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbZ-TvEe2I48J-uzfZdA" name="EnableFCR" value="true" description="Flag for enabling Full Call Recording" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbaOTvEe2I48J-uzfZdA" name="EnableReports" value="false" description="Reporting Flag" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbaeTvEe2I48J-uzfZdA" name="EnableSNMP" value="false" description="Flag for enabling SNMP Traps" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbauTvEe2I48J-uzfZdA" name="GRAMMARFILEDIR" value="'../Resources/Grammars'" description="Grammar File Directory" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8Iba-TvEe2I48J-uzfZdA" name="GVPSessionID" value="session.genesys.userdata[&quot;GVP-Session-ID&quot;]" description="GVP Session ID" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbbOTvEe2I48J-uzfZdA" name="io_dados" value="''" description="dados da ligacao" type="Input"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbbeTvEe2I48J-uzfZdA" name="LAST_EVENT_ELEMENT" value="'undefined'" description="Element name of the last event" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbbuTvEe2I48J-uzfZdA" name="LAST_EVENT_LINE" value="'undefined'" description="Line number of the last event" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8Ibb-TvEe2I48J-uzfZdA" name="LAST_EVENT_MSG" value="'undefined'" description="Last event or error details" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbcOTvEe2I48J-uzfZdA" name="LAST_EVENT_NAME" value="'undefined'" description="Last event or error name" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbceTvEe2I48J-uzfZdA" name="LAST_EVENT_URL" value="'undefined'" description="URL of the last event." type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbcuTvEe2I48J-uzfZdA" name="OCS_Record" value="getCallflowOCSRecord()" description="OCS Record" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8Ibc-TvEe2I48J-uzfZdA" name="OCS_RecordURI" value="getCallflowRecordURI()" description="OCS Record URI" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbdOTvEe2I48J-uzfZdA" name="OCS_URI" value="getCallflowOCSURI()" description="OCS URI" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbdeTvEe2I48J-uzfZdA" name="PREV_APP_ASR_LANGUAGE" value="'undefined'" description="Temporary Value of Previous Application Language" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbduTvEe2I48J-uzfZdA" name="PREV_APP_LANGUAGE" value="'undefined'" description="Temporary Value of Previous Application Language" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8Ibd-TvEe2I48J-uzfZdA" name="SCRIPTSDIR" value="'../Scripts'" description="JavaScript Directory" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbeOTvEe2I48J-uzfZdA" name="USE_LCASE_USERDATAKEY" value="0" description="Flag to control lowerCase lookup in UserData array. 1 - ON" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbeeTvEe2I48J-uzfZdA" name="VOXFILEDIR" value="'../Resources/Prompts'" description="Audio File Directory" type="System"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbeuTvEe2I48J-uzfZdA" name="ap_destino" value="''" description="Enter Description" type="User"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8Ibe-TvEe2I48J-uzfZdA" name="ap_frases" value="''" description="Enter Description" type="User"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbfOTvEe2I48J-uzfZdA" name="ap_evDesligamento" value="''" description="Enter Description" type="User"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbfeTvEe2I48J-uzfZdA" name="ap_nomeServico" value="'ConsultarAnaliseProposta'" description="Enter Description" type="User"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbfuTvEe2I48J-uzfZdA" name="objJsonRequest" value="{}" description="Enter Description" type="User"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8Ibf-TvEe2I48J-uzfZdA" name="objResponseAPI" value="{}" description="Enter Description" type="User"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbgOTvEe2I48J-uzfZdA" name="analisePropostas" value="{}" description="Enter Description" type="User"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbgeTvEe2I48J-uzfZdA" name="str_URI_base" value="''" description="Enter Description" type="User"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbguTvEe2I48J-uzfZdA" name="str_URI_final" value="''" description="Enter Description" type="User"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8Ibg-TvEe2I48J-uzfZdA" name="str_auth" value="''" description="Enter Description" type="User"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbhOTvEe2I48J-uzfZdA" name="userAPI" value="''" description="Enter Description" type="User"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbheTvEe2I48J-uzfZdA" name="Content_Type" value="''" description="Enter Description" type="User"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbhuTvEe2I48J-uzfZdA" name="ipAddress" value="''" description="Enter Description" type="User"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8Ibh-TvEe2I48J-uzfZdA" name="str_dataExpiracao" value="''" description="Enter Description" type="User"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbiOTvEe2I48J-uzfZdA" name="objNavegacao" value="{}" description="Enter Description" type="User"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbieTvEe2I48J-uzfZdA" name="VAR_timestampInicio" value="''" description="Enter Description" type="User"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8IbiuTvEe2I48J-uzfZdA" name="versao" value="''" description="Enter Description" type="User"/>
+      <variables xmi:type="datatypes:Variable" xmi:id="_U8Ibi-TvEe2I48J-uzfZdA" name="ap_tentativas" value="1" description="Enter Description" type="User"/>
+    </blocks>
+    <blocks xmi:type="gvp:ExitBlock" xmi:id="_0afsMMlhEeKE2tP5OBlA8w" name="Exit1_Servico_ConsultarAnaliseProposta" terminating="true" category="Exit" returnMode="true">
+      <returnValues>io_dados</returnValues>
+    </blocks>
+    <blocks xmi:type="gvp:LogBlock" xmi:id="_UR_hsHlhEeSt1OQz5cZgzA" name="LogInicioServico" category="Log">
+      <loggingDetails>'############## Inicio Servico: ' + AppState.ap_nomeServico + '##############'</loggingDetails>
+    </blocks>
+    <blocks xmi:type="gvp:EcmaScriptBlock" xmi:id="_8LbrYI_yEeyINtSlKwVMZg" name="ConsultarAnaliseProposta_Monta_URI" category="ECMA Script" script="try {&#xD;&#xA;&#xD;&#xA;   //Timestamp navegacao&#xD;&#xA;&#x9;var dataAtual = getDataAtual();&#xD;&#xA;   &#x9;AppState.VAR_timestampInicio = dataAtual.substring(0,23).replace('T',' '); // &quot;9999-12-31 23:59:59.999&quot;&#xD;&#xA;    AppState.str_auth = AppState.io_dados.Estruturante.AutenticarCanal.token;&#xD;&#xA;&#x9;var url_base_mock = AppState.io_dados.opm.mock;&#xD;&#xA;&#x9;if (url_base_mock != &quot;&quot; &amp;&amp; url_base_mock != null) {&#xD;&#xA;&#x9;&#x9;AppState.str_URI_final = url_base_mock + &quot;/ConsultarAnaliseProposta&quot;;&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;AppState.str_URI_final = AppState.io_dados.opm.url_consultarparametros; //ALTERAR&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;AppState.str_auth = AppState.io_dados.Estruturante.AutenticarCanal.token;&#xD;&#xA; &#x9;AppState.str_timeOut = AppState.io_dados.opm.timeout;&#xD;&#xA; &#x9;AppState.versao =  AppState.io_dados.opm.conectorversao;&#xD;&#xA; &#x9;&#xD;&#xA; &#x9;&#xD;&#xA;&#x9;//JSON Request&#xD;&#xA;&#x9;AppState.objJsonRequest = {};&#xD;&#xA;&#x9;AppState.objJsonRequest.mnemonico = &quot;MFLEGSTR&quot;;&#xD;&#xA;&#x9;AppState.objJsonRequest.versaoServico = AppState.versao;//&quot;0&quot;;&#xD;&#xA;&#x9;AppState.objJsonRequest.timestampRequisicao = &quot;9999-12-31 23:59:59.999&quot;;&#xD;&#xA;&#x9;AppState.objJsonRequest.timeoutRequisicao = &quot;60&quot;;&#xD;&#xA;&#x9;AppState.objJsonRequest.codigoCentral = &quot;uraCartoes&quot;;&#xD;&#xA;&#x9;AppState.objJsonRequest.tipoAtendimento = &quot;1&quot;;&#xD;&#xA;&#x9;AppState.objJsonRequest.NSUSessao = &quot;99991231235959999CC&quot;;&#xD;&#xA;&#x9;AppState.objJsonRequest.codigoServico = &quot;&quot;;&#xD;&#xA;&#x9;AppState.objJsonRequest.sistemaAcionado = &quot;YMCL&quot;;&#xD;&#xA;&#x9;AppState.objJsonRequest.codigoTransacao = &quot;CONSULTAR_ANALISE_PROPOSTA&quot;;&#xD;&#xA;&#x9;AppState.objJsonRequest.funcaoExecutada = &quot;consulta&quot;;&#xD;&#xA;&#x9;AppState.objJsonRequest.areaEnvio = {};&#xD;&#xA;&#x9;AppState.objJsonRequest.areaEnvio.areaEnvioTamanho = &quot;9999&quot;;&#xD;&#xA;&#x9;AppState.objJsonRequest.areaEnvio.areaEnvioIDPDC = &quot;peclrequest&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;/*&#xD;&#xA; &#x9;Proposta TX:&#xD;&#xA;&#xD;&#xA;&#x9;16/06/2020 19:19:15 P013 C--- BufferTx(110231)='SELECT A.CPF, A.DATA_PROPOSTA, A.ORG, A.LOGO,&#xD;&#xA;&#x9;A.STATUS From TOOLS.pesquisa_status_novo A,(SELECT Max(DATA_PROPOSTA) DATA_PROPOSTA, ORG,&#xD;&#xA;&#x9;LOGO From TOOLS.pesquisa_status_novo Where CPF = '7397xxxx204' GROUP BY ORG, LOGO) B Where&#xD;&#xA;&#x9;A.DATA_PROPOSTA = b.DATA_PROPOSTA AND A.ORG = B.ORG AND A.LOGO = B.LOGO AND CPF = '7397xxxx204''&#xD;&#xA;&#xD;&#xA;&#x9;16/06/2020 19:19:16 P013 C001 SQLExecuteComplete(110231): RowsAffected:1&#xD;&#xA;&#xD;&#xA;&#x9;16/06/2020 19:19:16 P013 C001 BufferRx(110231)='RowsAffected:1&lt;0>7397xxxx204&lt;0>&lt;D>&lt;A>2019-06-27 15:12:40&lt;0>&lt;D>&lt;A>038&lt;0>&lt;D>&lt;A>022&lt;0>&lt;D>&lt;A>1&lt;0>&lt;D>&lt;A>'&#x9;&#xD;&#xA;&#xD;&#xA; &#x9;*/&#xD;&#xA;&#x9;var dados = AppState.io_dados;&#xD;&#xA;&#x9;var TxBuffer = &quot;&quot;;&#xD;&#xA;&#x9;TxBuffer = &quot;CONSULTAR_ANALISE_PROPOSTA&quot;;&#xD;&#xA; &#x9;TxBuffer = TxBuffer + &quot;05&quot;;&#xD;&#xA; &#x9;TxBuffer = TxBuffer + AppState.io_dados['sNumCartao'];&#xD;&#xA; &#x9;TxBuffer = TxBuffer + &quot;01&quot;;&#xD;&#xA; &#x9;TxBuffer = TxBuffer + &quot;0000000000000000000000000000000000000000000000000000&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;AppState.objJsonRequest.areaEnvio.areaEnvioTexto = TxBuffer;&#xD;&#xA;&#xD;&#xA;&#x9;__Log('########### str_URI_final: ' + JSON.stringify(AppState.str_URI_final));&#xD;&#xA;&#x9;__Log('########### AppState.str_auth: ' + JSON.stringify(AppState.str_auth));&#xD;&#xA;&#x9;__Log('########### objJsonRequest: ' + JSON.stringify(AppState.objJsonRequest));&#x9;&#xD;&#xA;&#x9;__Log('###########AppState.versao: ' + JSON.stringify(AppState.versao));&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#xD;&#xA;} catch (error) {&#xD;&#xA;&#x9;__Log(&quot;##### Error(ConsultarAnaliseProposta_Setar_Variaveis): &quot; + error);&#xD;&#xA;}"/>
+    <blocks xmi:type="gvp:WebRequestBlock" xmi:id="_ICZSUI_zEeyINtSlKwVMZg" name="WR_ConsultarAnaliseProposta" category="Web Request" uri="Variable(str_URI_final)" requestMethod="post" result="Variable(objResponseAPI)" encodingType="application/json" jsonContent="Variable(objJsonRequest)">
+      <exceptions>error.badfetch</exceptions>
+      <exceptions>error.com.genesyslab.composer.servererror</exceptions>
+      <customHTTPHeaders xmi:type="datatypes:MultiSourceProperty" xmi:id="_-ek_oJAnEeyINtSlKwVMZg" name="Content-Type" value="Content_Type" Source="Variable"/>
+      <customHTTPHeaders xmi:type="datatypes:MultiSourceProperty" xmi:id="_-ek_oZAnEeyINtSlKwVMZg" name="Authorization" value="str_auth" Source="Variable"/>
+    </blocks>
+    <blocks xmi:type="gvp:EcmaScriptBlock" xmi:id="_QBeBsI_zEeyINtSlKwVMZg" name="ConsultarAnaliseProposta_Parse" category="ECMA Script" script="try {&#xD;&#xA;&#x9;// a partir deste ponto colocar no ecma&#xD;&#xA;&#xD;&#xA;var response = AppState.objResponseAPI;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;__Log('###### Log API CREConector Mainframe 1.0 - response: ' + JSON.stringify(response) + '######');&#xD;&#xA;&#xD;&#xA;&#x9;/*&#xD;&#xA;&#xD;&#xA;&#x9;iTotalProposta = SqlExtrairCamposDB_Novo(RespostaRxProposta)&#xD;&#xA;&#x9;bExisteAproMais10D = False&#xD;&#xA;&#x9;iTotalPropostasValidas = 0&#xD;&#xA;&#x9;iTotalAprovadas = 0&#xD;&#xA;&#x9;iTotalReprovadas = 0&#xD;&#xA;&#x9;iTotalEmAnalise = 0&#xD;&#xA;&#x9;For i = 1 To MAX_TOTAL_PROPOSTAS&#xD;&#xA;    &#x9;strRespPropostasA.DetLinha(i).ORG = Space$(3)&#xD;&#xA;    &#x9;strRespPropostasA.DetLinha(i).LOGO = Space$(3)&#xD;&#xA;    &#x9;strRespPropostasA.DetLinha(i).DtSafra = Space$(23)&#xD;&#xA;    &#x9;strRespPropostasR.DetLinha(i).ORG = Space$(3)&#xD;&#xA;    &#x9;strRespPropostasR.DetLinha(i).LOGO = Space$(3)&#xD;&#xA;    &#x9;strRespPropostasR.DetLinha(i).DtSafra = Space$(23)&#xD;&#xA;    &#x9;strRespPropostasEmAna.DetLinha(i).ORG = Space$(3)&#xD;&#xA;    &#x9;strRespPropostasEmAna.DetLinha(i).LOGO = Space$(3)&#xD;&#xA;    &#x9;strRespPropostasEmAna.DetLinha(i).DtSafra = Space$(23)&#xD;&#xA;&#x9;Next i&#xD;&#xA;&#x9;iRetry = 0&#xD;&#xA;&#xD;&#xA;&#x9;*/&#xD;&#xA;&#x9;AppState.analisePropostas = {};&#xD;&#xA;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;if (response.detail.codigoRetorno == '0' ){&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;AppState.analisePropostas.codigoRetorno = response.detail.codigoRetorno;&#xD;&#xA;&#x9;&#x9;AppState.analisePropostas.msgRetorno = response.detail.msgRetorno;&#x9;&#xD;&#xA;&#x9;&#x9;AppState.analisePropostas.areaRespostaTamanho = response.result.areaResposta.areaRespostaTamanho;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;AppState.analisePropostas.areaRespostaIDPDC = response.result.areaResposta.areaRespostaIDPDC;&#xD;&#xA;&#x9;&#x9;AppState.analisePropostas.timestampInicio = response.detail.timestampInicio;&#xD;&#xA;&#x9;&#x9;AppState.analisePropostas.timestampFim = response.detail.timestampFim;&#xD;&#xA;&#x9;&#x9;AppState.analisePropostas.iTotalProposta = response.result.areaResposta.areaRespostaTexto.DetLinha.length;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;//Campos do Servico&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;var listaCartoesAnalise = [];&#xD;&#xA;&#x9;&#x9;var totalCartoes = parseInt(response.result.areaResposta.areaRespostaTexto.DetLinha.length);&#xD;&#xA;&#x9;&#x9;var iTotalAprovadas = 0;&#xD;&#xA;&#x9;&#x9;__Log('-----> TotalCartoes : '+ totalCartoes);&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;for (var i = 0; i &lt; totalCartoes; i++) {&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;var obj_ListaCartoesAnalise = new Object();&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;//propostas  &#xD;&#xA;&#x9;&#x9;&#x9;obj_ListaCartoesAnalise.strData  = response.result.areaResposta.areaRespostaTexto.DetLinha[i].Data; //'formato yyyy-mm-dd hh:mm:ss&#xD;&#xA;&#x9;&#x9;&#x9;obj_ListaCartoesAnalise.strORG  = response.result.areaResposta.areaRespostaTexto.DetLinha[i].ORG; //desenvolvido sem layout do retorno, verificar a estrutura&#xD;&#xA;&#x9;&#x9;&#x9;obj_ListaCartoesAnalise.strStatus  = response.result.areaResposta.areaRespostaTexto.DetLinha[i].STATUS;&#xD;&#xA;&#x9;&#x9;    obj_ListaCartoesAnalise.strLOGO  = response.result.areaResposta.areaRespostaTexto.DetLinha[i].LOGO; //desenvolvido sem layout do retorno, verificar a estrutura&#xD;&#xA;&#x9;&#x9;&#x9;obj_ListaCartoesAnalise.DtSafra  = response.result.areaResposta.areaRespostaTexto.DetLinha[i].DtSafra; //desenvolvido sem layout do retorno, verificar a estrutura&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;listaCartoesAnalise.push(obj_ListaCartoesAnalise);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;}&#x9;&#x9;&#x9;                           &#xD;&#xA;                            &#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;AppState.analisePropostas.DetLinha = listaCartoesAnalise;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;var retornoAnaliseProposta&#x9;= verificaPropostasValidas(AppState.io_dados, AppState.analisePropostas.DetLinha);&#xD;&#xA;&#x9;&#x9;//__Log('-----> verificaPropostasValidas retorno funcao : '+ JSON.stringify(retornoAnaliseProposta));&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;AppState.analisePropostas.strRespPropostasA = retornoAnaliseProposta.strRespPropostasA;&#xD;&#xA;&#x9;&#x9;AppState.analisePropostas.strRespPropostasR = retornoAnaliseProposta.strRespPropostasR;&#xD;&#xA;&#x9;&#x9;AppState.analisePropostas.strRespPropostasEmAna = retornoAnaliseProposta.strRespPropostasEmAna;&#xD;&#xA;&#x9;&#x9;AppState.analisePropostas.iTotalPropostasValidas = retornoAnaliseProposta.strRespPropostasA.iTotalAprovadas + retornoAnaliseProposta.strRespPropostasR.iTotalReprovadas + retornoAnaliseProposta.strRespPropostasEmAna.iTotalEmAnalise; &#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;} else{&#xD;&#xA;&#x9;&#x9;AppState.analisePropostas.codigoRetorno = response.detail.codigoRetorno;&#xD;&#xA;&#x9;&#x9;AppState.analisePropostas.msgRetorno = response.detail.msgRetorno;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#x9;__Log('===============================================================================================================');&#xD;&#xA;&#x9;__Log('########### AppState.analisePropostas: ' + JSON.stringify(AppState.analisePropostas));&#xD;&#xA;&#x9;__Log('########### AppState.analisePropostas.codigoRetorno: ' + AppState.analisePropostas.codigoRetorno);&#xD;&#xA;&#x9;__Log('===============================================================================================================');&#xD;&#xA;&#xD;&#xA;&#x9;//RN19 - VerificaPropostasValidas &#xD;&#xA;&#xD;&#xA;&#x9;function verificaPropostasValidas(dados, detLinha) {&#xD;&#xA;&#x9;&#x9;var obj_analisePropostas = new Object();&#xD;&#xA;&#x9;&#x9;var sListaORGsAtd = '';&#xD;&#xA;&#x9;&#x9;var sListaORGsAtd1 = '';&#xD;&#xA;&#x9;&#x9;var sListaORGsAtd2 = '';&#xD;&#xA;&#x9;&#x9;var iNroDiasPropostaValida = '';    &#xD;&#xA;&#x9;&#x9;var sListaORGsAtd = '';&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;for (var i = 0; i &lt; detLinha.length; i++) {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;var strORG = detLinha[i].strORG;&#xD;&#xA;&#x9;&#x9;&#x9;var strLogo = detLinha[i].strLOGO;&#xD;&#xA;&#x9;&#x9;&#x9;var strStatus = detLinha[i].strStatus;&#xD;&#xA;&#x9;&#x9;&#x9;var strData = detLinha[i].strData;&#xD;&#xA;&#x9;&#x9;&#x9;var strSafra = detLinha[i].DtSafra;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;__Log('************************************************** Posicao:' + i);&#xD;&#xA;&#x9;&#x9;&#x9;__Log('-----> strORG : '+ strORG);&#xD;&#xA;&#x9;&#x9;&#x9;__Log('-----> strLogo : '+ strLogo);&#xD;&#xA;&#x9;&#x9;&#x9;__Log('-----> strStatus : '+ strStatus);&#xD;&#xA;&#x9;&#x9;&#x9;__Log('-----> strData : '+ strData);&#xD;&#xA;&#x9;&#x9;&#x9;__Log('-----> eAtendimento : '+ dados['eAtendimento']);&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;switch (dados['eAtendimento']) {  &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;case 'ATD_PL':&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;sListaORGsAtd = dados['parametros']['ListaORGsAtdPL'];&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;case 'ATD_MAKRO':&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;case 'ATD_HOTLINE_MAKRO':&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;sListaORGsAtd = dados['parametros']['ListaORGsAtdMakro'];&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;case 'ATD_DOTZ':&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;sListaORGsAtd = dados['parametros']['ListaORGsAtdDotz'];&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;case 'ATD_ANGELONI':&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;sListaORGsAtd = dados['parametros']['ListaORGsAtdAngeloni'];&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;case 'ATD_ESKALA':&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;sListaORGsAtd = dados['parametros']['ListaORGsAtdEskala'];&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;case 'ATD_MATEUS_CARD':&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;sListaORGsAtd = dados['parametros']['ListaORGsAtdMateusCard'];&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;case 'ATD_ELO_CARD':&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;sListaORGsAtd = dados['parametros']['ListaORGsAtdEloCard'];&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;case 'ATD_ELO_CONSIGNADO':&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;sListaORGsAtd = dados['parametros']['ListaORGsAtdEloConsignado'];&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;case 'ATD_PAGUE_MENOS':&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;sListaORGsAtd = dados['parametros']['ListaORGsAtdPagueMenos'];&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;case 'ATD_TNG':&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;sListaORGsAtd = dados['parametros']['ListaORGsAtdTNG'];&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;case 'ATD_CVC':&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;sListaORGsAtd = dados['parametros']['ListaORGsAtdCVC'];&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;case 'ATD_IBICARD':&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;sListaORGsAtd = dados['parametros']['ListaORGsAtdIBICard'];&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;case 'ATD_HOT_LINE_CEA':&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;sListaORGsAtd = dados['parametros']['ListaORGsAtdHotLineCEA'];&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;case 'ATD_DEFAULT_7332':&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;var aux = dados['parametros']['ListaORGsAtdDefault7332_1'];&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;aux = aux + dados['parametros']['ListaORGsAtdDefault7332_2'];&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;sListaORGsAtd = aux;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;default:&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;var aux = dados['parametros']['ListaORGsAtdDefault7332_1'];&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;aux = aux + dados['parametros']['ListaORGsAtdDefault7332_2'];&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;sListaORGsAtd = aux;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;__Log('-----> sListaORGsAtd : '+ sListaORGsAtd); &#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;    if ((sListaORGsAtd.indexOf(strORG) >= 0 ) || sListaORGsAtd.indexOf('TODOS') >= 0  ){ // 'ORG do atendimento correto&#xD;&#xA;&#x9;&#x9;    &#x9;//__Log('---------------------------> Entrou IF sListaORGsAtd : '+ sListaORGsAtd);    &#x9;&#xD;&#xA;&#x9;&#x9;    if(strData != '' || strData != undefined  ) {&#xD;&#xA;&#x9;&#x9;    &#x9;&#x9;//__Log('---------------------------> Entrou IF strData : '+ strData);&#xD;&#xA;&#x9;&#x9;    &#x9;&#x9;iNroDiasPropostaValida =  dados['parametros']['NroDiasPropostaValida'];&#xD;&#xA;&#x9;&#x9;    &#x9;&#x9;if (parseInt(iNroDiasPropostaValida) > 0 ){&#xD;&#xA;&#x9;&#x9;    &#x9;&#x9;&#x9;//__Log('---------------------------> strData : '+ strData.substring(8,10));&#xD;&#xA;&#x9;&#x9;    &#x9;&#x9;&#x9;if (parseInt(strData.substring(8,10)) &lt;= parseInt(iNroDiasPropostaValida)) {&#xD;&#xA;&#x9;&#x9;    &#x9;&#x9;&#x9;&#x9;//__Log('---------------------------> ENTROU strStatus : '+ strStatus);&#xD;&#xA;&#x9;&#x9;    &#x9;&#x9;&#x9;&#x9;//__Log('---------------------------> ENTROU strORG : '+ strORG);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;    &#x9;&#x9;&#x9;&#x9;switch (parseInt(strStatus)) {  &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;case 1: //APROVADO&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;__Log('---------------------------> ENTROU FLUXO APROVADO : ');&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var iTotalAprovadas = 0;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasA = {};&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasA.DetLinha = [];&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasA.DetLinha[iTotalAprovadas] = {};&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasA.DetLinha[iTotalAprovadas].ORG = strORG;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasA.DetLinha[iTotalAprovadas].LOGO = strLogo;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasA.DetLinha[iTotalAprovadas].DtSafra = strData;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;iTotalAprovadas = iTotalAprovadas + 1;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasA.iTotalAprovadas = iTotalAprovadas;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;//__Log('--------------------------->obj_analisePropostas.iTotalAprovadas  : '+ obj_analisePropostas.iTotalAprovadas);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;//__Log('--------------------------->AppState.analisePropostas.strRespPropostasA  : '+ JSON.stringify(obj_analisePropostas.strRespPropostasA));&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var data = strData.replace(&quot;-&quot;, &quot;&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;//__Log('-----> data : '+ data.replace(&quot;-&quot;, &quot;&quot;));&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;                            if(parseInt(data.replace(&quot;-&quot;, &quot;&quot;)) > 0 ){ ////Abs(DateDiff(&quot;d&quot;, strData, Now)) > 10 Then&#xD;&#xA;&#x9;&#x9;                            &#x9;obj_analisePropostas.strRespPropostasA.bExisteAproMais10D = true;&#xD;&#xA;&#x9;&#x9;                            &#x9;//__Log('-----> obj_analisePropostas dentro: ' + JSON.stringify(obj_analisePropostas));&#xD;&#xA;&#x9;&#x9;                            }&#x9;                                                       &#xD;&#xA;&#x9;&#x9;                            __Log('---------------------------> obj_analisePropostas  : '+ JSON.stringify(obj_analisePropostas));&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;                            break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;case 2: //REPROVADO&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;__Log('---------------------------> ENTROU FLUXO REPROVADO : ');&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var iTotalReprovadas = 0;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasR = {};&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasR.DetLinha = [];&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasR.DetLinha[iTotalReprovadas] = {};&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasR.DetLinha[iTotalReprovadas].ORG = strORG;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasR.DetLinha[iTotalReprovadas].LOGO = strLogo;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasR.DetLinha[iTotalReprovadas].DtSafra = strData;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;iTotalReprovadas = iTotalReprovadas + 1;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasR.iTotalReprovadas = iTotalReprovadas;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;__Log('---------------------------> obj_analisePropostas  : '+ JSON.stringify(obj_analisePropostas));&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;case 3: //EM ANALISE&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;__Log('---------------------------> ENTROU FLUXO EM ANALISE : ');&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;var iTotalEmAnalise = 0;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasEmAna = {};&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasEmAna.DetLinha = [];&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasEmAna.DetLinha[iTotalEmAnalise] = {};&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasEmAna.DetLinha[iTotalEmAnalise].ORG = strORG;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasEmAna.DetLinha[iTotalEmAnalise].LOGO = strLogo;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasEmAna.DetLinha[iTotalEmAnalise].DtSafra = strData;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;iTotalEmAnalise = iTotalEmAnalise + 1;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;obj_analisePropostas.strRespPropostasEmAna.iTotalEmAnalise = iTotalEmAnalise;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;__Log('--------------------------->obj_analisePropostas  : '+ JSON.stringify(obj_analisePropostas));&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;break;&#x9;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;default: //erro&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}  &#xD;&#xA;&#x9;&#x9;&#x9;} &#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;return obj_analisePropostas;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;   &#xD;&#xA; //__Log('-----> diferencaDias : '+ diferencaDias('20220810', '2'));  &#xD;&#xA;   &#x9; &#xD;&#xA; function diferencaDias(dt, formato) {&#xD;&#xA;&#xD;&#xA;&#x9;var hoje = new Date();&#xD;&#xA;&#x9;var xhoje = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate(), 0, 0, 0);&#xD;&#xA;&#x9;var dataX;&#xD;&#xA;&#x9;// formato: 1 - nacional, 2 - internacional&#xD;&#xA;&#x9;if (formato == 2) {&#xD;&#xA;&#x9;&#x9;dataX = getDateFromStringInternational(dt);&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;dataX = getDateFromString(dt);&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;var dif = Date.UTC(dataX.getYear(), dataX.getMonth(), dataX.getDate(), 0, 0, 0) -&#xD;&#xA;&#x9;&#x9;Date.UTC(xhoje.getYear(), xhoje.getMonth(), xhoje.getDate(), 0, 0, 0);&#xD;&#xA;&#xD;&#xA;&#x9;return (dif / 1000 / 60 / 60 / 24);&#xD;&#xA;&#xD;&#xA;}     &#xD;&#xA;&#xD;&#xA;   &#xD;&#xA;/**&#xD;&#xA; * Funcao getDateFromString(dt)&#xD;&#xA; * &#xD;&#xA; * Formato: retorna data de entrada no formato String DDMMAA ou DDMMAAAA em Date.&#xD;&#xA; * @param dt&#xD;&#xA; * @returns {Date}&#xD;&#xA; *&#xD;&#xA; **/&#xD;&#xA;function getDateFromString(dt) {&#xD;&#xA;&#xD;&#xA;&#x9;var dia = dt.substr(0, 2);&#xD;&#xA;&#x9;var mes = dt.substr(2, 2);&#xD;&#xA;&#x9;var ano = dt.substr(4);&#xD;&#xA;&#xD;&#xA;&#x9;mes = parseInt(mes, 10) - 1;&#xD;&#xA;&#xD;&#xA;&#x9;if (ano.length == 2) {&#xD;&#xA;&#x9;&#x9;ano = &quot;20&quot; + ano;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;var data = new Date(ano, mes, dia);&#xD;&#xA;&#x9;return data;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;function getDateFromStringInternational(dt) {&#xD;&#xA;&#xD;&#xA;&#x9;var dia = 0;&#xD;&#xA;&#x9;var mes = 0;&#xD;&#xA;&#x9;var ano = 0;&#xD;&#xA;&#xD;&#xA;&#x9;if (dt.length == 6) {&#xD;&#xA;&#x9;&#x9;dia = dt.substr(4);&#xD;&#xA;&#x9;&#x9;mes = dt.substr(2, 2);&#xD;&#xA;&#x9;&#x9;ano = &quot;20&quot; + dt.substr(0, 2);&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;dia = dt.substr(6);&#xD;&#xA;&#x9;&#x9;mes = dt.substr(4, 2);&#xD;&#xA;&#x9;&#x9;ano = dt.substr(0, 4);&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;mes = parseInt(mes, 10) - 1;&#xD;&#xA;&#x9;var data = new Date(ano, mes, dia);&#xD;&#xA;&#x9;return data;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;/*&#xD;&#xA; * formato data ddMMyyyyhhmmss ou ex: 2016-01-12T18:00:00&#xD;&#xA; */&#xD;&#xA;function getFullDateFromStringInternational(dt) {&#xD;&#xA;&#xD;&#xA;&#x9;dt = replaceAll(dt, &quot;-&quot;, &quot;&quot;);&#xD;&#xA;&#x9;dt = replaceAll(dt, &quot; &quot;, &quot;&quot;);&#xD;&#xA;&#x9;dt = replaceAll(dt, &quot;T&quot;, &quot;&quot;);&#xD;&#xA;&#x9;dt = replaceAll(dt, &quot;:&quot;, &quot;&quot;);&#xD;&#xA;&#xD;&#xA;&#x9;var dia = dt.substr(6, 2);&#xD;&#xA;&#x9;var mes = dt.substr(4, 2);&#xD;&#xA;&#x9;var ano = dt.substr(0, 4);&#xD;&#xA;&#x9;var hora = dt.substr(8, 2);&#xD;&#xA;&#x9;var min = dt.substr(10, 2);&#xD;&#xA;&#x9;var seg = dt.substr(12, 2);&#xD;&#xA;&#xD;&#xA;&#x9;mes = parseInt(mes, 10) - 1;&#xD;&#xA;&#xD;&#xA;&#x9;if (ano.length == 2) {&#xD;&#xA;&#x9;&#x9;ano = &quot;20&quot; + ano;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;var data = new Date(ano, mes, dia, hora, min, seg);&#xD;&#xA;&#x9;return data;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;} catch (error) {&#xD;&#xA;&#x9;__Log(&quot;##### Error(API CREConector Mainframe 1.0): &quot; + error);&#xD;&#xA;}"/>
+    <blocks xmi:type="gvp:LogBlock" xmi:id="_dg5bQI_zEeyINtSlKwVMZg" name="Log_Error_BadFetch" category="Log">
+      <loggingDetails>'#######LOG -  Retorno Servico: error.badfetch  #######'</loggingDetails>
+    </blocks>
+    <blocks xmi:type="gvp:LogBlock" xmi:id="_kA0FAI_zEeyINtSlKwVMZg" name="Log_Error_ServerError" category="Log">
+      <loggingDetails>'#######LOG -  Retorno Servico: error.com.genesyslab.composer.servererror #####';</loggingDetails>
+    </blocks>
+    <blocks xmi:type="gvp:EcmaScriptBlock" xmi:id="_2d9VwI_zEeyINtSlKwVMZg" name="ConsultarAnaliseProposta_Parse_Error" category="ECMA Script" script="try {&#xD;&#xA;&#x9;&#x9;var response = AppState.objResponseAPI;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;__Log('###### Log API CREConector Mainframe 1.0 - response: ' + JSON.stringify(response) + '######');&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;AppState.AplConsultarAnalisePropostaRX = {};&#xD;&#xA;&#x9;&#x9;AppState.AplConsultarAnalisePropostaRX.codigoRetorno = '99';&#xD;&#xA;&#x9;&#x9;AppState.AplConsultarAnalisePropostaRX.msgRetorno = 'falha';&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;} catch (error) {&#xD;&#xA;&#x9;__Log(&quot;##### Error( CREConector Mainframe 1.0): &quot; + error);&#xD;&#xA;}"/>
+    <blocks xmi:type="gvp:AssignBlock" xmi:id="_LcLcJY_0EeyINtSlKwVMZg" name="addDados_ConsultarAnaliseProposta" category="Assign">
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_LLnQ4BdJEe2a178Jt0t84g" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'analisePropostas', AppState.analisePropostas)"/>
+    </blocks>
+    <blocks xmi:type="gvp:EcmaScriptBlock" xmi:id="_74YrkBQgEe2Y8dz_yscd8w" name="ECMA_Set_Navegacao_Operacoes" category="ECMA Script" script="try {&#xD;&#xA;&#xD;&#xA;   &#x9;var dataAtual = getDataAtual();&#xD;&#xA;&#xD;&#xA;&#x9;AppState.objNavegacao = {&#xD;&#xA;&#x9;&#x9;codigoServico: AppState.ap_nomeServico,&#xD;&#xA;&#x9;&#x9;timestampInicio: AppState.VAR_timestampInicio,&#xD;&#xA;&#x9;&#x9;timestampFim: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;&#xD;&#xA;&#x9;&#x9;sequencia: 1,&#xD;&#xA;&#x9;&#x9;status: AppState.objResponseAPI.detail.codigoRetorno,&#xD;&#xA;&#x9;&#x9;chavesPesquisa: [],&#xD;&#xA;&#x9;&#x9;dadosOperacao: [&#xD;&#xA;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Request: AppState.objJsonRequest,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Response: AppState.objResponseAPI&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;]&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;__Log(&quot;##### objNavegacao: &quot;+ JSON.stringify(AppState.objNavegacao));&#xD;&#xA;} catch (error) {&#xD;&#xA;&#x9;__Log(&quot;##### Error(ECMA_Set_Navegacao_Operacoes): &quot; + error);&#xD;&#xA;}"/>
+    <blocks xmi:type="gvp:SubdialogBlock" xmi:id="_-2oHyJ5sEe28Q9dsvc0YWw" name="Abandono" category="Subdialog" uri="workspace:///YUII/Callflows/Abandono.callflow">
+      <parameters xmi:type="datatypes:Parameter" xmi:id="_-2oHyZ5sEe28Q9dsvc0YWw" name="io_dados" value="io_dados" description="Dados da ligacao" type="inout"/>
+    </blocks>
+    <blocks xmi:type="gvp:SubdialogBlock" xmi:id="_-2oHyp5sEe28Q9dsvc0YWw" name="FalaDesliga" category="Subdialog" uri="workspace:///YUII/Callflows/FalaDesliga.callflow">
+      <parameters xmi:type="datatypes:Parameter" xmi:id="_-2oHy55sEe28Q9dsvc0YWw" name="io_dados" value="AppState.io_dados" description="Dados da ligacao"/>
+    </blocks>
+    <blocks xmi:type="gvp:BranchingBlock" xmi:id="_ZZTxXeTvEe2I48J-uzfZdA" name="VerRetornoWR" condition="" category="Branching">
+      <conditions xmi:type="datatypes:BranchItem" xmi:id="_ZZTxXuTvEe2I48J-uzfZdA" name="TokenAtivo" expression="!(AppState.objResponseAPI.hasOwnProperty(&quot;errorMsg&quot;) &amp;&amp; AppState.objResponseAPI.errorMsg == &quot;Unauthorized&quot;)"/>
+    </blocks>
+    <blocks xmi:type="gvp:SubdialogBlock" xmi:id="_ZZTxX-TvEe2I48J-uzfZdA" name="AutenticarCanal" category="Subdialog" uri="workspace:///YUII/Callflows/Estruturante_AutenticarCanal.callflow">
+      <parameters xmi:type="datatypes:Parameter" xmi:id="_ZZTxYOTvEe2I48J-uzfZdA" name="io_dados" value="io_dados" description="dados da ligacao" type="inout"/>
+    </blocks>
+    <blocks xmi:type="gvp:BranchingBlock" xmi:id="_ZZTxYeTvEe2I48J-uzfZdA" name="ValidaTentativas_UR76" category="Branching">
+      <loggingDetails>'######### AppState.ap_tentativas : ' + AppState.ap_tentativas</loggingDetails>
+      <conditions xmi:type="datatypes:BranchItem" xmi:id="_ZZTxYuTvEe2I48J-uzfZdA" name="Nao" expression="AppState.ap_tentativas > 2" postAction="AppState.ap_tentativas +1"/>
+    </blocks>
+    <links xmi:type="gvp:CallflowOutputLink" xmi:id="_U2U90HlhEeSt1OQz5cZgzA" fromBlock="_0TDncMlhEeKE2tP5OBlA8w" toBlock="_UR_hsHlhEeSt1OQz5cZgzA"/>
+    <links xmi:type="gvp:CallflowOutputLink" xmi:id="_80X6sI_yEeyINtSlKwVMZg" fromBlock="_UR_hsHlhEeSt1OQz5cZgzA" toBlock="_8LbrYI_yEeyINtSlKwVMZg"/>
+    <links xmi:type="gvp:CallflowOutputLink" xmi:id="_IoqoII_zEeyINtSlKwVMZg" fromBlock="_8LbrYI_yEeyINtSlKwVMZg" toBlock="_ICZSUI_zEeyINtSlKwVMZg"/>
+    <links xmi:type="gvp:CallflowOutputLink" xmi:id="_Q9DgMI_zEeyINtSlKwVMZg" fromBlock="_ICZSUI_zEeyINtSlKwVMZg" toBlock="_ZZTxXeTvEe2I48J-uzfZdA"/>
+    <links xmi:type="gvp:CallflowExceptionLink" xmi:id="_zkGzwI_zEeyINtSlKwVMZg" name="error.badfetch" fromBlock="_ICZSUI_zEeyINtSlKwVMZg" toBlock="_dg5bQI_zEeyINtSlKwVMZg"/>
+    <links xmi:type="gvp:CallflowExceptionLink" xmi:id="_1BohsI_zEeyINtSlKwVMZg" name="error.com.genesyslab.composer.servererror" fromBlock="_ICZSUI_zEeyINtSlKwVMZg" toBlock="_kA0FAI_zEeyINtSlKwVMZg"/>
+    <links xmi:type="gvp:CallflowOutputLink" xmi:id="_3JKO4I_zEeyINtSlKwVMZg" fromBlock="_dg5bQI_zEeyINtSlKwVMZg" toBlock="_2d9VwI_zEeyINtSlKwVMZg"/>
+    <links xmi:type="gvp:CallflowOutputLink" xmi:id="_3XK1sI_zEeyINtSlKwVMZg" fromBlock="_kA0FAI_zEeyINtSlKwVMZg" toBlock="_2d9VwI_zEeyINtSlKwVMZg"/>
+    <links xmi:type="gvp:CallflowOutputLink" xmi:id="_L-lloI_0EeyINtSlKwVMZg" fromBlock="_QBeBsI_zEeyINtSlKwVMZg" toBlock="_LcLcJY_0EeyINtSlKwVMZg"/>
+    <links xmi:type="gvp:CallflowOutputLink" xmi:id="_sdz_II_2EeyINtSlKwVMZg" fromBlock="_2d9VwI_zEeyINtSlKwVMZg" toBlock="_LcLcJY_0EeyINtSlKwVMZg"/>
+    <links xmi:type="gvp:CallflowOutputLink" xmi:id="_8H_04BQgEe2Y8dz_yscd8w" fromBlock="_LcLcJY_0EeyINtSlKwVMZg" toBlock="_74YrkBQgEe2Y8dz_yscd8w"/>
+    <links xmi:type="gvp:CallflowOutputLink" xmi:id="_8na70BQgEe2Y8dz_yscd8w" fromBlock="_74YrkBQgEe2Y8dz_yscd8w" toBlock="_0afsMMlhEeKE2tP5OBlA8w"/>
+    <links xmi:type="gvp:CallflowExceptionLink" xmi:id="_BAc7AJ5tEe28Q9dsvc0YWw" name="connection.disconnect.hangup" fromBlock="_0TDncMlhEeKE2tP5OBlA8w" toBlock="_-2oHyJ5sEe28Q9dsvc0YWw"/>
+    <links xmi:type="gvp:CallflowOutputLink" xmi:id="_B-c0UJ5tEe28Q9dsvc0YWw" fromBlock="_-2oHyJ5sEe28Q9dsvc0YWw" toBlock="_-2oHyp5sEe28Q9dsvc0YWw"/>
+    <links xmi:type="gvp:CallflowOutputLink" xmi:id="_CniNkJ5tEe28Q9dsvc0YWw" fromBlock="_-2oHyp5sEe28Q9dsvc0YWw" toBlock="_0afsMMlhEeKE2tP5OBlA8w"/>
+    <links xmi:type="gvp:CallflowOutputLink" xmi:id="_ZZTxY-TvEe2I48J-uzfZdA" name="default" fromBlock="_ZZTxXeTvEe2I48J-uzfZdA" toBlock="_ZZTxYeTvEe2I48J-uzfZdA"/>
+    <links xmi:type="gvp:CallflowOutputLink" xmi:id="_ZZTxauTvEe2I48J-uzfZdA" name="default" fromBlock="_ZZTxYeTvEe2I48J-uzfZdA" toBlock="_ZZTxX-TvEe2I48J-uzfZdA"/>
+    <links xmi:type="gvp:CallflowOutputLink" xmi:id="_bSh8wOTvEe2I48J-uzfZdA" name="TokenAtivo" fromBlock="_ZZTxXeTvEe2I48J-uzfZdA" toBlock="_QBeBsI_zEeyINtSlKwVMZg"/>
+    <links xmi:type="gvp:CallflowOutputLink" xmi:id="_b3TdwOTvEe2I48J-uzfZdA" name="Nao" fromBlock="_ZZTxYeTvEe2I48J-uzfZdA" toBlock="_2d9VwI_zEeyINtSlKwVMZg"/>
+    <links xmi:type="gvp:CallflowOutputLink" xmi:id="_ds8wwOTvEe2I48J-uzfZdA" fromBlock="_ZZTxX-TvEe2I48J-uzfZdA" toBlock="_8LbrYI_yEeyINtSlKwVMZg"/>
+    <namespaces xmi:type="datatypes:Property" xmi:id="_zxAqVclhEeKE2tP5OBlA8w" name="gvp" value="http://www.genesyslab.com/2006/vxml21-extension"/>
+    <systemProperties xmi:type="datatypes:Property" xmi:id="_zxAqVslhEeKE2tP5OBlA8w" name="RetainInputTypeVariableDefaultValue" value="false"/>
+  </gvp:CallflowDiagram>
+  <notation:Diagram xmi:id="_RF4M8YobEeG_nt9_QYQUcg" type="Studio" element="_RF4M8IobEeG_nt9_QYQUcg" name="subcallflow.callflow" measurementUnit="Pixel">
+    <children xmi:type="notation:Shape" xmi:id="_0VP_0MlhEeKE2tP5OBlA8w" type="1003" element="_0TDncMlhEeKE2tP5OBlA8w">
+      <children xmi:type="notation:DecorationNode" xmi:id="_0VP_0slhEeKE2tP5OBlA8w" type="6003"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_0VP_08lhEeKE2tP5OBlA8w" type="6001"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0VP_0clhEeKE2tP5OBlA8w" x="380" y="-102"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_0aly0MlhEeKE2tP5OBlA8w" type="1004" element="_0afsMMlhEeKE2tP5OBlA8w">
+      <children xmi:type="notation:DecorationNode" xmi:id="_0aly0slhEeKE2tP5OBlA8w" type="6002"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_0aly08lhEeKE2tP5OBlA8w" type="4005"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0aly0clhEeKE2tP5OBlA8w" x="306" y="1122"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_UR9sgHlhEeSt1OQz5cZgzA" type="1006" element="_UR_hsHlhEeSt1OQz5cZgzA" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_UR9sgXlhEeSt1OQz5cZgzA" type="4008"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_UR9sgnlhEeSt1OQz5cZgzA" type="4009"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UR9sg3lhEeSt1OQz5cZgzA" x="380" y="30"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_8LcScI_yEeyINtSlKwVMZg" type="2013" element="_8LbrYI_yEeyINtSlKwVMZg" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_8Lc5gI_yEeyINtSlKwVMZg" type="8025"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_8Lc5gY_yEeyINtSlKwVMZg" type="8026"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8LcScY_yEeyINtSlKwVMZg" x="380" y="170"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_ICZ5YI_zEeyINtSlKwVMZg" type="1018" element="_ICZSUI_zEeyINtSlKwVMZg" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_ICZ5Yo_zEeyINtSlKwVMZg" type="4032"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_ICZ5Y4_zEeyINtSlKwVMZg" type="4033"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ICZ5YY_zEeyINtSlKwVMZg" x="380" y="306"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_QBfP0I_zEeyINtSlKwVMZg" type="2013" element="_QBeBsI_zEeyINtSlKwVMZg" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_QBfP0o_zEeyINtSlKwVMZg" type="8025"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_QBfP04_zEeyINtSlKwVMZg" type="8026"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QBfP0Y_zEeyINtSlKwVMZg" x="306" y="646"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_dg6CUI_zEeyINtSlKwVMZg" type="1006" element="_dg5bQI_zEeyINtSlKwVMZg" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_dg6CUo_zEeyINtSlKwVMZg" type="4008"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_dg6CU4_zEeyINtSlKwVMZg" type="4009"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dg6CUY_zEeyINtSlKwVMZg" y="374"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_kA0sEI_zEeyINtSlKwVMZg" type="1006" element="_kA0FAI_zEeyINtSlKwVMZg" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_kA0sEY_zEeyINtSlKwVMZg" type="4008"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_kA0sEo_zEeyINtSlKwVMZg" type="4009"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kA0sE4_zEeyINtSlKwVMZg" x="170" y="374"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_2d980I_zEeyINtSlKwVMZg" type="2013" element="_2d9VwI_zEeyINtSlKwVMZg" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_2d980o_zEeyINtSlKwVMZg" type="8025"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_2d9804_zEeyINtSlKwVMZg" type="8026"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2d980Y_zEeyINtSlKwVMZg" x="68" y="646"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_LcLcIY_0EeyINtSlKwVMZg" type="1011" element="_LcLcJY_0EeyINtSlKwVMZg" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_LcLcIo_0EeyINtSlKwVMZg" type="4018"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_LcLcI4_0EeyINtSlKwVMZg" type="4019"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_LcLcJI_0EeyINtSlKwVMZg" x="306" y="782"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_nIKaMJAkEeyINtSlKwVMZg" type="Note" fontName="Segoe UI" description="Na propriedade Custom HTTP Headers do bloco WebRequest, temos que incluir as variaveis de acordo com o que aparecer no POSTMAN. Exemplo:&#x9;Variable(Content-Type=Content_Type), Variable(Authorization=str_auth)" fillColor="13369343" transparency="0" lineColor="6737151" lineWidth="1">
+      <children xmi:type="notation:BasicDecorationNode" xmi:id="_nIM2cJAkEeyINtSlKwVMZg" type="DiagramName">
+        <element xsi:nil="true"/>
+      </children>
+      <children xmi:type="notation:BasicDecorationNode" xmi:id="_nIM2cZAkEeyINtSlKwVMZg" type="Description">
+        <element xsi:nil="true"/>
+      </children>
+      <styles xmi:type="notation:TextStyle" xmi:id="_nIKaMZAkEeyINtSlKwVMZg"/>
+      <styles xmi:type="notation:LineTypeStyle" xmi:id="_nIKaMpAkEeyINtSlKwVMZg"/>
+      <element xsi:nil="true"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nILBQJAkEeyINtSlKwVMZg" x="544" y="257" width="273" height="118"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_74YEgRQgEe2Y8dz_yscd8w" type="2013" element="_74YrkBQgEe2Y8dz_yscd8w" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_74YEghQgEe2Y8dz_yscd8w" type="8025"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_74YEgxQgEe2Y8dz_yscd8w" type="8026"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_74YEhBQgEe2Y8dz_yscd8w" x="306" y="952"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_-2oHwJ5sEe28Q9dsvc0YWw" type="1009" element="_-2oHyJ5sEe28Q9dsvc0YWw" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_-2oHwZ5sEe28Q9dsvc0YWw" type="4014"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_-2oHwp5sEe28Q9dsvc0YWw" type="4015"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-2oHw55sEe28Q9dsvc0YWw" x="-294" y="168"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_-2oHxJ5sEe28Q9dsvc0YWw" type="1009" element="_-2oHyp5sEe28Q9dsvc0YWw" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_-2oHxZ5sEe28Q9dsvc0YWw" type="4014"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_-2oHxp5sEe28Q9dsvc0YWw" type="4015"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-2oHx55sEe28Q9dsvc0YWw" x="-294" y="294"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_ZZTxUeTvEe2I48J-uzfZdA" type="1012" element="_ZZTxXeTvEe2I48J-uzfZdA" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_ZZTxUuTvEe2I48J-uzfZdA" type="4020"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_ZZTxU-TvEe2I48J-uzfZdA" type="4021"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZZTxVOTvEe2I48J-uzfZdA" x="380" y="408" width="103"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_ZZTxVeTvEe2I48J-uzfZdA" type="1009" element="_ZZTxX-TvEe2I48J-uzfZdA" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_ZZTxVuTvEe2I48J-uzfZdA" type="4014"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_ZZTxV-TvEe2I48J-uzfZdA" type="4015"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZZTxWOTvEe2I48J-uzfZdA" x="952" y="714"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_ZZTxWeTvEe2I48J-uzfZdA" type="1012" element="_ZZTxYeTvEe2I48J-uzfZdA" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_ZZTxWuTvEe2I48J-uzfZdA" type="4020"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_ZZTxW-TvEe2I48J-uzfZdA" type="4021"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZZTxXOTvEe2I48J-uzfZdA" x="680" y="544"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_RF4M8oobEeG_nt9_QYQUcg"/>
+    <edges xmi:type="notation:Connector" xmi:id="_U2WL8HlhEeSt1OQz5cZgzA" type="3001" element="_U2U90HlhEeSt1OQz5cZgzA" source="_0VP_0MlhEeKE2tP5OBlA8w" target="_UR9sgHlhEeSt1OQz5cZgzA" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
+      <children xmi:type="notation:DecorationNode" xmi:id="_U2WzAHlhEeSt1OQz5cZgzA" type="4074">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_U2WzAXlhEeSt1OQz5cZgzA" x="5" y="5"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_U2WL8XlhEeSt1OQz5cZgzA" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_U2WL8nlhEeSt1OQz5cZgzA" points="[6, 0, 0, -31]$[7, 26, 1, -5]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_U2adYHlhEeSt1OQz5cZgzA" id="(0.5,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_U2adYXlhEeSt1OQz5cZgzA" id="(0.5545454545454546,0.1)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_80X6sY_yEeyINtSlKwVMZg" type="3001" element="_80X6sI_yEeyINtSlKwVMZg" source="_UR9sgHlhEeSt1OQz5cZgzA" target="_8LcScI_yEeyINtSlKwVMZg" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
+      <children xmi:type="notation:DecorationNode" xmi:id="_80ZI0I_yEeyINtSlKwVMZg" type="4074">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_80ZI0Y_yEeyINtSlKwVMZg" x="5" y="5"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_80X6so_yEeyINtSlKwVMZg" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_80X6s4_yEeyINtSlKwVMZg" points="[4, 2, 0, -96]$[6, 88, 2, -10]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_80aW8I_yEeyINtSlKwVMZg" id="(0.4909090909090909,0.96)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_80aW8Y_yEeyINtSlKwVMZg" id="(0.5272727272727272,0.2)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_Ior2QI_zEeyINtSlKwVMZg" type="3001" element="_IoqoII_zEeyINtSlKwVMZg" source="_8LcScI_yEeyINtSlKwVMZg" target="_ICZ5YI_zEeyINtSlKwVMZg" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
+      <children xmi:type="notation:DecorationNode" xmi:id="_Ior2Q4_zEeyINtSlKwVMZg" type="4074">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Ior2RI_zEeyINtSlKwVMZg" x="5" y="5"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_Ior2QY_zEeyINtSlKwVMZg" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Ior2Qo_zEeyINtSlKwVMZg" points="[-8, 2, -3, -111]$[-8, 88, -3, -25]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_IotEYI_zEeyINtSlKwVMZg" id="(0.4909090909090909,0.96)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_Q9DgMY_zEeyINtSlKwVMZg" type="3001" element="_Q9DgMI_zEeyINtSlKwVMZg" source="_ICZ5YI_zEeyINtSlKwVMZg" target="_ZZTxUeTvEe2I48J-uzfZdA" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
+      <children xmi:type="notation:DecorationNode" xmi:id="_Q9DgNI_zEeyINtSlKwVMZg" type="4074">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Q9DgNY_zEeyINtSlKwVMZg" x="5" y="5"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_Q9DgMo_zEeyINtSlKwVMZg" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Q9DgM4_zEeyINtSlKwVMZg" points="[0, 25, 0, -315]$[0, 315, 0, -25]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Q9FVYI_zEeyINtSlKwVMZg" id="(0.5272727272727272,0.88)"/>
+    </edges>
+    <edges xmi:type="notation:Edge" xmi:id="_zkHa0I_zEeyINtSlKwVMZg" type="3002" element="_zkGzwI_zEeyINtSlKwVMZg" source="_ICZ5YI_zEeyINtSlKwVMZg" target="_dg6CUI_zEeyINtSlKwVMZg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_zkHa1I_zEeyINtSlKwVMZg" type="4075">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_zkIB4I_zEeyINtSlKwVMZg" x="5" y="5"/>
+      </children>
+      <styles xmi:type="notation:RoutingStyle" xmi:id="_zkHa0Y_zEeyINtSlKwVMZg" roundedBendpointsRadius="10" routing="Rectilinear"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_zkHa0o_zEeyINtSlKwVMZg" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_zkHa04_zEeyINtSlKwVMZg" points="[-55, -9, 325, -77]$[-380, -9, 0, -77]$[-380, 43, 0, -25]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_zkJQAI_zEeyINtSlKwVMZg" id="(0.0,0.3)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_zkJQAY_zEeyINtSlKwVMZg" id="(0.4636363636363636,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Edge" xmi:id="_1Bpv0I_zEeyINtSlKwVMZg" type="3002" element="_1BohsI_zEeyINtSlKwVMZg" source="_ICZ5YI_zEeyINtSlKwVMZg" target="_kA0sEI_zEeyINtSlKwVMZg">
+      <children xmi:type="notation:DecorationNode" xmi:id="_1Bpv1I_zEeyINtSlKwVMZg" type="4075">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_1Bpv1Y_zEeyINtSlKwVMZg" x="92" y="-8"/>
+      </children>
+      <styles xmi:type="notation:RoutingStyle" xmi:id="_1Bpv0Y_zEeyINtSlKwVMZg" roundedBendpointsRadius="10" routing="Rectilinear"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_1Bpv0o_zEeyINtSlKwVMZg" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_1Bpv04_zEeyINtSlKwVMZg" points="[-55, 8, 155, -60]$[-210, 8, 0, -60]$[-210, 43, 0, -25]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_1BrlAI_zEeyINtSlKwVMZg" id="(0.0,0.66)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_1BrlAY_zEeyINtSlKwVMZg" id="(0.2818181818181818,0.12)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_3JK18I_zEeyINtSlKwVMZg" type="3001" element="_3JKO4I_zEeyINtSlKwVMZg" source="_dg6CUI_zEeyINtSlKwVMZg" target="_2d980I_zEeyINtSlKwVMZg" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
+      <children xmi:type="notation:DecorationNode" xmi:id="_3JLdAI_zEeyINtSlKwVMZg" type="4074">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_3JLdAY_zEeyINtSlKwVMZg" x="5" y="5"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_3JK18Y_zEeyINtSlKwVMZg" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_3JK18o_zEeyINtSlKwVMZg" points="[1, 26, -101, -144]$[1, 111, -101, -59]$[103, 111, 1, -59]$[103, 146, 1, -24]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3JMEEI_zEeyINtSlKwVMZg" id="(0.4909090909090909,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3JMrII_zEeyINtSlKwVMZg" id="(0.5181818181818182,0.06)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_3XLcwI_zEeyINtSlKwVMZg" type="3001" element="_3XK1sI_zEeyINtSlKwVMZg" source="_kA0sEI_zEeyINtSlKwVMZg" target="_2d980I_zEeyINtSlKwVMZg" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
+      <children xmi:type="notation:DecorationNode" xmi:id="_3XLcw4_zEeyINtSlKwVMZg" type="4074">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_3XLcxI_zEeyINtSlKwVMZg" x="5" y="5"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_3XLcwY_zEeyINtSlKwVMZg" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_3XLcwo_zEeyINtSlKwVMZg" points="[0, 25, 102, -213]$[0, 156, 102, -82]$[-102, 156, 0, -82]$[-102, 213, 0, -25]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3XMq4I_zEeyINtSlKwVMZg" id="(0.5,1.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_L-mMsI_0EeyINtSlKwVMZg" type="3001" element="_L-lloI_0EeyINtSlKwVMZg" source="_QBfP0I_zEeyINtSlKwVMZg" target="_LcLcIY_0EeyINtSlKwVMZg" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
+      <children xmi:type="notation:DecorationNode" xmi:id="_L-mzwI_0EeyINtSlKwVMZg" type="4074">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_L-mzwY_0EeyINtSlKwVMZg" x="5" y="5"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_L-mMsY_0EeyINtSlKwVMZg" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_L-mMso_0EeyINtSlKwVMZg" points="[5, 1, 5, -111]$[5, 87, 5, -25]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_L-oB4I_0EeyINtSlKwVMZg" id="(0.5,0.98)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_sdz_IY_2EeyINtSlKwVMZg" type="3001" element="_sdz_II_2EeyINtSlKwVMZg" source="_2d980I_zEeyINtSlKwVMZg" target="_LcLcIY_0EeyINtSlKwVMZg" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
+      <children xmi:type="notation:DecorationNode" xmi:id="_sd0mMI_2EeyINtSlKwVMZg" type="4074">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_sd0mMY_2EeyINtSlKwVMZg" x="5" y="5"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_sdz_Io_2EeyINtSlKwVMZg" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_sdz_I4_2EeyINtSlKwVMZg" points="[55, -3, -254, 12]$[308, -16, -1, -1]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sd1NQI_2EeyINtSlKwVMZg" id="(0.5,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sd1NQY_2EeyINtSlKwVMZg" id="(0.4727272727272727,0.02)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_8IAb8BQgEe2Y8dz_yscd8w" type="3001" element="_8H_04BQgEe2Y8dz_yscd8w" source="_LcLcIY_0EeyINtSlKwVMZg" target="_74YEgRQgEe2Y8dz_yscd8w" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
+      <children xmi:type="notation:DecorationNode" xmi:id="_8IAb8xQgEe2Y8dz_yscd8w" type="4074">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_8IAb9BQgEe2Y8dz_yscd8w" x="5" y="5"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_8IAb8RQgEe2Y8dz_yscd8w" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_8IAb8hQgEe2Y8dz_yscd8w" points="[0, 1, -11, -103]$[11, 97, 0, -7]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_8IC4MBQgEe2Y8dz_yscd8w" id="(0.4909090909090909,0.98)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_8IC4MRQgEe2Y8dz_yscd8w" id="(0.5,0.14)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_8nbi4BQgEe2Y8dz_yscd8w" type="3001" element="_8na70BQgEe2Y8dz_yscd8w" source="_74YEgRQgEe2Y8dz_yscd8w" target="_0aly0MlhEeKE2tP5OBlA8w" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
+      <children xmi:type="notation:DecorationNode" xmi:id="_8nbi4xQgEe2Y8dz_yscd8w" type="4074">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_8nbi5BQgEe2Y8dz_yscd8w" x="5" y="5"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_8nbi4RQgEe2Y8dz_yscd8w" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_8nbi4hQgEe2Y8dz_yscd8w" points="[-6, 0, -10, -145]$[-51, 138, -55, -7]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_8ncxABQgEe2Y8dz_yscd8w" id="(0.4636363636363636,1.0)"/>
+    </edges>
+    <edges xmi:type="notation:Edge" xmi:id="_BAc7AZ5tEe28Q9dsvc0YWw" type="3002" element="_BAc7AJ5tEe28Q9dsvc0YWw" source="_0VP_0MlhEeKE2tP5OBlA8w" target="_-2oHwJ5sEe28Q9dsvc0YWw">
+      <children xmi:type="notation:DecorationNode" xmi:id="_BAdiEJ5tEe28Q9dsvc0YWw" type="4075">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_BAdiEZ5tEe28Q9dsvc0YWw" x="5" y="5"/>
+      </children>
+      <styles xmi:type="notation:RoutingStyle" xmi:id="_BAc7Ap5tEe28Q9dsvc0YWw" roundedBendpointsRadius="10" routing="Rectilinear"/>
+      <styles xmi:type="notation:FontStyle" xmi:id="_BAc7A55tEe28Q9dsvc0YWw" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_BAc7BJ5tEe28Q9dsvc0YWw" points="[-55, 0, 619, -270]$[-674, 0, 0, -270]$[-674, 245, 0, -25]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BAeJIJ5tEe28Q9dsvc0YWw" id="(0.0,0.52)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BAeJIZ5tEe28Q9dsvc0YWw" id="(0.5181818181818182,0.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_B-dbYJ5tEe28Q9dsvc0YWw" type="3001" element="_B-c0UJ5tEe28Q9dsvc0YWw" source="_-2oHwJ5sEe28Q9dsvc0YWw" target="_-2oHxJ5sEe28Q9dsvc0YWw" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
+      <children xmi:type="notation:DecorationNode" xmi:id="_B-dbY55tEe28Q9dsvc0YWw" type="4074">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_B-dbZJ5tEe28Q9dsvc0YWw" x="5" y="5"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_B-dbYZ5tEe28Q9dsvc0YWw" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_B-dbYp5tEe28Q9dsvc0YWw" points="[-2, 0, 0, -80]$[-2, 76, 0, -4]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_B-eCcJ5tEe28Q9dsvc0YWw" id="(0.5272727272727272,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_B-eCcZ5tEe28Q9dsvc0YWw" id="(0.509090909090909,0.08)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_Cni0oJ5tEe28Q9dsvc0YWw" type="3001" element="_CniNkJ5tEe28Q9dsvc0YWw" source="_-2oHxJ5sEe28Q9dsvc0YWw" target="_0aly0MlhEeKE2tP5OBlA8w" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
+      <children xmi:type="notation:DecorationNode" xmi:id="_Cni0o55tEe28Q9dsvc0YWw" type="4074">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Cni0pJ5tEe28Q9dsvc0YWw" x="5" y="5"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_Cni0oZ5tEe28Q9dsvc0YWw" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Cni0op5tEe28Q9dsvc0YWw" points="[0, 25, -674, -803]$[0, 735, -674, -93]$[674, 735, 0, -93]$[674, 803, 0, -25]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_CnjbsJ5tEe28Q9dsvc0YWw" id="(0.5,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_CnjbsZ5tEe28Q9dsvc0YWw" id="(0.6090909090909091,0.2)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_ZZTxZOTvEe2I48J-uzfZdA" type="3001" element="_ZZTxY-TvEe2I48J-uzfZdA" source="_ZZTxUeTvEe2I48J-uzfZdA" target="_ZZTxWeTvEe2I48J-uzfZdA" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
+      <children xmi:type="notation:DecorationNode" xmi:id="_ZZTxZeTvEe2I48J-uzfZdA" type="4074">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_ZZTxZuTvEe2I48J-uzfZdA" x="5" y="5"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_ZZTxZ-TvEe2I48J-uzfZdA" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZZTxaOTvEe2I48J-uzfZdA" points="[18, 25, -282, -111]$[18, 43, -282, -93]$[296, 43, -4, -93]$[296, 92, -4, -44]$[300, 92, 0, -44]$[300, 111, 0, -25]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZZTxaeTvEe2I48J-uzfZdA" id="(0.6909090909090909,0.96)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_ZZTxa-TvEe2I48J-uzfZdA" type="3001" element="_ZZTxauTvEe2I48J-uzfZdA" source="_ZZTxWeTvEe2I48J-uzfZdA" target="_ZZTxVeTvEe2I48J-uzfZdA" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
+      <children xmi:type="notation:DecorationNode" xmi:id="_ZZTxbOTvEe2I48J-uzfZdA" type="4074">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_ZZTxbeTvEe2I48J-uzfZdA" x="5" y="5"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_ZZTxbuTvEe2I48J-uzfZdA" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZZTxb-TvEe2I48J-uzfZdA" points="[18, 25, -260, -142]$[18, 55, -260, -112]$[277, 55, -1, -112]$[277, 112, -1, -55]$[278, 112, 0, -55]$[278, 142, 0, -25]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZZTxcOTvEe2I48J-uzfZdA" id="(0.6272727272727273,1.0)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_bSij0OTvEe2I48J-uzfZdA" type="3001" element="_bSh8wOTvEe2I48J-uzfZdA" source="_ZZTxUeTvEe2I48J-uzfZdA" target="_QBfP0I_zEeyINtSlKwVMZg" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
+      <children xmi:type="notation:DecorationNode" xmi:id="_bSij0-TvEe2I48J-uzfZdA" type="4074">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_bSij1OTvEe2I48J-uzfZdA" x="5" y="5"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_bSij0eTvEe2I48J-uzfZdA" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_bSij0uTvEe2I48J-uzfZdA" points="[0, 0, 48, -162]$[-46, 154, 2, -8]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_bSjx8OTvEe2I48J-uzfZdA" id="(0.3181818181818182,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_bSjx8eTvEe2I48J-uzfZdA" id="(0.5545454545454546,0.16)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_b3UE0OTvEe2I48J-uzfZdA" type="3001" element="_b3TdwOTvEe2I48J-uzfZdA" source="_ZZTxWeTvEe2I48J-uzfZdA" target="_2d980I_zEeyINtSlKwVMZg" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
+      <children xmi:type="notation:DecorationNode" xmi:id="_b3UE0-TvEe2I48J-uzfZdA" type="4074">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_b3UE1OTvEe2I48J-uzfZdA" x="5" y="5"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_b3UE0eTvEe2I48J-uzfZdA" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_b3UE0uTvEe2I48J-uzfZdA" points="[0, 0, 602, -55]$[-604, 52, -2, -3]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_b3Ur4OTvEe2I48J-uzfZdA" id="(0.33636363636363636,1.0)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_b3Ur4eTvEe2I48J-uzfZdA" id="(0.42727272727272725,0.06)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_ds9X0OTvEe2I48J-uzfZdA" type="3001" element="_ds8wwOTvEe2I48J-uzfZdA" source="_ZZTxVeTvEe2I48J-uzfZdA" target="_8LcScI_yEeyINtSlKwVMZg" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
+      <children xmi:type="notation:DecorationNode" xmi:id="_ds9X0-TvEe2I48J-uzfZdA" type="4074">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_ds9X1OTvEe2I48J-uzfZdA" x="5" y="5"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_ds9X0eTvEe2I48J-uzfZdA" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ds9X0uTvEe2I48J-uzfZdA" points="[0, 25, 572, 569]$[0, 55, 572, 599]$[149, 55, 721, 599]$[149, -599, 721, -55]$[-572, -599, 0, -55]$[-572, -569, 0, -25]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ds9-4OTvEe2I48J-uzfZdA" id="(0.4909090909090909,1.0)"/>
+    </edges>
+  </notation:Diagram>
+</xmi:XMI>

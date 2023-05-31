@@ -1,0 +1,151 @@
+// MCancelaVendas
+function getFraseMCancelaVendas (dados){
+    
+    var ret = {};
+    
+    var parametros = dados['parametros'];
+    __Log('########### dados.sLogoCartao : ' + dados.sLogoCartao);
+    __Log('########### dados.sORGCartao : ' + dados.sORGCartao);
+    __Log('########### parametros.HabOpSeguro  : ' + parametros.HabOpSeguro);
+    __Log('########### parametros.HabOpPlanoOdonto  : ' + parametros.HabOpPlanoOdonto);
+    __Log('########### parametros.HabOpCartaoAdicional  : ' + parametros.HabOpCartaoAdicional);
+    
+    ret['nomeMenu'] = "MCancelaVendas";
+    ret["maxTentativas"] = getMaxTentativasMenus(3, parametros);
+    ret["frases"] = [];
+    ret["fraseNoMatch"] = [];
+    ret["fraseNoMatch"][0] = { "frase": "ypiiOpcaoInvalida.wav" };
+    ret["fraseNoMatch"][1] = { "frase": "ypiiOpcaoInvalida.wav" };
+	ret["fraseNoMatch"][2] = { "frase": "ypiiOpcaoInvalida.wav" };
+    ret["fraseNoInput"] = [];
+    ret['fraseDesconexao'] = [];
+
+    ret['statOpcoes'] = "";
+    ret['statInvalida_NOMATCH'] = "0000";
+    ret['statInvalida_NOINPUT'] = "0000";
+    ret['statInvalida_EXCEDEU_NOMATCH'] = "";
+    ret['statInvalida_EXCEDEU_NOINPUT'] = "";
+    ret['statValida'] = "";
+    ret["opcoesValidas"] = "";
+    ret['logTick'] = 'TICK_LOG_MCANCVENDAS';
+
+    ret['retryTentativaNoMatch'] = true;
+    ret['retryTentativaNoInput'] = true;
+    
+	if (PossuiOrgLogo(parametros.HabOpSeguro,dados.sORGCartao) || PossuiOrgLogo(parametros.HabOpSeguro,dados.strAuxORGLogo)){
+    //if (parametros['HabOpSeguro'] == true) {
+        ret["frases"].push({ "frase": "ypiiParaCancProtPerdRoubSegDivFamDig2.wav" });
+        ret["opcoesValidas"] += "2";
+    }
+	
+    if ((PossuiOrgLogo(parametros.HabOpSeguro,dados.sORGCartao) || PossuiOrgLogo(parametros.HabOpSeguro,dados.strAuxORGLogo)) && (PossuiOrgLogo(parametros.HabOpPlanoOdonto,dados.sORGCartao) || PossuiOrgLogo(parametros.HabOpPlanoOdonto,dados.strAuxORGLogo))){
+    //if (parametros['HabOpSeguro'] == true && parametros['HabOpPlanoOdonto'] == true ) {
+        ret["frases"].push({ "frase": "ypiiCancDemSegPlaOdoDig3.wav" });
+        ret["opcoesValidas"] += "3";
+    } else if(PossuiOrgLogo(parametros.HabOpSeguro,dados.sORGCartao) || PossuiOrgLogo(parametros.HabOpSeguro,dados.strAuxORGLogo)) {
+	//} else if(parametros['HabOpSeguro'] == true) {
+        ret["frases"].push({ "frase": "ypiiCancDemSegDig3.wav" });
+        ret["opcoesValidas"] += "3";		
+    } else if (PossuiOrgLogo(parametros.HabOpPlanoOdonto,dados.sORGCartao) || PossuiOrgLogo(parametros.HabOpPlanoOdonto,dados.strAuxORGLogo)) {
+	//} else if (parametros['HabOpPlanoOdonto'] == true) {
+        ret["frases"].push({ "frase": "ypiiCancPlaOdoDig3.wav" });
+        ret["opcoesValidas"] += "3";
+    }
+	
+    if (PossuiOrgLogo(parametros.HabOpCartaoAdicional,dados.sORGCartao) || PossuiOrgLogo(parametros.HabOpCartaoAdicional,dados.strAuxORGLogo)){
+    //if (parametros['HabOpCartaoAdicional'] == true) {
+        ret["frases"].push({ "frase": "ypiiCancCartAdicDig4.wav" });
+        ret["opcoesValidas"] += "4";
+    }
+
+    ret["frases"].push({ "frase": "ypiioltMenuAntDig0.wav" });
+    ret["opcoesValidas"] += "0";
+
+    return ret;
+
+}
+
+//MContinuaCancel
+function getFrases_MContinuaCancel(dados) {
+
+	var ret = {};
+	
+    var parametros = dados['parametros'];   
+    __Log('########### dados.sLogoCartao : ' + dados.sLogoCartao);
+    __Log('########### dados.sORGCartao : ' + dados.sORGCartao);
+    __Log('########### parametros.HabOpSeguro  : ' + parametros.HabOpSeguro);
+    __Log('########### parametros.HabOpPlanoOdonto  : ' + parametros.HabOpPlanoOdonto);
+    __Log('########### parametros.HabOpCartaoAdicional  : ' + parametros.HabOpCartaoAdicional);
+
+	ret['nomeMenu'] = "MContinuaCancel";
+	ret["maxTentativas"] = getMaxTentativasMenus(3, parametros);
+	ret["frases"] = [];
+	ret["fraseNoMatch"] = [];
+	ret["fraseNoMatch"][0] = { "frase": "ypiiOpcaoInvalida.wav" };
+    ret["fraseNoMatch"][1] = { "frase": "ypiiOpcaoInvalida.wav" };
+	ret["fraseNoMatch"][2] = { "frase": "ypiiOpcaoInvalida.wav" };
+	ret["fraseNoInput"] = [];
+	ret['fraseDesconexao'] = [];
+
+	ret['statOpcoes'] = "";
+	ret['statInvalida_NOMATCH'] = "0000";
+	ret['statInvalida_NOINPUT'] = "0000";
+	ret['statInvalida_EXCEDEU_NOMATCH'] = "";
+	ret['statInvalida_EXCEDEU_NOINPUT'] = "";
+	ret['statValida'] = "";
+	ret['logTick'] = 'TICK_LOG_MCONTCANC';
+	ret['retryTentativaNoMatch'] = true;
+    ret['retryTentativaNoInput'] = true;
+
+	ret["frases"].push({ "frase": "ypiiParaContDig2.wav" });
+	ret["frases"].push({ "frase": "ypiioltMenuAntDig0.wav" });
+	
+	ret["opcoesValidas"] = "02";
+		
+	return ret;
+}
+
+//MenuMotivoCancel
+function getFrases_MenuMotivoCanc(dados) {
+
+    var ret = {};
+   
+    var parametros = dados['parametros'] 
+    __Log('########### dados.sLogoCartao : ' + dados.sLogoCartao);
+    __Log('########### dados.sORGCartao : ' + dados.sORGCartao);
+    __Log('########### parametros.HabOpSeguro  : ' + parametros.HabOpSeguro);
+    __Log('########### parametros.HabOpPlanoOdonto  : ' + parametros.HabOpPlanoOdonto);
+    __Log('########### parametros.HabOpCartaoAdicional  : ' + parametros.HabOpCartaoAdicional);
+
+    
+    ret['nomeMenu'] = "MenuMotivoCanc";
+    ret["maxTentativas"] = getMaxTentativasMenus(3, parametros);
+    ret["frases"] = [];
+    ret["fraseNoMatch"] = [];
+    ret["fraseNoMatch"][0] = { "frase": "ypiiOpcaoInvalida.wav" };
+    ret["fraseNoMatch"][1] = { "frase": "ypiiOpcaoInvalida.wav" };
+	ret["fraseNoMatch"][2] = { "frase": "ypiiOpcaoInvalida.wav" };
+    ret["fraseNoInput"] = [];
+    ret['fraseDesconexao'] = [];
+
+    ret['statOpcoes'] = "";
+    ret['statInvalida_NOMATCH'] = "0000";
+    ret['statInvalida_NOINPUT'] = "0000";
+    ret['statInvalida_EXCEDEU_NOMATCH'] = "";
+    ret['statInvalida_EXCEDEU_NOINPUT'] = "";
+    ret['statValida'] = "";
+    ret["opcoesValidas"] = ""; 
+
+    ret['retryTentativaNoMatch'] = true;
+    ret['retryTentativaNoInput'] = true;
+    
+    ret['logTick'] = 'TICK_LOG_MMOTIVOCANC';
+
+    ret["frases"].push({ "frase": "ypiiParaCancCartDesintDig2.wav" });
+    ret["frases"].push({ "frase": "ypiiOutCancFalSepCartQuebProbDig3.wav" });
+    ret["frases"].push({ "frase": "ypiioltMenuAntDig0.wav" });
+    
+    ret["opcoesValidas"] = "023";
+        
+    return ret;
+}
