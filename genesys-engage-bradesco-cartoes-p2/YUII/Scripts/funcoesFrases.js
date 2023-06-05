@@ -809,7 +809,7 @@ function getFrasesFalaSaldoCondicaoVencto_4(dados) {
 			ret["frases"].push({ "frase" : "ypiiCredor.wav"});
 		}
 	
-		if (parseInt(dados.UR80.AplSinalSldDevedor) != 1 && parseInt(dados.UR80.AplSinalVlrFatura) != 1 && dados.UR80.AplFlagDebConta == 'S' ) {
+		if (parseInt(dados.UR80.AplSinalSldDevedor) != 1 && parseInt(dados.UR80.AplSinalVlrFatura) != 1 && dados.UR80.AplFlagDebConta == 'N' ) {
 			ret["frases"].push({ "frase" : "cSilencio.wav"});
 		} else {
 			ret["frases"].push({ "frase" : "ypiiFatCartDebAuto.wav"});

@@ -1,7 +1,13 @@
 function getFrasesFalaCartaoBloq(dados) {
+	
+	
 
 	var ret = {};
 	var parametros = dados['parametros'];
+	
+	__Log('#### parametros.HabFraseInformativa8b: ' + parametros.HabFraseInformativa8b);
+	__Log('#### dados.sORGCartao : ' + dados.sORGCartao);
+	__Log('#### dados.strAuxORGLogo : ' + dados.strAuxORGLogo);
 
 	ret['nomeMenu'] = "FalaCartaoBloq";
 	ret["maxTentativas"] = getMaxTentativasMenus(3, parametros);
@@ -35,7 +41,7 @@ function getFrasesFalaCartaoBloq(dados) {
 
 	ret["frases"].push({"frase": "ypiiIdentCartEncontBloqueado.wav"});
 
-	if (PossuiOrgLogo(parametros.HabFraseInformativa8b,AppState.io_dados['strAuxORG']) || PossuiOrgLogo(parametros.HabFraseInformativa8b,AppState.io_dados['strAuxORGLogo']) || PossuiOrgLogo(parametros.HabFraseInformativa8b,'TODOS')) {
+	if (PossuiOrgLogo(parametros.HabFraseInformativa8b,dados.sORGCartao) || PossuiOrgLogo(parametros.HabFraseInformativa8b,dados.strAuxORGLogo) || PossuiOrgLogo(parametros.HabFraseInformativa8b,'TODOS')) {
 		ret["frases"].push({"frase": parametros.FraseInformativa8});
 	}
 	

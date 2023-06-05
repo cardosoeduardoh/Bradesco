@@ -381,23 +381,6 @@
 	</form>
 
 	<!-- This is the Subdialog block -->
-	<form id="SubEv1064">
-
-		<subdialog name="SubEv1064Subdialog" fetchhint="prefetch"  src="../../YUII/src-gen/Relatorio.vxml">
-    		<param name="varActionParentId" expr="'FalaCartaoBloq'"/>
-			<param name="in_evento_numero" expr="'1064'" />
-			<param name="io_dados" expr="AppState.io_dados" />
-			<filled>
-				<if cond="SubEv1064Subdialog.io_dados != 'undefined'">
-  					<assign name="AppState.io_dados" expr="SubEv1064Subdialog.io_dados" /> 
-  				</if>
-				<goto next="#SubEv3017" />
-			</filled>
-		</subdialog>
-		
-	</form>
-
-	<!-- This is the Subdialog block -->
 	<form id="SubEv2099">
 
 		<subdialog name="SubEv2099Subdialog" fetchhint="prefetch"  src="../../YUII/src-gen/Relatorio.vxml">
@@ -408,7 +391,7 @@
 				<if cond="SubEv2099Subdialog.io_dados != 'undefined'">
   					<assign name="AppState.io_dados" expr="SubEv2099Subdialog.io_dados" /> 
   				</if>
-				<goto next="#SubEv1064" />
+				<goto next="#set_EvDesligamento_1064" />
 			</filled>
 		</subdialog>
 		
@@ -1132,6 +1115,15 @@
     	<block>
     		<goto next="#FalaDesliga" />
     	</block>
+	</form>
+
+	<!-- This is the Assign block -->
+	<form id="set_EvDesligamento_1064">
+		<block>
+			
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'ap_evDesligamento', '1064')" />				
+			<goto next="#SubEv3017" />
+		</block>
 	</form>
 
 </vxml>

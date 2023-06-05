@@ -464,7 +464,7 @@
 							timestampFim: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;
 							sequencia: 1,
 							dadosEvento: {
-								evento: AppState.ap_opcaoDigitada
+								evento: '***'
 							}
 						}
 						
@@ -507,21 +507,21 @@
 						__Log(&quot;##### Error(ECMA_Set_NavegacaoEventosTipoDTMF_InvalidaInputCartaoCPF): &quot; + error);
 					}
 			</script>	
-			<goto next="#R_RN40_NOK" />
+			<goto next="#R_RN40_NOK_NoInput" />
 		</block>
 	</form>
 
 	<!-- This is the Subdialog block -->
-	<form id="R_RN40_NOK">
+	<form id="R_RN40_NOK_NoInput">
 
-		<subdialog name="R_RN40_NOKSubdialog" fetchhint="prefetch"  src="../../YUII/src-gen/RelatorioRN40.vxml">
+		<subdialog name="R_RN40_NOK_NoInputSubdialog" fetchhint="prefetch"  src="../../YUII/src-gen/RelatorioRN40.vxml">
     		<param name="varActionParentId" expr="'PedeCVV'"/>
 			<param name="StrInfo" expr="'NOK'" />
 			<param name="Tick" expr="'TICK_LOG_PEDECVV'" />
 			<param name="io_dados" expr="AppState.io_dados" />
 			<filled>
-				<if cond="R_RN40_NOKSubdialog.io_dados != 'undefined'">
-  					<assign name="AppState.io_dados" expr="R_RN40_NOKSubdialog.io_dados" /> 
+				<if cond="R_RN40_NOK_NoInputSubdialog.io_dados != 'undefined'">
+  					<assign name="AppState.io_dados" expr="R_RN40_NOK_NoInputSubdialog.io_dados" /> 
   				</if>
 				<goto next="#FalaFraseDNK542" />
 			</filled>
@@ -558,7 +558,7 @@
 				<if cond="FalaFraseDNK542_noMatchSubdialog.io_dados != 'undefined'">
   					<assign name="AppState.io_dados" expr="FalaFraseDNK542_noMatchSubdialog.io_dados" /> 
   				</if>
-				<goto next="#VerVAR_TentativaAtual" />
+				<goto next="#R_RN40_NOK_NoMatch" />
 			</filled>
 		</subdialog>
 		
@@ -586,6 +586,24 @@
     	<block>
     		<goto next="#P2_FalaDesliga" />
     	</block>
+	</form>
+
+	<!-- This is the Subdialog block -->
+	<form id="R_RN40_NOK_NoMatch">
+
+		<subdialog name="R_RN40_NOK_NoMatchSubdialog" fetchhint="prefetch"  src="../../YUII/src-gen/RelatorioRN40.vxml">
+    		<param name="varActionParentId" expr="'PedeCVV'"/>
+			<param name="StrInfo" expr="'NOK'" />
+			<param name="Tick" expr="'TICK_LOG_PEDECVV'" />
+			<param name="io_dados" expr="AppState.io_dados" />
+			<filled>
+				<if cond="R_RN40_NOK_NoMatchSubdialog.io_dados != 'undefined'">
+  					<assign name="AppState.io_dados" expr="R_RN40_NOK_NoMatchSubdialog.io_dados" /> 
+  				</if>
+				<goto next="#VerVAR_TentativaAtual" />
+			</filled>
+		</subdialog>
+		
 	</form>
 
 	<!-- This is the SubEv1162 block in Disabled mode -->

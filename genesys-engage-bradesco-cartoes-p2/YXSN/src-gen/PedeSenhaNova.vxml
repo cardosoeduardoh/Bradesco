@@ -567,6 +567,23 @@
 		</block>
 	</form>
 
+	<!-- This is the Subdialog block -->
+	<form id="SubEv2188_">
+
+		<subdialog name="SubEv2188_Subdialog" fetchhint="prefetch"  src="../../YUII/src-gen/Relatorio.vxml">
+    		<param name="varActionParentId" expr="'PedeSenhaNova'"/>
+			<param name="in_evento_numero" expr="'2188'" />
+			<param name="io_dados" expr="AppState.io_dados" />
+			<filled>
+				<if cond="SubEv2188_Subdialog.io_dados != 'undefined'">
+  					<assign name="AppState.io_dados" expr="SubEv2188_Subdialog.io_dados" /> 
+  				</if>
+				<goto next="#SetSenValida" />
+			</filled>
+		</subdialog>
+		
+	</form>
+
 	<!-- This is the Log block -->
 	<form id="Log_Exception_All">
 		<block>
@@ -588,13 +605,6 @@
     	</block>
     	<block>
     		<goto next="#P2_FalaDesliga" />
-    	</block>
-	</form>
-
-	<!-- This is the SubEv2188_ block in Disabled mode -->
-	<form id="SubEv2188_">
-    	<block>
-    		<goto next="#SetSenValida" />
     	</block>
 	</form>
 

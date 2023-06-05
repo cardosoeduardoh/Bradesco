@@ -692,24 +692,7 @@
 				<if cond="SubEv2066Subdialog.io_dados != 'undefined'">
   					<assign name="AppState.io_dados" expr="SubEv2066Subdialog.io_dados" /> 
   				</if>
-				<goto next="#SubEv1051" />
-			</filled>
-		</subdialog>
-		
-	</form>
-
-	<!-- This is the Subdialog block -->
-	<form id="SubEv1051">
-
-		<subdialog name="SubEv1051Subdialog" fetchhint="prefetch"  src="../src-gen/Relatorio.vxml">
-    		<param name="varActionParentId" expr="'UR80'"/>
-			<param name="in_evento_numero" expr="'1051'" />
-			<param name="io_dados" expr="AppState.io_dados" />
-			<filled>
-				<if cond="SubEv1051Subdialog.io_dados != 'undefined'">
-  					<assign name="AppState.io_dados" expr="SubEv1051Subdialog.io_dados" /> 
-  				</if>
-				<goto next="#Set_iRetry_bCartaoAtrasado" />
+				<goto next="#set_EvDesligamento_1051" />
 			</filled>
 		</subdialog>
 		
@@ -942,6 +925,15 @@
     	<block>
     		<goto next="#Desliga" />
     	</block>
+	</form>
+
+	<!-- This is the Assign block -->
+	<form id="set_EvDesligamento_1051">
+		<block>
+			
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'ap_evDesligamento', '1051')" />				
+			<goto next="#Set_iRetry_bCartaoAtrasado" />
+		</block>
 	</form>
 
 	<!-- This is the SetEventoDesligamento block in Disabled mode -->

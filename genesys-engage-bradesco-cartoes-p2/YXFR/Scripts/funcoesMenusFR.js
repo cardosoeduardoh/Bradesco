@@ -24,7 +24,7 @@ function getFrases_MenuFatParcPagto(dados) {
    
     ret['retryTentativaNoMatch'] = true;
     ret['retryTentativaNoInput'] = true;
-    ret['logTick'] = 'TICK_LOG_MFATPARCPAGTO_-1;';
+    ret['logTick'] = 'TICK_LOG_MFATPARCPAGTO';
    
  
     ret["frases"].push({ "frase": "ypiiInfoFatDig2.wav" });
@@ -82,7 +82,7 @@ function getFrases_MenuRepetir(dados) {
    
     ret['retryTentativaNoMatch'] = true;
     ret['retryTentativaNoInput'] = true;
-    ret['logTick'] = 'TICK_LOG_MPOSFATURA_-1;';
+    ret['logTick'] = 'TICK_LOG_MPOSFATURA';
  
     ret["frases"].push({ "frase": "ypiiParaRepetirDig2.wav" });
  
@@ -112,7 +112,7 @@ function getFrases_MenuRepetirDiaVencFat(dados) {
 	ret['statInvalida_EXCEDEU_NOMATCH'] = "";
 	ret['statInvalida_EXCEDEU_NOINPUT'] = "";
 	ret['statValida'] = "";
-	ret['logTick'] = 'TICK_LOG_MPOSFATURA_-1;';
+	ret['logTick'] = 'TICK_LOG_MPOSFATURA';
 	
 	ret['retryTentativaNoMatch'] = true;
 	ret['retryTentativaNoInput'] = true;
@@ -147,7 +147,7 @@ function getFrases_MParcelamento(dados) {
 	ret['statInvalida_EXCEDEU_NOINPUT'] = "";
 	ret['statValida'] = "";
 	ret["opcoesValidas"] = "";
-	ret['logTick'] = 'TICK_LOG_MPARC_-1;';
+	ret['logTick'] = 'TICK_LOG_MPARC';
 	
 	ret['retryTentativaNoMatch'] = true;
 	ret['retryTentativaNoInput'] = true;
@@ -207,7 +207,7 @@ function getFrases_MenuOpcParc(dados) {
 	ret['statInvalida_EXCEDEU_NOINPUT'] = "";
 	ret['statValida'] = "";
 	ret["opcoesValidas"] = "";
-	ret['logTick'] = 'TICK_LOG_MOPPAR_-1;';
+	ret['logTick'] = 'TICK_LOG_MOPPAR';
 	
 	ret['retryTentativaNoMatch'] = true;
 	ret['retryTentativaNoInput'] = true;
@@ -297,7 +297,7 @@ function getFrases_MenuFalaOpParSel(dados) {
 	ret['retryTentativaNoMatch'] = true;
 	ret['retryTentativaNoInput'] = true;
 	
-	ret['logTick'] = 'TICK_LOG_MCONTOPPAR_-1;';
+	ret['logTick'] = 'TICK_LOG_MCONTOPPAR';
 	
 	
 	//////////Menu
@@ -334,7 +334,7 @@ function getFrases_MenuContinuaParc(dados) {
 	ret['statInvalida_EXCEDEU_NOINPUT'] = "";
 	ret['statValida'] = "";
 	ret["opcoesValidas"] = "";
-	ret['logTick'] = 'TICK_LOG_MCONTPARC_-1;';
+	ret['logTick'] = 'TICK_LOG_MCONTPARC';
 	
 	ret['retryTentativaNoMatch'] = true;
 	ret['retryTentativaNoInput'] = true;

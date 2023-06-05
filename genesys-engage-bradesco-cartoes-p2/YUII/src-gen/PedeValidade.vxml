@@ -255,7 +255,7 @@
 	</form>
 
 	<!-- This is the Branching block -->
-	<form id="VerificaDigitos">
+	<form id="VerificaDigitosPedeValidade">
 		<block>
 			<log gvp:level="1">
 				<value expr="'########### AppState.UR80.AplValidadeCartao : ' + AppState.io_dados.UR80.AplValidadeCartao + ' ' +
@@ -269,7 +269,7 @@
 				<!-- This is the OutLink -->
 				<goto next="#R_RN40_OK" />
 			</if>
-			<goto next="#R_RN40_NOK" />
+			<goto next="#setNoMatch" />
 		</block>
 	</form>
 
@@ -325,7 +325,7 @@
 				<!-- This is the OutLink -->
 				<goto next="#R_RN40_NOK" />
 			</if>
-			<goto next="#VerificaDigitos" />
+			<goto next="#VerificaDigitosPedeValidade" />
 		</block>
 	</form>
 
@@ -351,7 +351,7 @@
 				<if cond="R_RN40_OKSubdialog.io_dados != 'undefined'">
   					<assign name="AppState.io_dados" expr="R_RN40_OKSubdialog.io_dados" /> 
   				</if>
-				<goto next="#SetQtdePerguntas" />
+				<goto next="#Set_NavegacaoEventosTipoDTMF_Valido" />
 			</filled>
 		</subdialog>
 		
@@ -397,6 +397,77 @@
     	<block>
     		<goto next="#FalaDesliga" />
     	</block>
+	</form>
+
+	<!-- This is the Assign block -->
+	<form id="Set_NavegacaoEventosTipoDTMF_Valido">
+		<block>
+			<script>
+				try {
+					
+					   	var dataAtual = getDataAtual();
+					  
+						AppState.objNavegacao = {
+						
+							tipoEvento: 0,
+							timestampInicio: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;,
+							timestampFim: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;
+							sequencia: 1,
+							dadosEvento: {
+								evento: AppState.ap_opcaoDigitada
+							}
+						}
+						
+						AppState.io_dados.objSessao.inLogEvento.push(AppState.objNavegacao);
+					
+						__Log(&quot;##### objNavegacao: &quot;+ JSON.stringify(AppState.objNavegacao));
+					} catch (error) {
+						__Log(&quot;##### Error(ECMA_Set_NavegacaoEventosTipoDTMF_ValidaInputPedeValidade): &quot; + error);
+					}
+			</script>	
+			<goto next="#SetQtdePerguntas" />
+		</block>
+	</form>
+
+	<!-- This is the Assign block -->
+	<form id="Set_NavegacaoEventosTipoDTMF_Inv_noMatch">
+		<block>
+			<script>
+				try {
+					
+					   	var dataAtual = getDataAtual();
+					   	
+					   	var labelEvento = AppState.ap_estadoPergunta
+					  
+						AppState.objNavegacao = {
+							tipoBloco: 1,
+							tipoEvento: 0,
+							timestampInicio: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;,
+							timestampFim: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;
+							sequencia: 1,
+							dadosEvento: {
+								evento: labelEvento
+							}
+						}
+						
+						AppState.io_dados.objSessao.inLogEvento.push(AppState.objNavegacao);
+					
+						__Log(&quot;##### objNavegacao: &quot;+ JSON.stringify(AppState.objNavegacao));
+					} catch (error) {
+						__Log(&quot;##### Error(ECMA_Set_NavegacaoEventosTipoDTMF_InvalidaInputPedeValidade): &quot; + error);
+					}
+			</script>	
+			<goto next="#R_RN40_NOK" />
+		</block>
+	</form>
+
+	<!-- This is the Assign block -->
+	<form id="setNoMatch">
+		<block>
+			
+			<assign name="AppState.ap_estadoPergunta" expr="'NOMATCH'" />				
+			<goto next="#Set_NavegacaoEventosTipoDTMF_Inv_noMatch" />
+		</block>
 	</form>
 
 </vxml>
