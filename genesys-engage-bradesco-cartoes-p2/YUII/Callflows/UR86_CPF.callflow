@@ -112,6 +112,12 @@
       <conditions xmi:type="datatypes:BranchItem" xmi:id="_bo3W0CMYEe2i67jxGV3ylw" name="Sim" expression="ehCartBloqLiberadoViaCPF(AppState.io_dados, 0)"/>
     </blocks>
     <blocks xmi:type="gvp:SubdialogBlock" xmi:id="_4Si2cB_KEe2NEKKlQ5lR1g" name="SubEv2054" category="Subdialog" uri="../Callflows/Relatorio.callflow">
+      <loggingDetails>__Log(&quot;##### AppState.io_dados.sCPFTitular     : &quot;+ AppState.io_dados.sCPFTitular) + '  ' +&#xD;
+__Log(&quot;##### AppState.io_dados.sCartao         : &quot;+ AppState.io_dados.sCartao) + '  ' +&#xD;
+__Log(&quot;##### AppState.io_dados.sORGCartao      : &quot;+ AppState.io_dados.sORGCartao) + '  ' +&#xD;
+__Log(&quot;##### AppState.io_dados.sLogoCartao     : &quot;+ AppState.io_dados.sLogoCartao) + '  ' +&#xD;
+__Log(&quot;##### AppState.io_dados.sDiasAtraso     : &quot;+ AppState.io_dados.sDiasAtraso) + '  ' +&#xD;
+__Log(&quot;##### AppState.io_dados.sCodBloqCartao  : &quot;+ AppState.io_dados.sCodBloqCartao)</loggingDetails>
       <parameters xmi:type="datatypes:Parameter" xmi:id="__sk_EB_KEe2NEKKlQ5lR1g" name="in_evento_numero" value="'2054'" description="Numero do evento"/>
       <parameters xmi:type="datatypes:Parameter" xmi:id="__sk_ER_KEe2NEKKlQ5lR1g" name="io_dados" value="io_dados" description="Dados da ligacao" type="inout"/>
     </blocks>
@@ -224,9 +230,11 @@
       <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_9Uq2QP4mEe2nifjs-oGEAw" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sCPFTitular', AppState.io_dados.UR8F.NumCartaoCPF.substring(5,16))"/>
     </blocks>
     <blocks xmi:type="gvp:AssignBlock" xmi:id="_0uLX8P7eEe2X88qQP_IBPw" name="setCartao" category="Assign">
-      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_U0EWUP7fEe2X88qQP_IBPw" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sCartao', AppState.io_dados.UR8F.CARTOES.NumCartao)"/>
-      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_U0EWUf7fEe2X88qQP_IBPw" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sORGCartao', AppState.io_dados.UR8F.CARTOES.ORG)"/>
-      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_U0EWUv7fEe2X88qQP_IBPw" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sLogoCartao', AppState.io_dados.UR8F.CARTOES.LOGO)"/>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_C-0ZsASKEe6Azb5LXO-hDg" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sCartao', AppState.io_dados.UR8F.CARTOES[0].NumCartao)"/>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_C-0ZsQSKEe6Azb5LXO-hDg" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sORGCartao', AppState.io_dados.UR8F.CARTOES[0].ORG)"/>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_C-0ZsgSKEe6Azb5LXO-hDg" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sLogoCartao', AppState.io_dados.UR8F.CARTOES[0].LOGO)"/>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_C-0ZswSKEe6Azb5LXO-hDg" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sDiasAtraso', AppState.io_dados.UR8F.CARTOES[0].DiasAtraso)"/>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_C-0ZtASKEe6Azb5LXO-hDg" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sCodBloqCartao', AppState.io_dados.UR8F.CARTOES[0].CodBloqCartao)"/>
     </blocks>
     <links xmi:type="gvp:CallflowExceptionLink" xmi:id="_psyNQKtmEeyLhIZbPXflFw" name="connection.disconnect.hangup" fromBlock="_0TDncMlhEeKE2tP5OBlA8w" toBlock="_l-SiQqtmEeyLhIZbPXflFw"/>
     <links xmi:type="gvp:CallflowOutputLink" xmi:id="_805ZYLalEeygm5lA8o-Cng" fromBlock="_0TDncMlhEeKE2tP5OBlA8w" toBlock="_3cGwCLalEeygm5lA8o-Cng"/>

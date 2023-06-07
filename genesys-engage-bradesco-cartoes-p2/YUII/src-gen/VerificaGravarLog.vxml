@@ -64,9 +64,6 @@
 	<script srcexpr="AppState.VOXFILEDIR + '/pt-BR/pt-BR.js'" />
 	<script>var f = new Format();</script>
 	<script srcexpr="AppState.SCRIPTSDIR + '/' + 'funcoes.js'" />
-	<script srcexpr="AppState.SCRIPTSDIR + '/' + 'funcoesDataHora.js'" />
-	<script srcexpr="AppState.SCRIPTSDIR + '/' + 'funcoesMenus.js'" />
-	<script srcexpr="AppState.SCRIPTSDIR + '/' + 'funcoesFrases.js'" />
 
 	
 	<script srcexpr="AppState.VOXFILEDIR + '/pt-BR/customprompts.js'" />
@@ -170,7 +167,7 @@
 	<!-- This is the Branching block -->
 	<form id="VerificaTamanhoLog">
 		<block>
-			<if cond="AppState.io_dados.habilita_GravarLog12k">
+			<if cond="AppState.io_dados.habilita_GravarLog12k || AppState.io_dados.forcaGravarLog">
 				
 				<!-- This is the OutLink -->
 				<goto next="#Estruturante_GravarLog" />
@@ -192,16 +189,13 @@
 						
 						__Log('objSize: ' + objSize);
 					
-						//Verifica se tamanho objeto maior que 10k = 10.240
+						//Verifica se tamanho objeto maior que 11k = 11.264
 						//Obs: O valor no if está dobrado pq a funçao verificaTamanhoLog está retornando valor do bit em dobro
-						if (parseInt(objSize, 10) &gt; parseInt(&quot;20480&quot;, 10)) {
+						if (parseInt(objSize, 10) &gt; parseInt(&quot;22528&quot;, 10)) {
 							AppState.io_dados.habilita_GravarLog12k = true;
 						}
 					
 						__Log(&quot;##### habilita_GravarLog12k: &quot;+ AppState.io_dados.habilita_GravarLog12k);
-						
-					
-					     
 					} catch (error) {
 						__Log(&quot;##### Error(ECAM_CalculaTamanhoLog): &quot; + error);
 					}
@@ -216,8 +210,16 @@
 			<script>
 				try {
 						AppState.io_dados.objSessao.inLogOperacao = [];
-						
+					
+						if (AppState.io_dados.forcaGravarLog) {
+							AppState.io_dados.objSessao.inLogEvento = [];
+							AppState.io_dados.objSessao.inLogEstatistica = {}
+							AppState.io_dados.objSessao.inLogEstatistica['tipoBloco'] = 2;
+							AppState.io_dados.objSessao.inLogEstatistica['totalizacoes'] = []
+						}
+					
 						AppState.io_dados.habilita_GravarLog12k = false;
+						AppState.io_dados.forcaGravarLog = false;
 					
 						__Log(&quot;##### LimpaObjetoLog OK #####&quot;);
 					} catch (error) {

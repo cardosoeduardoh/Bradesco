@@ -261,28 +261,11 @@
 	</form>
 
 	<!-- This is the Subdialog block -->
-	<form id="FalaFraseDNK47">
-
-		<subdialog name="FalaFraseDNK47Subdialog" fetchhint="prefetch"  src="../src-gen/PromptDinamico.vxml">
-    		<param name="varActionParentId" expr="'MelhorDiadeCompra'"/>
-			<param name="in_frases" expr="[{&quot;frase&quot;: 'ypiiNesteMesMelDia.wav'}]" />
-			<param name="io_dados" expr="AppState.io_dados" />
-			<filled>
-				<if cond="FalaFraseDNK47Subdialog.io_dados != 'undefined'">
-  					<assign name="AppState.io_dados" expr="FalaFraseDNK47Subdialog.io_dados" /> 
-  				</if>
-				<goto next="#FalaFraseAplMelhorDiaCompra" />
-			</filled>
-		</subdialog>
-		
-	</form>
-
-	<!-- This is the Subdialog block -->
 	<form id="FalaFraseAplMelhorDiaCompra">
 
 		<subdialog name="FalaFraseAplMelhorDiaCompraSubdialog" fetchhint="prefetch"  src="../src-gen/PromptDinamico.vxml">
     		<param name="varActionParentId" expr="'MelhorDiadeCompra'"/>
-			<param name="in_frases" expr="[{ &quot;numero&quot; : AppState.io_dados[&quot;UR80&quot;][&quot;AplMelhorDiaCompra&quot;]}]" />
+			<param name="in_frases" expr="[{&quot;frase&quot;: 'ypiiNesteMesMelDia.wav'},{ &quot;numero&quot; : AppState.io_dados[&quot;UR80&quot;][&quot;AplMelhorDiaCompra&quot;]}]" />
 			<param name="io_dados" expr="AppState.io_dados" />
 			<filled>
 				<if cond="FalaFraseAplMelhorDiaCompraSubdialog.io_dados != 'undefined'">
@@ -344,6 +327,13 @@
 			</if>
 			<goto next="#Menu2Nivel" />
 		</block>
+	</form>
+
+	<!-- This is the FalaFraseDNK47 block in Disabled mode -->
+	<form id="FalaFraseDNK47">
+    	<block>
+    		<goto next="#FalaFraseAplMelhorDiaCompra" />
+    	</block>
 	</form>
 
 </vxml>

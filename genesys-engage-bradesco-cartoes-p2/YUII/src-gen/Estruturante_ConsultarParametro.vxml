@@ -237,13 +237,13 @@
 			src="../include/getWebRequestData.jsp" />	    
 		<if cond="typeof WR_ConsultarParametroResponse.errorMsg == 'undefined'">			
 		    <assign name="AppState.objResponseAPI" expr="WR_ConsultarParametroResponse" />	    
-		    <goto next="#ConsultarParametro_Parse" />
+		    <goto next="#VerRetornoWR" />
 		<else/>
 		<if cond="WR_ConsultarParametroResponse.throwServerException">
         	<throw event="error.com.genesyslab.composer.servererror" messageexpr="WR_ConsultarParametroResponse.errorMsg" />
         <else/>			
 		    <assign name="AppState.objResponseAPI" expr="WR_ConsultarParametroResponse" />	    
-		    <goto next="#ConsultarParametro_Parse" />
+		    <goto next="#VerRetornoWR" />
        </if>
         </if>  
 	   </block>
@@ -321,7 +321,7 @@
 						AppState.io_dados.Estruturante['ConsultarParametro']['msgRetorno'] = JSON.stringify(error);
 					}
 			</script>	
-			<goto next="#VerRetornoWR" />
+			<goto next="#ECMA_Set_Navegacao_Operacoes" />
 		</block>
 	</form>
 
@@ -367,51 +367,6 @@
 						__Log(&quot;##### Error( Consultar Parametro): &quot; + error);
 					}
 			</script>	
-			<goto next="#ECMA_PreparaLog" />
-		</block>
-	</form>
-
-	<!-- This is the Assign block -->
-	<form id="ECMA_PreparaLog">
-		<block>
-			<script>
-				try {
-					
-						var response = AppState.objResponseAPI;
-						var tamanho = response.result.length;
-						var quantidadePacotes = 0;
-						var indiceAtual = 0;
-						var tamanhoPacote = 30;
-					
-						if (tamanho &gt;= tamanhoPacote) {
-							quantidadePacotes = parseInt((tamanho / tamanhoPacote),10);
-							quantidadePacotes += (parseInt((tamanho % tamanhoPacote),10) &gt; 0) ? 1 : 0;
-						} else {
-							quantidadePacotes = 1;
-						}
-					
-						
-						__Log('#### tamanho: ' + tamanho);
-						__Log('#### quantidadePacotes: ' + quantidadePacotes);
-						
-						for (var i=0; i&lt;quantidadePacotes; i++) {
-							AppState.VAR_arrayPacotesLog[i] = [];
-						}
-						
-						__Log(&quot;##### VAR_arrayPacotesLog: &quot; + JSON.stringify(AppState.VAR_arrayPacotesLog));
-					
-						for (var i = 0; i &lt; tamanho; i++) {
-							if (i &gt;0 &amp;&amp; i%tamanhoPacote == 0) {
-								indiceAtual += 1;
-							}
-							AppState.VAR_arrayPacotesLog[indiceAtual].push(response.result[i]);
-							
-						}
-						__Log(&quot;##### VAR_arrayPacotesLog: &quot; + JSON.stringify(AppState.VAR_arrayPacotesLog));
-					} catch (error) {
-						__Log(&quot;##### Error(ECMA_PreparaLog): &quot; + error);
-					}
-			</script>	
 			<goto next="#ECMA_Set_Navegacao_Operacoes" />
 		</block>
 	</form>
@@ -422,7 +377,7 @@
 			<if cond="!(AppState.objResponseAPI.hasOwnProperty(&quot;errorMsg&quot;) &amp;&amp; AppState.objResponseAPI.errorMsg == &quot;Unauthorized&quot;)">
 				
 				<!-- This is the OutLink -->
-				<goto next="#ECMA_PreparaLog" />
+				<goto next="#ConsultarParametro_Parse" />
 			</if>
 			<goto next="#ValidaTentativas" />
 		</block>
@@ -450,80 +405,30 @@
 			<script>
 				try {
 					
-						var response = AppState.objResponseAPI;
-						response.result = AppState.VAR_arrayPacotesLog[AppState.VAR_indicePacotesLog];
-					
 					   	var dataAtual = getDataAtual();
 					
 						AppState.objNavegacao = {
-							tipoBloco: 0,
 							codigoServico: &quot;PARMMENU&quot;,
 							timestampInicio: AppState.VAR_timestampInicio,
 							timestampFim: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;
-							sequencia: (AppState.VAR_indicePacotesLog + 1),
+							sequencia: 1,
 							status: AppState.objResponseAPI.detail.codigoRetorno,
 							chavesPesquisa: [],
-							dadosOperacao: [
-								{
-									Request: AppState.objJsonRequest,
-									Response: response
-								}
-							]
+							dadosOperacao: {
+								request: AppState.objJsonRequest,
+								response: AppState.objResponseAPI
+							}
 						}
 					
 						AppState.io_dados.objSessao.inLogOperacao.push(AppState.objNavegacao);
 					
 						__Log(&quot;##### objNavegacao: &quot;+ JSON.stringify(AppState.objNavegacao));
-						__Log(&quot;##### VAR_indicePacotesLog: &quot;+ JSON.stringify(AppState.VAR_indicePacotesLog));
 					} catch (error) {
-						__Log(&quot;##### Error(ECMA_Set_Navegacao_Operacoes): &quot; + error);
+						__Log(&quot;##### Error(ECMA_Set_Navegacao_Operacoes_novo): &quot; + error);
 					}
 			</script>	
-			<goto next="#VerificaGravarLog" />
-		</block>
-	</form>
-
-	<!-- This is the Branching block -->
-	<form id="VerificaTemMaisPacotes">
-		<block>
-			<log gvp:level="1">
-				<value expr="'############# AppState.VAR_indicePacotesLog : ' +  AppState.VAR_indicePacotesLog + '  ' +
-'############# AppState.VAR_arrayPacotesLog.length : ' +  AppState.VAR_arrayPacotesLog.length"/>
-			</log>
-    	</block>
-		<block>
-			<if cond="AppState.VAR_indicePacotesLog &lt; AppState.VAR_arrayPacotesLog.length">
-				
-				<!-- This is the OutLink -->
-				<goto next="#ECMA_Set_Navegacao_Operacoes" />
-			</if>
 			<goto next="#Exit1_ConsultarParametro" />
 		</block>
-	</form>
-
-	<!-- This is the Assign block -->
-	<form id="Set_VAR_arrayPacotesLog">
-		<block>
-			
-			<assign name="AppState.VAR_indicePacotesLog" expr="AppState.VAR_indicePacotesLog + 1" />				
-			<goto next="#VerificaTemMaisPacotes" />
-		</block>
-	</form>
-
-	<!-- This is the Subdialog block -->
-	<form id="VerificaGravarLog">
-
-		<subdialog name="VerificaGravarLogSubdialog" fetchhint="prefetch"  src="../src-gen/VerificaGravarLog.vxml">
-    		<param name="varActionParentId" expr="'Estruturante_ConsultarParametro'"/>
-			<param name="io_dados" expr="AppState.io_dados" />
-			<filled>
-				<if cond="VerificaGravarLogSubdialog.io_dados != 'undefined'">
-  					<assign name="AppState.io_dados" expr="VerificaGravarLogSubdialog.io_dados" /> 
-  				</if>
-				<goto next="#Set_VAR_arrayPacotesLog" />
-			</filled>
-		</subdialog>
-		
 	</form>
 
 	<!-- This is the Branching block -->

@@ -198,7 +198,7 @@
 	</form>
 
 	<!-- This is the Assign block -->
-	<form id="SetFrasesMenu">
+	<form id="SetFrasesMenuFalaCPFNCartao">
 		<block>
 			
 			<assign name="AppState.ap_jsonMenu" expr="getFrasesFalaCPFNCartao(AppState.io_dados)" />				
@@ -370,7 +370,7 @@
 			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'iIndiceORGValido', 0)" />
 			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'iRetry', 0)" />
 			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'idxMenuCartao', AppState.io_dados.idxMenuCartao + 10)" />				
-			<goto next="#SetFrasesMenu" />
+			<goto next="#SetFrasesMenuFalaCPFNCartao" />
 		</block>
 	</form>
 
@@ -404,7 +404,7 @@
 					    AppState.io_dados['sNumeroCartaoCPF'] = AppState.io_dados['UR8FCartoes'][cont]['NumCartao'];
 						AppState.io_dados['strAplTitAdic'] = AppState.io_dados['listaCartoesAtivos'][cont]['IndTitAdic'];
 						
-						AppState.io_dados.LogTick += 'TICK_LOG_MCPFNCARTAO_' + AppState.ap_opcaoDigitada + ';';
+						//AppState.io_dados.LogTick += 'TICK_LOG_MCPFNCARTAO_' + AppState.ap_opcaoDigitada + ';';
 						
 						__Log('############# Numero do Cartao no Atendimento: ' + JSON.stringify(AppState.io_dados['sNumeroCartaoCPF']));
 						
@@ -414,7 +414,7 @@
 						__Log('#############verror: ' + error);
 					}
 			</script>	
-			<goto next="#SubEv2055" />
+			<goto next="#R_RN40_opcDigitada" />
 		</block>
 	</form>
 
@@ -423,7 +423,7 @@
 		<block>
 			
 			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'ap_evDesligamento', '1040')" />				
-			<goto next="#SetFrasesMenu" />
+			<goto next="#SetFrasesMenuFalaCPFNCartao" />
 		</block>
 	</form>
 
@@ -516,6 +516,24 @@
   					<assign name="AppState.io_dados" expr="R_RN40_9Subdialog.io_dados" /> 
   				</if>
 				<goto next="#setMenu" />
+			</filled>
+		</subdialog>
+		
+	</form>
+
+	<!-- This is the Subdialog block -->
+	<form id="R_RN40_opcDigitada">
+
+		<subdialog name="R_RN40_opcDigitadaSubdialog" fetchhint="prefetch"  src="../src-gen/RelatorioRN40.vxml">
+    		<param name="varActionParentId" expr="'FalaCPFNCartao'"/>
+			<param name="StrInfo" expr="AppState.ap_opcaoDigitada" />
+			<param name="Tick" expr="'TICK_LOG_MCPFNCARTAO'" />
+			<param name="io_dados" expr="AppState.io_dados" />
+			<filled>
+				<if cond="R_RN40_opcDigitadaSubdialog.io_dados != 'undefined'">
+  					<assign name="AppState.io_dados" expr="R_RN40_opcDigitadaSubdialog.io_dados" /> 
+  				</if>
+				<goto next="#SubEv2055" />
 			</filled>
 		</subdialog>
 		

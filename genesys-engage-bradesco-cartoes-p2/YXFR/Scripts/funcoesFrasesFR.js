@@ -237,11 +237,11 @@ function getFrasesFalaOpParSel(dados){
 	frases.push({ "frase": "ypiiOpcParcEscolhidaProxVenciEM.wav" });
 	frases.push({ "data": dados['UR80']['AplDtVctoPrxFatura'].substring(0,4) });
 	frases.push({ "frase": "ypiiEntradaValorDe.wav" });
-	frases.push({ "valor": Ocorrencia.VlrEntr });
+	frases.push({ "valor": Ocorrencia.VlrEntr.replace(/\s/g, '').replace(",", ".") });
 	frases.push({ "frase": "ypiiMais.wav" });
 	frases.push({ "numero": Ocorrencia.Qtde });
 	frases.push({ "frase": "ypiiParceValorDe.wav" });
-	frases.push({ "valor": Ocorrencia.VlrParc });
+	frases.push({ "valor": Ocorrencia.VlrParc.replace(/\s/g, '').replace(",", ".") });
 	frases.push({ "frase": "ypiiContemplaValTotalEncarg.wav" });
 	
 	var TXJuros = dados.UR1A.TxJuros.split(",");
@@ -267,7 +267,7 @@ function getFrasesFalaOpParSel(dados){
 	
 	frases.push({ "frase": "ypiiPorcentoAno.wav" });
 	frases.push({ "frase": "ypiiParaEfetParcFatCodRealizPag.wav" });
-	frases.push({ "valor": Ocorrencia.VlrEntr });
+	frases.push({ "valor": Ocorrencia.VlrEntr.replace(/\s/g, '').replace(",", ".")});
 
     return frases;
  }

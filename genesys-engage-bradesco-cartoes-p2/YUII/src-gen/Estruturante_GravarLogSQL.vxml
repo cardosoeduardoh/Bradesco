@@ -155,11 +155,19 @@
 		<block>
 			<script>
 				try {
+					    
+					    __Log(&quot;##### AppState.io_dados.sCPFTitular     : &quot;+ AppState.io_dados.sCPFTitular);
+					    __Log(&quot;##### AppState.io_dados.sCartao         : &quot;+ AppState.io_dados.sCartao);
+					    __Log(&quot;##### AppState.io_dados.sORGCartao      : &quot;+ AppState.io_dados.sORGCartao);
+					    __Log(&quot;##### AppState.io_dados.sLogoCartao     : &quot;+ AppState.io_dados.sLogoCartao);
+					    __Log(&quot;##### AppState.io_dados.sDiasAtraso     : &quot;+ AppState.io_dados.sDiasAtraso);
+					    __Log(&quot;##### AppState.io_dados.sCodBloqCartao  : &quot;+ AppState.io_dados.sCodBloqCartao);
 						
 						//__Log('###########AppState.io_dados.UR80 : ' + JSON.stringify(AppState.io_dados['UR80'])); 
 						
 						if(AppState.io_dados.sCPFTitular != undefined){
-						       AppState.CpfCliente = AppState.io_dados.sCPFTitular.substring(0,11);
+						       AppState.CpfCliente = AppState.io_dados.sCPFTitular.replace(/\s/g, '');
+						        //AppState.CpfCliente = AppState.io_dados.sCPFTitular.substring(0,11);
 						       //AppState.CpfCliente =  AppState.io_dados.sCPFTitular.substring(0,4)+'xxxx' + AppState.io_dados.sCPFTitular.substring(8,11);
 						}else{
 						        AppState.CpfCliente =  '';
@@ -199,26 +207,26 @@
 						AppState.objJsonRequest.foneOrigemA =  AppState.io_dados['ani'].substring(2, 11);
 						AppState.objJsonRequest.dhLigacao = AppState.io_dados['horaInicioChamada'];
 						AppState.objJsonRequest.nrFoneDestinoB = AppState.io_dados['dnis'].substring(AppState.io_dados['dnis'].length - 4); 
-						if ( AppState.io_dados['sORGCartao'] != null &amp;&amp; AppState.io_dados['sORGCartao'] != &quot;&quot; &amp;&amp; AppState.io_dados['sORGCartao'] != &quot;   &quot; ) 
+						if ( AppState.io_dados['sORGCartao'] != null &amp;&amp; AppState.io_dados['sORGCartao'] != &quot;&quot; &amp;&amp; AppState.io_dados['sORGCartao'] != &quot;   &quot; &amp;&amp; AppState.io_dados['sORGCartao'] !=undefined) 
 							AppState.objJsonRequest.cdOrg = AppState.io_dados['sORGCartao'];
 						else
 							AppState.objJsonRequest.cdOrg = '';
-						if ( AppState.io_dados['sLogoCartao'] != null &amp;&amp; AppState.io_dados['sLogoCartao'] != &quot;&quot; &amp;&amp; AppState.io_dados['sLogoCartao'] != &quot;   &quot; ) 
+						if ( AppState.io_dados['sLogoCartao'] != null &amp;&amp; AppState.io_dados['sLogoCartao'] != &quot;&quot; &amp;&amp; AppState.io_dados['sLogoCartao'] != &quot;   &quot; &amp;&amp; AppState.io_dados['sLogoCartao'] != undefined) 
 							AppState.objJsonRequest.cdLogo = AppState.io_dados['sLogoCartao'];
 						else
 							AppState.objJsonRequest.cdLogo = '';	
 							AppState.objJsonRequest.nrCartaoCliente = AppState.CartaoCliente;
 						AppState.objJsonRequest.nrCpfCliente = AppState.CpfCliente;
-						if ( AppState.io_dados['UR80']['AplCdBloqueio'] != null &amp;&amp; AppState.io_dados['UR80']['AplCdBloqueio'] != &quot;&quot; &amp;&amp; AppState.io_dados['UR80']['AplCdBloqueio'] != &quot; &quot; ) 
-							AppState.objJsonRequest.cdBloqueioCartao = AppState.io_dados['UR80']['AplCdBloqueio'];
+						if ( AppState.io_dados.sCodBloqCartao != null &amp;&amp; AppState.io_dados.sCodBloqCartao != &quot;&quot; &amp;&amp; AppState.io_dados.sCodBloqCartao != &quot; &quot; &amp;&amp; AppState.io_dados.sCodBloqCartao !=undefined) 
+							AppState.objJsonRequest.cdBloqueioCartao = AppState.io_dados.sCodBloqCartao;
 						else
 							AppState.objJsonRequest.cdBloqueioCartao = '';
 						if ( AppState.io_dados['UR80']['AplCodRetorno'] != null &amp;&amp; AppState.io_dados['UR80']['AplCodRetorno'] != &quot;&quot; &amp;&amp; AppState.io_dados['UR80']['AplCodRetorno'] != &quot;   &quot; ) 
 							AppState.objJsonRequest.cdRetornoTransacaoInicial = AppState.io_dados['UR80']['AplCodRetorno'];
 						else
 							AppState.objJsonRequest.cdRetornoTransacaoInicial = '';
-						if ( AppState.io_dados['UR80']['AplDiasAtraso'] != null &amp;&amp; AppState.io_dados['UR80']['AplDiasAtraso'] != &quot;&quot; &amp;&amp; AppState.io_dados['UR80']['AplDiasAtraso'] != &quot;   &quot; ) 
-							AppState.objJsonRequest.nrDiasAtraso = AppState.io_dados['UR80']['AplDiasAtraso'];
+						if ( AppState.io_dados.sDiasAtraso != null &amp;&amp; AppState.io_dados.sDiasAtraso != &quot;&quot; &amp;&amp; AppState.io_dados.sDiasAtraso != &quot;   &quot;&amp;&amp; AppState.io_dados.sDiasAtraso != undefined) 
+							AppState.objJsonRequest.nrDiasAtraso = AppState.io_dados.sDiasAtraso;
 						else
 							AppState.objJsonRequest.nrDiasAtraso = ''; 
 						AppState.objJsonRequest.dsSequenciaMenu = AppState.io_dados['LogTick']; // Verificar info

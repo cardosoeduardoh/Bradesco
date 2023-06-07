@@ -277,7 +277,7 @@
 				<!-- This is the OutLink -->
 				<goto next="#R_RN40_OK" />
 			</if>
-			<goto next="#setNoMatch" />
+			<goto next="#Set_NavegacaoEventosTipoDTMF_Invalido" />
 		</block>
 	</form>
 
@@ -466,6 +466,36 @@
 			
 			<assign name="AppState.ap_estadoPergunta" expr="'NOMATCH'" />				
 			<goto next="#Set_NavegacaoEventosTipoDTMF_Inv_noMatch" />
+		</block>
+	</form>
+
+	<!-- This is the Assign block -->
+	<form id="Set_NavegacaoEventosTipoDTMF_Invalido">
+		<block>
+			<script>
+				try {
+					
+					   	var dataAtual = getDataAtual();
+					  
+						AppState.objNavegacao = {
+						
+							tipoEvento: 0,
+							timestampInicio: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;,
+							timestampFim: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;
+							sequencia: 1,
+							dadosEvento: {
+								evento:AppState.ap_opcaoDigitada
+							}
+						}
+						
+						AppState.io_dados.objSessao.inLogEvento.push(AppState.objNavegacao);
+					
+						__Log(&quot;##### objNavegacao: &quot;+ JSON.stringify(AppState.objNavegacao));
+					} catch (error) {
+						__Log(&quot;##### Error(ECMA_Set_NavegacaoEventosTipoDTMF_ValidaInputPedeCVVCVC): &quot; + error);
+					}
+			</script>	
+			<goto next="#setNoMatch" />
 		</block>
 	</form>
 

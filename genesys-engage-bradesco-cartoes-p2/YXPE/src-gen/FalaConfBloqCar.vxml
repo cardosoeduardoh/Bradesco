@@ -179,6 +179,16 @@
 
 	<!-- This is the Subdialog block -->
 	<form id="SubEv2032">
+		<block>
+			<log gvp:level="1">
+				<value expr="__Log(&quot;##### AppState.io_dados.sCPFTitular     : &quot;+ AppState.io_dados.sCPFTitular) + '  ' +
+__Log(&quot;##### AppState.io_dados.sCartao         : &quot;+ AppState.io_dados.sCartao) + '  ' +
+__Log(&quot;##### AppState.io_dados.sORGCartao      : &quot;+ AppState.io_dados.sORGCartao) + '  ' +
+__Log(&quot;##### AppState.io_dados.sLogoCartao     : &quot;+ AppState.io_dados.sLogoCartao) + '  ' +
+__Log(&quot;##### AppState.io_dados.sDiasAtraso     : &quot;+ AppState.io_dados.sDiasAtraso) + '  ' +
+__Log(&quot;##### AppState.io_dados.sCodBloqCartao  : &quot;+ AppState.io_dados.sCodBloqCartao)"/>
+			</log>
+    	</block>
 
 		<subdialog name="SubEv2032Subdialog" fetchhint="prefetch"  src="../../YUII/src-gen/Relatorio.vxml">
     		<param name="varActionParentId" expr="'FalaConfBloqCar'"/>
@@ -288,6 +298,13 @@
 						AppState.io_dados['AplCliente']['ORG'] =AppState.listaCartoesBloqueio[cartaoEscolhido - 2]['ORG'];
 						AppState.io_dados['sORGCartao'] = AppState.listaCartoesBloqueio[cartaoEscolhido - 2]['ORG'];
 						AppState.io_dados['sLogoCartao'] = AppState.listaCartoesBloqueio[cartaoEscolhido - 2]['LOGO'];
+						AppState.io_dados['sCartao'] = AppState.listaCartoesBloqueio[cartaoEscolhido - 2]['NumCartao'];
+						AppState.io_dados['sDiasAtraso'] = AppState.listaCartoesBloqueio[cartaoEscolhido - 2]['DiasAtraso'];
+						AppState.io_dados['sCodBloqCartao'] = AppState.listaCartoesBloqueio[cartaoEscolhido - 2]['CodBloqCartao'];
+						AppState.io_dados['sCPFTitular'] = AppState.io_dados.UR8F.NumCartaoCPF;
+						
+						
+						
 						
 						
 						//aplLogURA.AddLog TICK_LOG_MOPCARBLOQ, 2//VALIDAR

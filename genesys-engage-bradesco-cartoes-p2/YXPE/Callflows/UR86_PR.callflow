@@ -96,6 +96,12 @@
       <conditions xmi:type="datatypes:BranchItem" xmi:id="_I7hhEIFWEe2CFazll8yVOQ" name="Sim" expression="AppState.io_dados.sNumeroCartaoCPF.length == 16"/>
     </blocks>
     <blocks xmi:type="gvp:BranchingBlock" xmi:id="_fFvKJbnMEeygm5lA8o-Cng" name="VerNumCartaoCPF_2" category="Branching">
+      <loggingDetails>__Log(&quot;##### AppState.io_dados.sCPFTitular     : &quot;+ AppState.io_dados.sCPFTitular) + '  ' +&#xD;
+__Log(&quot;##### AppState.io_dados.sCartao         : &quot;+ AppState.io_dados.sCartao) + '  ' +&#xD;
+__Log(&quot;##### AppState.io_dados.sORGCartao      : &quot;+ AppState.io_dados.sORGCartao) + '  ' +&#xD;
+__Log(&quot;##### AppState.io_dados.sLogoCartao     : &quot;+ AppState.io_dados.sLogoCartao) + '  ' +&#xD;
+__Log(&quot;##### AppState.io_dados.sDiasAtraso     : &quot;+ AppState.io_dados.sDiasAtraso) + '  ' +&#xD;
+__Log(&quot;##### AppState.io_dados.sCodBloqCartao  : &quot;+ AppState.io_dados.sCodBloqCartao)</loggingDetails>
       <conditions xmi:type="datatypes:BranchItem" xmi:id="_LMPb8IFVEe2CFazll8yVOQ" name="Sim" expression="AppState.io_dados.UR8F.NumCartaoCPF == AppState.io_dados.sNumeroCartaoCPF" postAction=""/>
     </blocks>
     <blocks xmi:type="gvp:BranchingBlock" xmi:id="_qQxfNbnMEeygm5lA8o-Cng" name="VerQtdeCartoes" category="Branching">
@@ -127,7 +133,13 @@
     <blocks xmi:type="gvp:BranchingBlock" xmi:id="_zZClpbpYEeygm5lA8o-Cng" name="VersNumeroCartaoCPF" category="Branching" enableStatus="Disabled">
       <conditions xmi:type="datatypes:BranchItem" xmi:id="_dAL-sIFVEe2CFazll8yVOQ" name="Sim" expression="AppState.io_dados['UR8FCartoes'][0]['NumCartao'] == AppState.io_dados.sNumeroCartaoCPF"/>
     </blocks>
-    <blocks xmi:type="gvp:AssignBlock" xmi:id="_jTCn0LsbEeygm5lA8o-Cng" name="RN03" category="Assign">
+    <blocks xmi:type="gvp:AssignBlock" xmi:id="_jTCn0LsbEeygm5lA8o-Cng" name="RN03" condition="" category="Assign">
+      <loggingDetails>__Log(&quot;##### AppState.io_dados.sCPFTitular     : &quot;+ AppState.io_dados.sCPFTitular) + '  ' +&#xD;
+__Log(&quot;##### AppState.io_dados.sCartao         : &quot;+ AppState.io_dados.sCartao) + '  ' +&#xD;
+__Log(&quot;##### AppState.io_dados.sORGCartao      : &quot;+ AppState.io_dados.sORGCartao) + '  ' +&#xD;
+__Log(&quot;##### AppState.io_dados.sLogoCartao     : &quot;+ AppState.io_dados.sLogoCartao) + '  ' +&#xD;
+__Log(&quot;##### AppState.io_dados.sDiasAtraso     : &quot;+ AppState.io_dados.sDiasAtraso) + '  ' +&#xD;
+__Log(&quot;##### AppState.io_dados.sCodBloqCartao  : &quot;+ AppState.io_dados.sCodBloqCartao)</loggingDetails>
       <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_FHPpUCPvEe2qNbutDrpWZg" Key="EhCartaoValidoBloqueio" Value="EhCartaoValidoBloqueio(AppState.io_dados, 0)"/>
     </blocks>
     <blocks xmi:type="gvp:BranchingBlock" xmi:id="_QkJqVbscEeygm5lA8o-Cng" name="Ver_EhCartaoValidoBloqueio" category="Branching">
@@ -231,14 +243,19 @@
       <loggingDetails>'#### Log_Exception_Error ####'</loggingDetails>
     </blocks>
     <blocks xmi:type="gvp:AssignBlock" xmi:id="_dRNsVf7gEe2X88qQP_IBPw" name="setCartao" category="Assign">
-      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_dRNsVv7gEe2X88qQP_IBPw" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sCartao', AppState.io_dados.UR8F.CARTOES.NumCartao)"/>
-      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_dRNsV_7gEe2X88qQP_IBPw" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sORGCartao', AppState.io_dados.UR8F.CARTOES.ORG)"/>
-      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_dRNsWP7gEe2X88qQP_IBPw" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sLogoCartao', AppState.io_dados.UR8F.CARTOES.LOGO)"/>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_79Zv8ASKEe6Azb5LXO-hDg" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sCartao', AppState.io_dados.UR8F.CARTOES[0].NumCartao)"/>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_79Zv8QSKEe6Azb5LXO-hDg" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sORGCartao', AppState.io_dados.UR8F.CARTOES[0].ORG)"/>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_79Zv8gSKEe6Azb5LXO-hDg" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sLogoCartao', AppState.io_dados.UR8F.CARTOES[0].LOGO)"/>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_79Zv8wSKEe6Azb5LXO-hDg" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sDiasAtraso', AppState.io_dados.UR8F.CARTOES[0].DiasAtraso)"/>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_79Zv9ASKEe6Azb5LXO-hDg" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sCodBloqCartao', AppState.io_dados.UR8F.CARTOES[0].CodBloqCartao)"/>
     </blocks>
     <blocks xmi:type="gvp:AssignBlock" xmi:id="_hfOk5f7gEe2X88qQP_IBPw" name="Copy_1_setCartao" category="Assign">
-      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_hfOk5v7gEe2X88qQP_IBPw" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sCartao', AppState.io_dados.UR8F.CARTOES.NumCartao)"/>
-      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_hfOk5_7gEe2X88qQP_IBPw" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sORGCartao', AppState.io_dados.UR8F.CARTOES.ORG)"/>
-      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_hfOk6P7gEe2X88qQP_IBPw" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sLogoCartao', AppState.io_dados.UR8F.CARTOES.LOGO)"/>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_f5Mo4ASLEe6Azb5LXO-hDg" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sCartao', AppState.io_dados.UR8F.CARTOES[0].NumCartao)"/>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_f5Mo4QSLEe6Azb5LXO-hDg" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sORGCartao', AppState.io_dados.UR8F.CARTOES[0].ORG)"/>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_f5Mo4gSLEe6Azb5LXO-hDg" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sLogoCartao', AppState.io_dados.UR8F.CARTOES[0].LOGO)"/>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_f5Mo4wSLEe6Azb5LXO-hDg" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sDiasAtraso', AppState.io_dados.UR8F.CARTOES[0].DiasAtraso)"/>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_f5Mo5ASLEe6Azb5LXO-hDg" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sCodBloqCartao', AppState.io_dados.UR8F.CARTOES[0].CodBloqCartao)"/>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_f5Mo5QSLEe6Azb5LXO-hDg" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'sCPFTitular', AppState.io_dados.UR8F.NumCartaoCPF.substring(5,16))"/>
     </blocks>
     <links xmi:type="gvp:CallflowOutputLink" xmi:id="_RMNVQEZUEemk54Up4GUK-g" fromBlock="_210QVEZTEemk54Up4GUK-g" toBlock="_VgUGcEWeEemk54Up4GUK-g"/>
     <links xmi:type="gvp:CallflowExceptionLink" xmi:id="_psyNQKtmEeyLhIZbPXflFw" name="connection.disconnect.hangup" fromBlock="_0TDncMlhEeKE2tP5OBlA8w" toBlock="_ZMylaJ58Ee26FYCRbDaAXA"/>

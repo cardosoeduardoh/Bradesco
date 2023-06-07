@@ -437,6 +437,16 @@
 
 	<!-- This is the Subdialog block -->
 	<form id="SubEv2054">
+		<block>
+			<log gvp:level="1">
+				<value expr="__Log(&quot;##### AppState.io_dados.sCPFTitular     : &quot;+ AppState.io_dados.sCPFTitular) + '  ' +
+__Log(&quot;##### AppState.io_dados.sCartao         : &quot;+ AppState.io_dados.sCartao) + '  ' +
+__Log(&quot;##### AppState.io_dados.sORGCartao      : &quot;+ AppState.io_dados.sORGCartao) + '  ' +
+__Log(&quot;##### AppState.io_dados.sLogoCartao     : &quot;+ AppState.io_dados.sLogoCartao) + '  ' +
+__Log(&quot;##### AppState.io_dados.sDiasAtraso     : &quot;+ AppState.io_dados.sDiasAtraso) + '  ' +
+__Log(&quot;##### AppState.io_dados.sCodBloqCartao  : &quot;+ AppState.io_dados.sCodBloqCartao)"/>
+			</log>
+    	</block>
 
 		<subdialog name="SubEv2054Subdialog" fetchhint="prefetch"  src="../src-gen/Relatorio.vxml">
     		<param name="varActionParentId" expr="'UR86_CPF'"/>
@@ -865,9 +875,11 @@
 	<form id="setCartao">
 		<block>
 			
-			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sCartao', AppState.io_dados.UR8F.CARTOES.NumCartao)" />
-			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sORGCartao', AppState.io_dados.UR8F.CARTOES.ORG)" />
-			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sLogoCartao', AppState.io_dados.UR8F.CARTOES.LOGO)" />				
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sCartao', AppState.io_dados.UR8F.CARTOES[0].NumCartao)" />
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sORGCartao', AppState.io_dados.UR8F.CARTOES[0].ORG)" />
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sLogoCartao', AppState.io_dados.UR8F.CARTOES[0].LOGO)" />
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sDiasAtraso', AppState.io_dados.UR8F.CARTOES[0].DiasAtraso)" />
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sCodBloqCartao', AppState.io_dados.UR8F.CARTOES[0].CodBloqCartao)" />				
 			<goto next="#verOrgValido" />
 		</block>
 	</form>
