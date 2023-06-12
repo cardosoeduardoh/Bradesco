@@ -4734,8 +4734,8 @@ function getValideSenhaSaque(senha){
 function montaBilhete(dados) {
     var bilhete = '';
     bilhete += "&H&"; // HeaderId
-    bilhete += dados["MSGTYPE_INICIO"]; // MsgType
-    bilhete += '000'; //MsgLen
+    bilhete += '01';//dados["MSGTYPE_INICIO"]; // MsgType
+    bilhete += '096'; //MsgLen
     bilhete += "&D&"; //DadosURA
     bilhete += completaComEspacos("",6); //CallID Lucent
     bilhete += formataDataAtual("yyyyMMdd"); // Ano mes dia
@@ -4769,9 +4769,15 @@ function montaBilhete(dados) {
     
     bilhete += ' '; //CartaoSituacao
     
-    // Titularidade VALIDAR ESTE CAMPO - IndTitAdic
-    if (dados.strAplTitAdic != "") {
-    	bilhete += dados.strAplTitAdic;
+    // Titularidade
+    if (dados.strAplTitAdic != undefined) {
+		if (dados.strAplTitAdic == "0") {
+			bilhete += "T"; //titular
+		} else if (dados.strAplTitAdic == "1") {
+			bilhete += "A"; //adicional
+		} else {
+			bilhete += dados.strAplTitAdic.substring(0);
+		}
     } else {
     	bilhete += " ";
     }
@@ -4783,8 +4789,8 @@ function montaBilhete(dados) {
     }
     
     bilhete += "&T&"; //TrailerId
-    bilhete += '  '; //CodRetorno
-    bilhete += '  '; //RazaoRetorno
+    bilhete += completaComEspacos(dados['DERIVACAO_CODIGO'],2); //CodRetorno
+    bilhete += completaComEspacos(dados['DERIVACAO_MOTIVO'],2); //RazaoRetorno
     bilhete += "&F&"; //Final Bilhete       
     
 	return bilhete;
@@ -9929,4 +9935,84 @@ function PossuiOrgLogo(str,valor) {
 
 function getDiretorioComuns() {
     return "../../01comuns/Resources/Prompts/Frases/";
+}
+
+function getPoloCode() {
+    var polo = getPolo();
+    var code = "";
+
+    if (polo == "SPO") {
+        code = "310";
+    } else if (polo == "CTA") {
+        code = "330";
+    } else if (polo == "RJO") {
+        code = "350";
+    } else if (polo == "OSO") {
+        code = "360";
+    } else if (polo == "BSA") {
+        code = "340";
+    } else if (polo == "BHE") {
+        code = "320";
+    } else {
+        code = "";
+    }
+    __Log('#### polo code ####: ' + code);
+    return code;
+}
+
+function getPolo() { //POLO GVP CARTOES
+    var polo = getSIPHeaderValue('User-Agent').toUpperCase();
+    __Log('#### User-Agent: ' + polo);
+
+    if (polo.indexOf("SBC_BHE") >= 0) {
+          polo = "BHE";
+    } else if (polo.indexOf("SBC_BSB") >= 0) {
+          polo = "BSA";
+    } else if (polo.indexOf("SBC_CTA") >= 0) {
+          polo = "CTA";
+    } else if (polo.indexOf("SBC_OSA") >= 0) {
+          polo = "OSO";
+    } else if (polo.indexOf("SBC_RJO") >= 0) {
+          polo = "RJO";
+    } else if (polo.indexOf("SBC_SPO") >= 0) {
+          polo = "SPO";
+    } else if (polo.indexOf("SBC_LAB_SPO") >= 0) {
+          polo = "SPO";
+    } else if (polo.indexOf("SBC_LAB_ALPHA") >= 0) {
+          polo = "SPO";
+    } else if (polo.indexOf("SBC_SP") >= 0) {
+          polo = "SPO";
+    } else {
+          polo = "N/A";
+    }
+
+    __Log('#### polo: ' + polo);
+    return polo;
+}
+
+function limpaVariaveis(dados) {
+
+	//Para armazenar a transação UR80
+	dados['UR80'] = {}
+
+	//Para armazenar a transação UR81
+	dados['UR81'] = {}
+
+	//Para armazenar a transação UR85
+	dados['UR85'] = {}
+
+	//Para armazenar a transação UR8F
+	dados['UR8F'] = {}
+
+	dados['sCartao'] = "";
+	dados['sCPFTitular'] = "";
+	dados['sORGCartao'] = "";
+	dados['sLogoCartao'] = "";//usado nos logs
+	dados['sCodBloqCartao'] = "";//usado nos logs
+	dados['sDiasAtraso'] = "";//usado nos logs	
+	dados['DERIVACAO_CODIGO'] = "02"; //01 - Usuário | 02 - Sistema[padrao]
+	dados['DERIVACAO_MOTIVO'] = "";
+	dados['clienteAbandonou'] = false;
+
+	return dados;
 }

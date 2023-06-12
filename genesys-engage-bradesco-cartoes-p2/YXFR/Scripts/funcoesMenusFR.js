@@ -74,8 +74,8 @@ function getFrases_MenuRepetir(dados) {
     ret['fraseDesconexao'] = [];
  
     ret['statOpcoes'] = "";
-    ret['statInvalida_NOMATCH'] = "";
-    ret['statInvalida_NOINPUT'] = "";
+    ret['statInvalida_NOMATCH'] = "4074";
+    ret['statInvalida_NOINPUT'] = "4074";
     ret['statInvalida_EXCEDEU_NOMATCH'] = "";
     ret['statInvalida_EXCEDEU_NOINPUT'] = "";
     ret['statValida'] = "";

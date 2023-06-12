@@ -684,6 +684,19 @@
 				<!-- This is the OutLink -->
 				<goto next="#setVar_Menu1Nivel_Tentativas_NoMatch" />
 			</if>
+			<if cond="AppState.io_dados['fluxoOrigem'] == 'Menu2Nivel'">
+				
+				<!-- Post Action -->
+				<script>try{
+				AppState.io_dados['fluxoOrigem'] = ''
+				}
+				catch(err){}
+				
+				</script>
+				
+				<!-- This is the OutLink -->
+				<goto next="#VerificaCartaoConsultado" />
+			</if>
 			<goto next="#setEvento_Menu1Nivel_Tentativas" />
 		</block>
 	</form>
@@ -1143,6 +1156,52 @@
     	<block>
     		<goto next="#FalaDesliga" />
     	</block>
+	</form>
+
+	<!-- This is the Assign block -->
+	<form id="Set_forcaGravarLog">
+		<block>
+			
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'forcaGravarLog', true)" />				
+			<goto next="#ForcaGravarLog" />
+		</block>
+	</form>
+
+	<!-- This is the Subdialog block -->
+	<form id="ForcaGravarLog">
+
+		<subdialog name="ForcaGravarLogSubdialog" fetchhint="prefetch"  src="../src-gen/VerificaGravarLog.vxml">
+    		<param name="varActionParentId" expr="'Menu1Nivel'"/>
+			<param name="io_dados" expr="AppState.io_dados" />
+			<filled>
+				<if cond="ForcaGravarLogSubdialog.io_dados != 'undefined'">
+  					<assign name="AppState.io_dados" expr="ForcaGravarLogSubdialog.io_dados" /> 
+  				</if>
+				<goto next="#LimpaVariaveis" />
+			</filled>
+		</subdialog>
+		
+	</form>
+
+	<!-- This is the Assign block -->
+	<form id="LimpaVariaveis">
+		<block>
+			
+			<assign name="AppState.io_dados" expr="limpaVariaveis(AppState.io_dados)" />				
+			<goto next="#setEvento_Menu1Nivel_Tentativas" />
+		</block>
+	</form>
+
+	<!-- This is the Branching block -->
+	<form id="VerificaCartaoConsultado">
+		<block>
+			<if cond="AppState.io_dados.UR80.hasOwnProperty(&quot;AplNumCartao&quot;) &amp;&amp; AppState.io_dados.UR80.AplNumCartao != &quot;&quot; &amp;&amp; AppState.io_dados.UR80.AplNumCartao != undefined">
+				
+				<!-- This is the OutLink -->
+				<goto next="#Set_forcaGravarLog" />
+			</if>
+			<goto next="#setEvento_Menu1Nivel_Tentativas" />
+		</block>
 	</form>
 
 </vxml>

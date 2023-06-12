@@ -227,11 +227,12 @@
 	</form>
 
 	<!-- This is the Assign block -->
-	<form id="setstrAplCodRetDerivacao">
+	<form id="setstrAplDerivacao">
 		<block>
 			
-			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'strAplCodRetDerivacao', 'DERIV_SISTEMA')" />				
-			<goto next="#setstrAplRazaoDerivacao" />
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'strAplCodRetDerivacao', 'DERIV_SISTEMA')" />
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'strAplRazaoDerivacao', 'RAZAO_TIMEOUT_HOST')" />				
+			<goto next="#FalaDeriva_II" />
 		</block>
 	</form>
 
@@ -246,19 +247,10 @@
 				<if cond="SubEv3005Subdialog.io_dados != 'undefined'">
   					<assign name="AppState.io_dados" expr="SubEv3005Subdialog.io_dados" /> 
   				</if>
-				<goto next="#setstrAplCodRetDerivacao" />
+				<goto next="#setstrAplDerivacao" />
 			</filled>
 		</subdialog>
 		
-	</form>
-
-	<!-- This is the Assign block -->
-	<form id="setstrAplRazaoDerivacao">
-		<block>
-			
-			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'strAplRazaoDerivacao', 'RAZAO_TIMEOUT_HOST')" />				
-			<goto next="#FalaDeriva_II" />
-		</block>
 	</form>
 
 	<!-- This is the Subdialog block -->

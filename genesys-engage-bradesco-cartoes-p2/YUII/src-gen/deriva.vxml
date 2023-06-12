@@ -79,6 +79,7 @@
 	<script srcexpr="AppState.SCRIPTSDIR + '/' + 'funcoesDataHora.js'" />
 	<script srcexpr="AppState.SCRIPTSDIR + '/' + 'funcoesMenus.js'" />
 	<script srcexpr="AppState.SCRIPTSDIR + '/' + 'funcoesFrases.js'" />
+	<script srcexpr="AppState.SCRIPTSDIR + '/' + 'Derivacao.js'" />
 
 	
 	<script srcexpr="AppState.VOXFILEDIR + '/pt-BR/customprompts.js'" />
@@ -188,10 +189,18 @@
 	<!-- This is the Assign block -->
 	<form id="setDeriva">
 		<block>
+			<log gvp:level="1">
+				<value expr="'####### AppState.io_dados.strAplRazaoDerivacao  : ' +   AppState.io_dados.strAplRazaoDerivacao + '   ' +
+'#######  AppState.io_dados.strAplCodRetDerivacao  : ' +   AppState.io_dados.strAplCodRetDerivacao"/>
+			</log>
+    	</block>
+		<block>
 			
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'DERIVACAO_CODIGO', getEventosDerivacao(AppState.io_dados.strAplCodRetDerivacao))" />
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'DERIVACAO_MOTIVO', getEventosDerivacao(AppState.io_dados.strAplRazaoDerivacao))" />
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'clienteDerivou', true)" />
 			<assign name="AppState.ap_derivacaoCartao" expr="getDerivacaoCartoes(AppState.io_dados)" />
-			<assign name="AppState.ap_destino" expr="AppState.ap_derivacaoCartao.destino" />
-			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'clienteDerivou', true)" />				
+			<assign name="AppState.ap_destino" expr="AppState.ap_derivacaoCartao.destino" />				
 			<goto next="#ECMA_EventoTransferencia" />
 		</block>
 	</form>

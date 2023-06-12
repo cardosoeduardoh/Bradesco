@@ -72,6 +72,7 @@
 		AppState.CpfCliente = '';
 		AppState.versao = '';
 		AppState.CartaoCliente = '';
+		AppState.VdnDerivacao = '';
 	</script>
 
 		
@@ -163,14 +164,19 @@
 					    __Log(&quot;##### AppState.io_dados.sDiasAtraso     : &quot;+ AppState.io_dados.sDiasAtraso);
 					    __Log(&quot;##### AppState.io_dados.sCodBloqCartao  : &quot;+ AppState.io_dados.sCodBloqCartao);
 						
-						//__Log('###########AppState.io_dados.UR80 : ' + JSON.stringify(AppState.io_dados['UR80'])); 
+						 
 						
 						if(AppState.io_dados.sCPFTitular != undefined){
 						       AppState.CpfCliente = AppState.io_dados.sCPFTitular.replace(/\s/g, '');
-						        //AppState.CpfCliente = AppState.io_dados.sCPFTitular.substring(0,11);
-						       //AppState.CpfCliente =  AppState.io_dados.sCPFTitular.substring(0,4)+'xxxx' + AppState.io_dados.sCPFTitular.substring(8,11);
+						        
 						}else{
 						        AppState.CpfCliente =  '';
+						}
+						
+						if (AppState.io_dados['Balanceamento'] != null &amp;&amp; AppState.io_dados['Balanceamento']['vdn'] != null &amp;&amp;  AppState.io_dados['Balanceamento']['vdn'] != &quot;&quot;){
+							AppState.VdnDerivacao =  AppState.io_dados['Balanceamento']['vdn'].toString();
+						}else{
+							AppState.VdnDerivacao = &quot;&quot;;
 						}
 						
 						if(AppState.io_dados.sCartao != undefined){
@@ -230,10 +236,8 @@
 						else
 							AppState.objJsonRequest.nrDiasAtraso = ''; 
 						AppState.objJsonRequest.dsSequenciaMenu = AppState.io_dados['LogTick']; // Verificar info
-						if (AppState.io_dados['Balanceamento'] != null &amp;&amp; AppState.io_dados['Balanceamento']['vdn'] != null &amp;&amp;  AppState.io_dados['Balanceamento']['vdn'] != &quot;&quot;)
-							AppState.objJsonRequest.nrVdnDerivacao =  AppState.io_dados['Balanceamento']['vdn'];
-						else
-							AppState.objJsonRequest.nrVdnDerivacao = &quot;&quot;;
+						
+						
 						AppState.objJsonRequest.cdFinalizacaoChamada = AppState.io_dados.CodDesliga//'402'; // Verificar info
 						AppState.objJsonRequest.hrFinalizacaoChamada = formataDataAtual('hh') + ':' + formataDataAtual('mm') + ':' + formataDataAtual('ss'); 
 						if ( AppState.io_dados['UR80']['AplCondicaoVencto'] != null &amp;&amp; AppState.io_dados['UR80']['AplCondicaoVencto'] != &quot;&quot; &amp;&amp; AppState.io_dados['UR80']['AplCondicaoVencto'] != &quot; &quot; ) 
@@ -243,7 +247,7 @@
 						AppState.objJsonRequest.nrDddOrigemA = AppState.io_dados['ani'].substring(0, 2); 
 						AppState.objJsonRequest.nrSerialTlk = '    '; 
 					
-					
+					   AppState.objJsonRequest.nrVdnDerivacao = AppState.VdnDerivacao.slice(-5)
 					
 						__Log('########### objJsonRequest: ' + JSON.stringify(AppState.objJsonRequest));
 						__Log('########### str_URI_final: ' + JSON.stringify(AppState.str_URI_final));
@@ -323,10 +327,17 @@
 						var response = AppState.objResponseAPI;
 					
 						__Log('###### Log API GravarLogSQL - response: ' + JSON.stringify(response) + '######');
-					
-						AppState.io_dados.Estruturante['GravarLogSQL'] = {}
-						AppState.io_dados.Estruturante['GravarLogSQL']['codigoRetorno'] = response.detail.codigoRetorno;
-						AppState.io_dados.Estruturante['GravarLogSQL']['msgRetorno'] = response.detail.msgRetorno;
+						
+						
+					   if(response.detail != undefined){
+										AppState.io_dados.Estruturante['GravarLogSQL'] = {}
+										AppState.io_dados.Estruturante['GravarLogSQL']['codigoRetorno'] = response.detail.codigoRetorno;
+										AppState.io_dados.Estruturante['GravarLogSQL']['msgRetorno'] = response.detail.msgRetorno;
+					  }else{
+					                   AppState.io_dados.Estruturante['GravarLogSQL'] = {}
+									   AppState.io_dados.Estruturante['GravarLogSQL']['codigoRetorno'] = '99';
+									   AppState.io_dados.Estruturante['GravarLogSQL']['msgRetorno'] = JSON.stringify(error);
+					  }
 					
 						__Log('===============================================================================================================');
 						__Log('########### AppState.io_dados.Estruturante.GravarLogSQL: ' + JSON.stringify(AppState.io_dados.Estruturante.GravarLogSQL));
@@ -334,6 +345,9 @@
 					
 					} catch (error) {
 						__Log(&quot;##### Error(Log API GravarLogSQL): &quot; + error);
+						AppState.io_dados.Estruturante['GravarLogSQL'] = {}
+						AppState.io_dados.Estruturante['GravarLogSQL']['codigoRetorno'] = '99';
+						AppState.io_dados.Estruturante['GravarLogSQL']['msgRetorno'] = JSON.stringify(error);
 					}
 			</script>	
 			<goto next="#ECMA_Set_Navegacao_Operacoes" />

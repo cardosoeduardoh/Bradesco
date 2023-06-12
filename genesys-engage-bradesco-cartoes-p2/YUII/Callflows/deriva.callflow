@@ -3,7 +3,7 @@
   <gvp:CallflowDiagram xmi:id="_RF4M8IobEeG_nt9_QYQUcg" name="deriva" designedUsing="Composer 8.1.440.18" callflowType="Subcallflow">
     <history>8.1.3</history>
     <history>8.1.300.78</history>
-    <blocks xmi:type="gvp:EntryBlock" xmi:id="_0TDncMlhEeKE2tP5OBlA8w" name="Entry1_Deriva" starting="true" category="Entry" scripts="funcoes.js|funcoesDataHora.js|funcoesMenus.js|funcoesFrases.js" applicationRoot="../src/ComposerRoot.vxml">
+    <blocks xmi:type="gvp:EntryBlock" xmi:id="_0TDncMlhEeKE2tP5OBlA8w" name="Entry1_Deriva" starting="true" category="Entry" scripts="funcoes.js|funcoesDataHora.js|funcoesMenus.js|funcoesFrases.js|Derivacao.js" applicationRoot="../src/ComposerRoot.vxml">
       <exceptions>connection.disconnect.hangup</exceptions>
       <exceptions>error</exceptions>
       <exceptions>all</exceptions>
@@ -54,9 +54,13 @@
       <returnValues>io_dados</returnValues>
     </blocks>
     <blocks xmi:type="gvp:AssignBlock" xmi:id="_XLtdlQ9lEe28gbgV9Kzwnw" name="setDeriva" category="Assign">
-      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="__6XnwNfHEe2e-N0dsSulGQ" Key="ap_derivacaoCartao" Value="getDerivacaoCartoes(AppState.io_dados)"/>
-      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="__6XnwdfHEe2e-N0dsSulGQ" Key="ap_destino" Value="AppState.ap_derivacaoCartao.destino"/>
-      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="__6XnwtfHEe2e-N0dsSulGQ" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'clienteDerivou', true)"/>
+      <loggingDetails>'####### AppState.io_dados.strAplRazaoDerivacao  : ' +   AppState.io_dados.strAplRazaoDerivacao + '   ' +&#xD;
+'#######  AppState.io_dados.strAplCodRetDerivacao  : ' +   AppState.io_dados.strAplCodRetDerivacao</loggingDetails>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_IZyMMAktEe65I_pQSbmaaA" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'DERIVACAO_CODIGO', getEventosDerivacao(AppState.io_dados.strAplCodRetDerivacao))"/>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_IZyMMQktEe65I_pQSbmaaA" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'DERIVACAO_MOTIVO', getEventosDerivacao(AppState.io_dados.strAplRazaoDerivacao))"/>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_IZyMMgktEe65I_pQSbmaaA" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'clienteDerivou', true)"/>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_IZyMMwktEe65I_pQSbmaaA" Key="ap_derivacaoCartao" Value="getDerivacaoCartoes(AppState.io_dados)"/>
+      <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_IZyMNAktEe65I_pQSbmaaA" Key="ap_destino" Value="AppState.ap_derivacaoCartao.destino"/>
     </blocks>
     <blocks xmi:type="gvp:RouteRequestBlock" xmi:id="__jnVdA9lEe28gbgV9Kzwnw" name="RouteTransfere" category="Route Request" userInput="true" outputResult="Variable(ap_resultado)" destination="Variable(ap_destino)">
       <loggingDetails>' :# destino ['+AppState.ap_destino+']'</loggingDetails>
