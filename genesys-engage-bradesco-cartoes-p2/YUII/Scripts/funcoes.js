@@ -4850,14 +4850,23 @@ function setSaudacaoOrg(dados){
 	var parametros = dados['parametros'];
 	var bHab_ENC_LASA = dados['bHab_ENC_LASA'];
 	var bHabReestruturacaoVDNs = dados['bHabReestruturacaoVDNs'];
+	
+	__Log('########### setSaudacaoOrg ');
+	__Log('########### dados.sORGCartao :' + dados.sORGCartao);
+	__Log('########### dados.sLogoCartao :' + dados.sLogoCartao);
+	__Log('########### dados.SeDataEloMais :' + dados.SeDataEloMais);
+	__Log('########### dados.UR80.AplNumCartao :' + dados.UR80.AplNumCartao);
+	__Log('########### dados.bHab_ENC_LASA :' + dados.bHab_ENC_LASA);
+	__Log('########### dados.bHabReestruturacaoVDNs :' + dados.bHabReestruturacaoVDNs);
+	
 
 	switch(sORGCartao){
-		case '10':
-		case '11':
-		case '16':
-		case '24':
+		case '010':
+		case '011':
+		case '016':
+		case '024':
 		case '122': //Atendimento C&A
-            if (SeDataEloMais && sORGCartao == '122' && sLogoCartao == '38') {
+            if (SeDataEloMais && sORGCartao == '122' && sLogoCartao == '038') {
                 //DNK674 = Atendimento C&A Elo Mais.
                 frases = "ypiiAtendC&aEloMais.wav"
 			} else {
@@ -4865,7 +4874,7 @@ function setSaudacaoOrg(dados){
                 frases = "ypiiAtendC&a.wav"
             }
 			break;
-        case '13': //Atendimento C&A
+        case '013': //Atendimento C&A
             if (parametros['HabDtVisaGold'] && wBin == "428267") {
                 //DNK616 = ATENDIMENTO C&A VISA GOLD
                 frases = "ypiiAtendC&AVisaGold.wav"
@@ -4874,18 +4883,18 @@ function setSaudacaoOrg(dados){
                 frases = "ypiiAtendC&a.wav"
             }
 			break;
-        case '14':
-		case '15':
-		case '25':
+        case '014':
+		case '015':
+		case '025':
 		case '510': //Atendimento IBICard
             //DNK518 = ATENDIMENTO IBICARD.
             frases = "ypiiAtendIBIcard.wav"
 			break;
-        case '46': //Atendimento cartão Makro.
+        case '046': //Atendimento cartão Makro.
             if (parametros['HabDtVisaGold'] && wBin == "418049") {
                 //DNK618 = ATENDIMENTO MAKRO VISA GOLD
                 frases = "ypiiAtendMakroVisaGold.wav"
-            } else if (SeDataEloMais && sLogoCartao == 38) {
+            } else if (SeDataEloMais && sLogoCartao == '038') {
                 //DNK676 = Atendimento Makro Elo Mais.
                 frases = "ypiiAtendMakroEloMais.wav"
             } else {
@@ -4893,23 +4902,23 @@ function setSaudacaoOrg(dados){
                 frases = "ypiiAtendCartMakro.wav"
             }
 			break;
-        case '17': //Atendimento cartão DOTZ Bradescard.
+        case '017': //Atendimento cartão DOTZ Bradescard.
             //DNK375 = ATENDIMENTO CARTÃO DOTZ BRADESCARD.
             frases = "ypiiAtendCartDotz.wav"
 			break;
-        case '20':
-		case '21':
-		case '22': //Atendimento cartão Center Lapa.
+        case '020':
+		case '021':
+		case '022': //Atendimento cartão Center Lapa.
             //DNK376 = ATENDIMENTO CARTÃO CENTER LAPA.
             frases = "ypiiAtendCartCenterLapa.wav"
 			break;
-        case '52':
-		case '53':
+        case '052':
+		case '053':
 		case '123': //Atendimento cartão Angeloni Bradescard.
             //DNK632 = ATENDIMENTO CARTÃO ANGELONI.
             frases = "ypiiAtendCartAngeloni.wav"
 			break;
-        case '55': //Atendimento cartão Angeloni Bradescard.
+        case '055': //Atendimento cartão Angeloni Bradescard.
             if (parametros['HabDtVisaGold'] && wBin == "422011") {
                 //DNK614 = ATENDIMENTO ANGELONI VISA GOLD.
                 frases = "ypiiAtendAngeloniVisaGold.wav"
@@ -4918,15 +4927,15 @@ function setSaudacaoOrg(dados){
                 frases = "ypiiAtendCartAngeloni.wav"
             }
 			break;
-        case '61':
-		case '62':
-		case '63':
-		case '64':
-		case '65': //Atendimento cartão Canal Jeans Bradescard.
+        case '061':
+		case '062':
+		case '063':
+		case '064':
+		case '065': //Atendimento cartão Canal Jeans Bradescard.
             //DNK378 = ATENDIMENTO CARTÃO CANAL JEANS BRADESCARD.
             frases = "ypiiAtendCartCanalJeansBradescard.wav"
 			break;
-        case '69': // Atendimento Bradescard.
+        case '069': // Atendimento Bradescard.
             if (parametros['HabDtVisaGold'] && wBin == "457302") {
                 //DNK615 = ATENDIMENTO BRADESCARD VISA GOLD 
                 frases = "ypiiAtendBradVisaGold.wav"
@@ -4935,48 +4944,48 @@ function setSaudacaoOrg(dados){
                 frases = "ypiiAtendBradescard.wav"
             }
 			break;
-        case '28': //Atendimento cartão Estilo Belém.
+        case '028': //Atendimento cartão Estilo Belém.
             //DNK379 = ATENDIMENTO CARTÃO ESTILO BELÉM.
             frases = "ypiiAtendCartEstBelem.wav"
 			break;
-        case '26':
-		case '27': //Atendimento cartão Clube Mapfre.
+        case '026':
+		case '027': //Atendimento cartão Clube Mapfre.
             //DNK380 = ATENDIMENTO CARTÃO CLUBE MAPFRE.
             frases = "ypiiAtendCartClubeMapfre.wav"
 			break;
-        case '47': //Atendimento cartão Cattan Bradescard.
+        case '047': //Atendimento cartão Cattan Bradescard.
             //DNK395 = ATENDIMENTO BRADESCARD.
             frases = "ypiiAtendBradescard.wav"
 			break;
-        case '56': //Atendimento cartão Canos Shopping
+        case '056': //Atendimento cartão Canos Shopping
             //DNK382 = ATENDIMENTO CARTÃO CANOAS SHOPPING
             frases = "ypiiAtendCartCanoasShopping.wav"
 			break;
-        case '30': //Atendimento cartão Colombo Bradescard.
+        case '030': //Atendimento cartão Colombo Bradescard.
             //DNK383 = ATENDIMENTO CARTÃO COLOMBO BRADESCARD.
             frases = "ypiiAtendCartColomboBradescard.wav"
 			break;
-        case '33': //Atendimento cartão Eskala Bradescard.
+        case '033': //Atendimento cartão Eskala Bradescard.
             //DNK384 = ATENDIMENTO CARTÃO ESKALA BRADESCARD.
             frases = "ypiiAtendCartEskalaBradescard.wav"
 			break;
-        case '45': //Atendimento cartão Baklizi Bradescard.
+        case '045': //Atendimento cartão Baklizi Bradescard.
             //DNK385 = ATENDIMENTO CARTÃO BAKLIZI BRADESCARD.
             frases = "ypiiAtendCartBakliziBradescard.wav"
 			break;
-        case '49': //Atendimento cartão Modelo Bradescard.
+        case '049': //Atendimento cartão Modelo Bradescard.
             //DNK395 = ATENDIMENTO BRADESCARD.
             frases = "ypiiAtendBradescard.wav"
 			break;
-        case '38': //Atendimento Mateus Card.
+        case '038': //Atendimento Mateus Card.
             switch (sLogoCartao) {
-				case 22: //DNK584 = Mateus Visa Nacional.
+				case '022': //DNK584 = Mateus Visa Nacional.
                     frases = "ypiiMateusVisaNacional.wav"
 					break;
-                case 30: //DNK587 = Mateus Mastercard Internacional.
+                case '030': //DNK587 = Mateus Mastercard Internacional.
                     frases = "ypiiMateusMastercardInter.wav"
 					break;
-                case 38:
+                case '038':
                     if (SeDataEloMais) {
                         //DNK675 = Atendimento Mateuscard Elo Mais.
                         frases = "ypiiAtendMateusCartdEloMais.wav"
@@ -4985,32 +4994,32 @@ function setSaudacaoOrg(dados){
                         frases = "ypiiMateusEloInternacional.wav"
                     }
 					break;
-                case 48: //DNK586 = Mateus Elo Mais.
+                case'048': //DNK586 = Mateus Elo Mais.
                     frases = "ypiiMateusEloMais.wav"
 					break;
 			}
 			break;          
-        case '34': //Atendimento Cartão Shopping Tatuapé.
+        case '034': //Atendimento Cartão Shopping Tatuapé.
             //DNK388 = ATENDIMENTO CARTÃO SHOPPING TATUAPÉ.
             frases = "ypiiAtendCartShoppingTatuape.wav"
 			break;
-        case '48': //Atendimento cartão Dorinhos.
+        case '048': //Atendimento cartão Dorinhos.
             //DNK395 = ATENDIMENTO BRADESCARD.
             frases = "ypiiAtendBradescard.wav"
 			break;
-        case '40': //Atendimento cartão Express Card
+        case '040': //Atendimento cartão Express Card
             //DNK390 = ATENDIMENTO CARTÃO EXPRESS CARD.
             frases = "ypiiAtendCartExpCard.wav"
 			break;
-        case '44': //Atendimento cartão Le Biscuiti.
+        case '044': //Atendimento cartão Le Biscuiti.
             //DNK395 = ATENDIMENTO BRADESCARD.
             frases = "ypiiAtendBradescard.wav"
 			break;
-        case '57': //Atendimento cartão Lojas Rede.
+        case '057': //Atendimento cartão Lojas Rede.
             //DNK392 = ATENDIMENTO CARTÃO LOJAS REDE.
             frases = "ypiiAtendCartLojasRede.wav"
 			break;
-        case '59': //Atendimento cartão Pague Menos.
+        case '059': //Atendimento cartão Pague Menos.
             if (parametros['HabDtVisaGold'] && wBin == "420339") {
                 //DNK615 = ATENDIMENTO BRADESCARD VISA GOLD
                 frases = "ypiiAtendBradVisaGold.wav"
@@ -5019,31 +5028,31 @@ function setSaudacaoOrg(dados){
                 frases = "ypiiAtendBradescard.wav"
             }
 			break;
-        case '29': //Atendimento docartão Makenji Bradescard.
+        case '029': //Atendimento docartão Makenji Bradescard.
             //DNK394 = ATENDIMENTO DO CARTÃO MAKENJI BRADESCARD.
             frases = "ypiiAtendCartMakenjiBradescard.wav"
 			break;
-        case '42': //Atendimento Bradescard.
+        case '042': //Atendimento Bradescard.
             //DNK395 = ATENDIMENTO BRADESCARD.
             frases = "ypiiAtendBradescard.wav"
 			break;
-        case '36': //Atendimento do cartão Bonanza Bradescard.
+        case '036': //Atendimento do cartão Bonanza Bradescard.
             //DNK396 = ATENDIMENTO DO CARTÃO BONANZA BRADESCARD.
             frases = "ypiiAtendCartBonanzaBradescard.wav"
 			break;
-        case '32': //Atendimento do cartão Arco Ìris Bradescard.
+        case '032': //Atendimento do cartão Arco Ìris Bradescard.
             //DNK397 = ATENDIMENTO DO CARTÃO ARCO ÌRIS BRADESCARD.
             frases = "ypiiAtendCartArcoIrisBradescard.wav"
 			break;
-        case '74': //Atendimento cartão TNG.
+        case '074': //Atendimento cartão TNG.
             //DNK395 = ATENDIMENTO BRADESCARD.
             frases = "ypiiAtendBradescard.wav"
 			break;
-        case '67': //Atendimento cartão Tele Rio.
+        case '067': //Atendimento cartão Tele Rio.
             //DNK395 = ATENDIMENTO BRADESCARD.
             frases = "ypiiAtendBradescard.wav"
 			break;
-        case '72': //Atendimento Bradescard.
+        case '072': //Atendimento Bradescard.
             if (parametros['HabDtVisaGold'] && wBin == "457292") {
                 //DNK615 = ATENDIMENTO BRADESCARD VISA GOLD 
                 frases = "ypiiAtendBradVisaGold.wav"
@@ -5052,15 +5061,15 @@ function setSaudacaoOrg(dados){
                 frases = "ypiiAtendBradescard.wav"
             }
 			break;
-        case '79': //Atendimento cartão Passarela
+        case '079': //Atendimento cartão Passarela
             //DNK395 = ATENDIMENTO BRADESCARD.
             frases = "ypiiAtendBradescard.wav"
 			break;
-        case '77': //Atendimento cartão Compcard.
+        case '077': //Atendimento cartão Compcard.
             //DNK401 = ATENDIMENTO CARTÃO COMPCARD.
             frases = "ypiiAtendCartCompcard.wav"
 			break;
-        case '91': //Atendimento Bradescard.
+        case '091': //Atendimento Bradescard.
             if (parametros['HabDtVisaGold'] && wBin == "457304") {
                 //DNK615 = ATENDIMENTO BRADESCARD VISA GOLD
                 frases = "ypiiAtendBradVisaGold.wav"
@@ -5069,11 +5078,11 @@ function setSaudacaoOrg(dados){
                 frases = "ypiiAtendBradescard.wav"
             }
 			break;
-        case '81': //Atendimento Coop.
+        case '081': //Atendimento Coop.
             if (parametros['HabDtVisaGold'] && wBin == "457294") {
                 //DNK617 = ATENDIMENTO COOP VISA GOLD 
                 frases = "ypiiAtendCoopVisaGold.wav"
-            } else if (SeDataEloMais && sLogoCartao == '38') {
+            } else if (SeDataEloMais && sLogoCartao == '038') {
                 //DNK677 = Atendimento Coop Fácil Elo Mais.
                 frases = "ypiiAtendCoopFacilEloMais.wav"
             } else {
@@ -5081,7 +5090,7 @@ function setSaudacaoOrg(dados){
                 frases = "ypiiAtendCoop.wav"
             }
 			break;
-        case '89': //Atendimento cartão Sportcard.
+        case '089': //Atendimento cartão Sportcard.
             if (parametros['HabDtVisaGold'] && wBin == "418048") {
                 //DNK615 = ATENDIMENTO BRADESCARD VISA GOLD
                 frases = "ypiiAtendBradVisaGold.wav"
@@ -5125,7 +5134,7 @@ function setSaudacaoOrg(dados){
                 if (parametros['HabDtVisaGold'] && wBin == "444666") {
                     //DNK619 = ATENDIMENTO SODIMAC VISA GOLD
                     frases = "ypiiAtendSodimacVisaGold.wav"
-                } else if (SeDataEloMais && sLogoCartao == '38') {
+                } else if (SeDataEloMais && sLogoCartao == '038') {
                     //DNK678 = Atendimento Sodimac Elo Mais.
                     frases = "ypiiAtendSodimacEloMais.wav"
                 } else {
@@ -5325,6 +5334,8 @@ function verCartaoOrgValido(dados){
 		var IdentCPF2 = dados['sListaORGsIdentCPF'].indexOf('TODOS') ;
 		var BloqSemAt = dados['parametros']['ListaBloqSemAtd'].indexOf(dados['UR8FCartoes'][0]['CodBloqCartao'].replace(/\s+/g, ''));
 		
+		__Log('########### dados.UR8FCartoes[0].ORG :' + dados.UR8FCartoes[0].ORG);
+		__Log('########### dados.parametros.ListaBloqSemAtd :' + dados.parametros.ListaBloqSemAtd);
 		__Log('########### IdentCPF :' + IdentCPF);
 		__Log('###########IdentCPF2 :' + IdentCPF2);
 		__Log('########### BloqSemAt :' + BloqSemAt);
