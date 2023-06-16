@@ -1029,7 +1029,7 @@
 
 		<subdialog name="R_RN40_500_UR8FSubdialog" fetchhint="prefetch"  src="../../YUII/src-gen/RelatorioRN40.vxml">
     		<param name="varActionParentId" expr="'UR88'"/>
-			<param name="StrInfo" expr="'UR8F'+AppState.io_dados['UR8F']['AplCodRetorno']" />
+			<param name="StrInfo" expr="'UR8F'+AppState.io_dados['UR8F']['CodRet']" />
 			<param name="Tick" expr="'TICK_CICS'" />
 			<param name="io_dados" expr="AppState.io_dados" />
 			<filled>
@@ -1105,9 +1105,9 @@
 	<form id="setCartao">
 		<block>
 			
-			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sCartao', AppState.io_dados.UR8F.CARTOES.NumCartao)" />
-			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sORGCartao', AppState.io_dados.UR8F.CARTOES.ORG)" />
-			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sLogoCartao', AppState.io_dados.UR8F.CARTOES.LOGO)" />				
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sCartao', AppState.io_dados.UR8F.CARTOES[0].NumCartao)" />
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sORGCartao', AppState.io_dados.UR8F.CARTOES[0].ORG)" />
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sLogoCartao', AppState.io_dados.UR8F.CARTOES[0].LOGO)" />				
 			<goto next="#Vld_CPF_Cartoes" />
 		</block>
 	</form>

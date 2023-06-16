@@ -216,7 +216,7 @@
 	</form>
 
 	<!-- This is the Branching block -->
-	<form id="VerificaDigitos">
+	<form id="VerificaFalaAdicionalBloq">
 		<block>
 			<if cond="AppState.ap_opcaoDigitada == '9'">
 				
@@ -228,7 +228,7 @@
 				<!-- This is the OutLink -->
 				<goto next="#SetNrCartao" />
 			</if>
-			<goto next="#setNoMatch" />
+			<goto next="#R_RN40_NoMatch" />
 		</block>
 	</form>
 
@@ -266,7 +266,7 @@
 				<!-- This is the OutLink -->
 				<goto next="#Set_NavegacaoEventosTipoDTMF_cartao" />
 			</if>
-			<goto next="#setNoMatch" />
+			<goto next="#R_RN40_NoMatch" />
 		</block>
 	</form>
 
@@ -427,20 +427,20 @@
 		<block>
 			
 			<assign name="AppState.ap_frases" expr="getFrasesInicioFalaAdicionalBloq(AppState.io_dados)" />				
-			<goto next="#FalaFraseInicio" />
+			<goto next="#FalaFraseAdicionalBloq" />
 		</block>
 	</form>
 
 	<!-- This is the Subdialog block -->
-	<form id="FalaFraseInicio">
+	<form id="FalaFraseAdicionalBloq">
 
-		<subdialog name="FalaFraseInicioSubdialog" fetchhint="prefetch"  src="../../YUII/src-gen/PromptDinamico.vxml">
+		<subdialog name="FalaFraseAdicionalBloqSubdialog" fetchhint="prefetch"  src="../../YUII/src-gen/PromptDinamico.vxml">
     		<param name="varActionParentId" expr="'FalaAdicionalBloq'"/>
 			<param name="in_frases" expr="AppState.ap_frases" />
 			<param name="io_dados" expr="AppState.io_dados" />
 			<filled>
-				<if cond="FalaFraseInicioSubdialog.io_dados != 'undefined'">
-  					<assign name="AppState.io_dados" expr="FalaFraseInicioSubdialog.io_dados" /> 
+				<if cond="FalaFraseAdicionalBloqSubdialog.io_dados != 'undefined'">
+  					<assign name="AppState.io_dados" expr="FalaFraseAdicionalBloqSubdialog.io_dados" /> 
   				</if>
 				<goto next="#SetConfigFalaAdicionalBloqInput" />
 			</filled>
@@ -502,7 +502,7 @@
 				<!-- This is the OutLink -->
 				<goto next="#setNoInput" />
 			</if>
-			<goto next="#VerificaDigitos" />
+			<goto next="#VerificaFalaAdicionalBloq" />
 		</block>
 	</form>
 
@@ -706,6 +706,54 @@
     	<block>
     		<goto next="#FalaDesliga" />
     	</block>
+	</form>
+
+	<!-- This is the Assign block -->
+	<form id="Set_NavegacaoEventosTipoDTMF_NoMatch">
+		<block>
+			<script>
+				try {
+					
+					   	var dataAtual = getDataAtual();
+					  
+						AppState.objNavegacao = {
+						
+							tipoEvento: 0,
+							timestampInicio: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;,
+							timestampFim: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;
+							sequencia: 1,
+							dadosEvento: {
+								evento: AppState.ap_opcaoDigitada
+							}
+						}
+						
+						AppState.io_dados.objSessao.inLogEvento.push(AppState.objNavegacao);
+					
+						__Log(&quot;##### objNavegacao: &quot;+ JSON.stringify(AppState.objNavegacao));
+					} catch (error) {
+						__Log(&quot;##### Error(ECMA_Set_NavegacaoEventosTipoDTMF_ValidaInputCartaoCPF): &quot; + error);
+					}
+			</script>	
+			<goto next="#setNoMatch" />
+		</block>
+	</form>
+
+	<!-- This is the Subdialog block -->
+	<form id="R_RN40_NoMatch">
+
+		<subdialog name="R_RN40_NoMatchSubdialog" fetchhint="prefetch"  src="../../YUII/src-gen/RelatorioRN40.vxml">
+    		<param name="varActionParentId" expr="'FalaAdicionalBloq'"/>
+			<param name="StrInfo" expr="'-1'" />
+			<param name="Tick" expr="'TICK_LOG_COLCARADIC'" />
+			<param name="io_dados" expr="AppState.io_dados" />
+			<filled>
+				<if cond="R_RN40_NoMatchSubdialog.io_dados != 'undefined'">
+  					<assign name="AppState.io_dados" expr="R_RN40_NoMatchSubdialog.io_dados" /> 
+  				</if>
+				<goto next="#Set_NavegacaoEventosTipoDTMF_NoMatch" />
+			</filled>
+		</subdialog>
+		
 	</form>
 
 </vxml>

@@ -915,8 +915,11 @@ function getFrasesPedeMesNasc (dados){
     
     var frases = [];
 
-    frases.push({ "frase": "ypiiPFDigMesNascTitConta.wav" });
-    
+    if (dados.bListaPIDCNPJ == true) {
+        frases.push({ "frase": "ypiiPFDigMesConstEmp2Dig.wav" });
+    } else {
+        frases.push({ "frase": "ypiiPFDigMesNascTitConta.wav" });
+    }
 
     return frases;    
 }
@@ -927,8 +930,11 @@ function getFrasesPedeDiaNasc (dados){
 
     var frases = [];
    
+    if (dados.bListaPIDCNPJ == true) {
+        frases.push({ "frase": "ypiiPFDigDiaConstEmp2Dig.wav" });
+    } else {
         frases.push({ "frase": "ypiiPFDigDiaNasciTitConta.wav" });
-    
+    }
       
     return frases;    
 }
@@ -939,20 +945,26 @@ function getFrasesPedeAnoNasc (dados){
 
     var frases = [];
 
-     frases.push({ "frase": "ypiiPFDigAnoNasciTitConta.wav" });
-    
+    if (dados.bListaPIDCNPJ == true) {
+        frases.push({ "frase": "ypiiPFDigAnoConstEmp4Dig.wav" });
+    } else {
+        frases.push({ "frase": "ypiiPFDigAnoNasciTitConta.wav" });
+    }
        
     return frases;    
 }
 // PedeAnoNasc <--
 
 //PedeCPFCNPJ -->
-function getFrasesPedeCPF (dados){
+function getFrasesPedeCPFCNPJ (dados){
    
     var frases = [];
     
-    frases.push({ "frase": "ypiiPFDigCPFTitConta.wav" });
-    
+    if (dados.bListaPIDCNPJ == true) {
+        frases.push({ "frase": "ypiiDigCnpjEmp14Dig.wav" });
+    } else {
+        frases.push({ "frase": "ypiiPFDigCPFTitConta.wav" });
+    }
     
     return frases;    
 }

@@ -230,49 +230,6 @@
 	</form>
 
 	<!-- This is the Branching block -->
-	<form id="verAtendimento__">
-		<block>
-			<log gvp:level="1">
-				<value expr="'#####  AppState.io_dados.eAtendimento = ' + AppState.io_dados.eAtendimento"/>
-			</log>
-    	</block>
-		<block>
-			<if cond="AppState.io_dados.eAtendimento == &quot;ATD_CAMP_SAQUE&quot;">
-				
-				<!-- This is the OutLink -->
-				<goto next="#set_EvDesligamento_1202" />
-			</if>
-			<goto next="#verParametro" />
-		</block>
-	</form>
-
-	<!-- This is the Assign block -->
-	<form id="setVars">
-		<block>
-			
-			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados,'ePontoDerivacao','PD_CAMP_SAQUE')" />
-			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados,'strAplCodRetDerivacao ',' DERIV_SISTEMA')" />				
-			<goto next="#falaDeriva" />
-		</block>
-	</form>
-
-	<!-- This is the Subdialog block -->
-	<form id="falaDeriva">
-
-		<subdialog name="falaDerivaSubdialog" fetchhint="prefetch"  src="../../YUII/src-gen/FalaDeriva.vxml">
-    		<param name="varActionParentId" expr="'falaCodBarras'"/>
-			<param name="io_dados" expr="AppState.io_dados" />
-			<filled>
-				<if cond="falaDerivaSubdialog.io_dados != 'undefined'">
-  					<assign name="AppState.io_dados" expr="falaDerivaSubdialog.io_dados" /> 
-  				</if>
-				<goto next="#Exit1_FalaCodigoBarras" />
-			</filled>
-		</subdialog>
-		
-	</form>
-
-	<!-- This is the Branching block -->
 	<form id="verParametro">
 		<block>
 			<log gvp:level="1">
@@ -366,23 +323,6 @@
   					<assign name="AppState.io_dados" expr="Sev2233Subdialog.io_dados" /> 
   				</if>
 				<goto next="#setFaturaDetalhada" />
-			</filled>
-		</subdialog>
-		
-	</form>
-
-	<!-- This is the Subdialog block -->
-	<form id="ev3088">
-
-		<subdialog name="ev3088Subdialog" fetchhint="prefetch"  src="../../YUII/src-gen/Relatorio.vxml">
-    		<param name="varActionParentId" expr="'falaCodBarras'"/>
-			<param name="in_evento_numero" expr="'3088'" />
-			<param name="io_dados" expr="AppState.io_dados" />
-			<filled>
-				<if cond="ev3088Subdialog.io_dados != 'undefined'">
-  					<assign name="AppState.io_dados" expr="ev3088Subdialog.io_dados" /> 
-  				</if>
-				<goto next="#setVars" />
 			</filled>
 		</subdialog>
 		
@@ -526,7 +466,7 @@
 				<!-- This is the OutLink -->
 				<goto next="#SubEv2239" />
 			</if>
-			<goto next="#verAtendimento__" />
+			<goto next="#verParametro" />
 		</block>
 	</form>
 
@@ -909,15 +849,6 @@
 			</filled>
 		</subdialog>
 		
-	</form>
-
-	<!-- This is the Assign block -->
-	<form id="set_EvDesligamento_1202">
-		<block>
-			
-			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'ap_evDesligamento', '1202')" />				
-			<goto next="#ev3088" />
-		</block>
 	</form>
 
 	<!-- This is the Branching block -->

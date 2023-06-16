@@ -237,7 +237,7 @@
 	</form>
 
 	<!-- This is the Assign block -->
-	<form id="SetConfigMenu">
+	<form id="SetConfigMenuPosLimite">
 		<block>
 			
 			<assign name="AppState.ap_jsonMenu" expr="getFrasesMenuPosLimite(AppState.io_dados)" />				
@@ -664,7 +664,7 @@
 				<!-- This is the OutLink -->
 				<goto next="#Set_NavegacaoEventosTipoDTMF_opc0" />
 			</if>
-			<goto next="#setNoMatch" />
+			<goto next="#Set_NavegacaoEventosTipoDTMF_NoMatch" />
 		</block>
 	</form>
 
@@ -745,7 +745,7 @@
 		<block>
 			
 			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'ap_evDesligamento', '1086')" />				
-			<goto next="#SetConfigMenu" />
+			<goto next="#SetConfigMenuPosLimite" />
 		</block>
 	</form>
 
@@ -888,7 +888,7 @@
 					
 						__Log(&quot;##### objNavegacao: &quot;+ JSON.stringify(AppState.objNavegacao));
 					} catch (error) {
-						__Log(&quot;##### Error(ECMA_Set_NavegacaoEventosTipoDTMF_InvalidaInputCartaoCPF): &quot; + error);
+						__Log(&quot;##### Error(ECMA_Set_NavegacaoEventosTipoDTMF_InvalidaInputRepetirLimite): &quot; + error);
 					}
 			</script>	
 			<goto next="#FalaDNK120" />
@@ -948,7 +948,7 @@
 					
 						__Log(&quot;##### objNavegacao: &quot;+ JSON.stringify(AppState.objNavegacao));
 					} catch (error) {
-						__Log(&quot;##### Error(ECMA_Set_NavegacaoEventosTipoDTMF_ValidaInputCartaoCPF): &quot; + error);
+						__Log(&quot;##### Error(ECMA_Set_NavegacaoEventosTipoDTMF_ValidaInputRepetirLimite): &quot; + error);
 					}
 			</script>	
 			<goto next="#SubEv_2305" />
@@ -1105,6 +1105,36 @@
 			
 			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'ap_evDesligamento', '1221')" />				
 			<goto next="#Fala_DNK680" />
+		</block>
+	</form>
+
+	<!-- This is the Assign block -->
+	<form id="Set_NavegacaoEventosTipoDTMF_NoMatch">
+		<block>
+			<script>
+				try {
+					
+					   	var dataAtual = getDataAtual();
+					  
+						AppState.objNavegacao = {
+						
+							tipoEvento: 0,
+							timestampInicio: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;,
+							timestampFim: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;
+							sequencia: 1,
+							dadosEvento: {
+								evento: AppState.ap_opcaoDigitada
+							}
+						}
+						
+						AppState.io_dados.objSessao.inLogEvento.push(AppState.objNavegacao);
+					
+						__Log(&quot;##### objNavegacao: &quot;+ JSON.stringify(AppState.objNavegacao));
+					} catch (error) {
+						__Log(&quot;##### Error(ECMA_Set_NavegacaoEventosTipoDTMF_ValidaInputRepetirLimite): &quot; + error);
+					}
+			</script>	
+			<goto next="#setNoMatch" />
 		</block>
 	</form>
 

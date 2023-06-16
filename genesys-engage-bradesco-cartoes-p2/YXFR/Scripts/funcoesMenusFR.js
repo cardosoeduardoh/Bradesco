@@ -41,9 +41,14 @@ function getFrases_MenuFatParcPagto(dados) {
    
     if(PossuiOrgLogo(parametros.HabOpCB_SMS,AppState.io_dados['strAuxORG']) || PossuiOrgLogo(parametros.HabOpCB_SMS,AppState.io_dados['strAuxORGLogo'])){
         ret["frases"].push({ "frase": "ypiiParaEnvCodBarrasSmsDig6.wav" });
-        ret["frases"].push({ "frase": "ypiiCadEnvioFatEmailDig7.wav" });
-        ret["opcoesValidas"] += "67";
+        ret["opcoesValidas"] += "6";            
     }
+    
+    
+    if(PossuiOrgLogo(parametros.HabOpFatura_Email,AppState.io_dados['strAuxORG']) || PossuiOrgLogo(parametros.HabOpFatura_Email,AppState.io_dados['strAuxORGLogo'])){
+    	ret["frases"].push({ "frase": "ypiiCadEnvioFatEmailDig7.wav" });
+        ret["opcoesValidas"] += "7";        	
+    } 
    
     if(dados["parametros"]["HabMFatPagtoRetMP"]){
         ret["frases"].push({ "frase": "ypiiVoltMenuPrincDig0.wav" });
