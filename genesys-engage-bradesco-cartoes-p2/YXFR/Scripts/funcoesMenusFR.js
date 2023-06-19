@@ -29,23 +29,26 @@ function getFrases_MenuFatParcPagto(dados) {
  
     ret["frases"].push({ "frase": "ypiiInfoFatDig2.wav" });
     ret["frases"].push({ "frase": "ypiiInfMelDiaCompVencFatDig4.wav" });
+    ret["opcoesValidas"] = "24";
  
+    __Log("##### dados.parametros.HabOpFatura_Email = " + dados["parametros"]["HabOpFatura_Email"]);
     __Log("##### dados.parametros.HabOpCB_SMS = " + dados["parametros"]["HabOpCB_SMS"]);
     __Log("##### dados.parametros.HabMFatPagtoRetMP = " + dados["parametros"]["HabMFatPagtoRetMP"]);
     __Log("##### dados.UR80.sLogoCartao = " + dados["UR80"]["sLogoCartao"]);
     __Log("##### dados.UR80.sORGCartao = " + dados["UR80"]["sORGCartao"]);
     __Log("##### dados.sLogoCartao = " + dados["sLogoCartao"]);
     __Log("##### dados.sORGCartao = " + dados["sORGCartao"]);
+    __Log("##### dados.strAuxORG = " + dados["strAuxORG"]);
     __Log("##### dados.strAuxORGLogo = " + dados["strAuxORGLogo"]);
     __Log("##### dados.AplCliente = " + JSON.stringify(dados["AplCliente"]));
    
-    if(PossuiOrgLogo(parametros.HabOpCB_SMS,AppState.io_dados['strAuxORG']) || PossuiOrgLogo(parametros.HabOpCB_SMS,AppState.io_dados['strAuxORGLogo'])){
+    if(PossuiOrgLogo(parametros.HabOpCB_SMS,dados['strAuxORG']) || PossuiOrgLogo(parametros.HabOpCB_SMS,dados['strAuxORGLogo'])){
         ret["frases"].push({ "frase": "ypiiParaEnvCodBarrasSmsDig6.wav" });
         ret["opcoesValidas"] += "6";            
     }
     
     
-    if(PossuiOrgLogo(parametros.HabOpFatura_Email,AppState.io_dados['strAuxORG']) || PossuiOrgLogo(parametros.HabOpFatura_Email,AppState.io_dados['strAuxORGLogo'])){
+    if(PossuiOrgLogo(parametros.HabOpFatura_Email,dados['strAuxORG']) || PossuiOrgLogo(parametros.HabOpFatura_Email,dados['strAuxORGLogo'])){
     	ret["frases"].push({ "frase": "ypiiCadEnvioFatEmailDig7.wav" });
         ret["opcoesValidas"] += "7";        	
     } 
@@ -56,7 +59,7 @@ function getFrases_MenuFatParcPagto(dados) {
     }
    
  
-    ret["opcoesValidas"] += "24";
+    
        
     return ret;
 }

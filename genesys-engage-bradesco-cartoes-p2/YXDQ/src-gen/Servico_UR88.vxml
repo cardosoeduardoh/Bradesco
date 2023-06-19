@@ -296,14 +296,14 @@
 				try {
 							var response = AppState.objResponseAPI;
 							
-							__Log('###### Log UR80 - response: ' + JSON.stringify(response) + '######');
+							__Log('###### Log UR88 - response: ' + JSON.stringify(response) + '######');
 							
-							AppState.UR80 = {};
-							AppState.UR80.AplCodRetorno = '099';
-							AppState.UR80.msgRetorno = 'falha';
+							AppState.UR88 = {};
+							AppState.UR88.AplCodRetorno = '099';
+							AppState.UR88.msgRetorno = 'falha';
 							
 					} catch (error) {
-						__Log(&quot;##### Error( UR80): &quot; + error);
+						__Log(&quot;##### Error( UR88): &quot; + error);
 					}
 			</script>	
 			<goto next="#addDados_UR88" />
@@ -333,7 +333,7 @@
 							timestampInicio: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;
 							timestampFim: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;
 							sequencia: 1,
-							status: AppState.objResponseAPI.detail.codigoRetorno,
+							status: AppState.UR88.codigoRetorno,
 							chavesPesquisa: [],
 							dadosOperacao: [
 								{
@@ -390,6 +390,7 @@
 					
 						} else {
 							AppState.UR88.codigoRetorno = response.detail.codigoRetorno;
+							AppState.UR88.AplCodRetorno = '099';
 							AppState.UR88.msgRetorno = response.detail.msgRetorno;
 							AppState.UR88.timestampInicio = response.detail.timestampInicio;
 							AppState.UR88.timestampFim = response.detail.timestampFim;

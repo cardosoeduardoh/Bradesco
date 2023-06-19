@@ -1238,7 +1238,7 @@ function iniciaVariaveis(dados) {
     dados['HabOpLimEmergSolicitar'] = false;
     dados['HabOpLimEmergCancelar'] = false;
     dados['HabOpCB_SMS'] = false;
-    dados['HabOpFatura_Email'] = false;
+    dados['HabOpFatura_Email'] = false;    
     dados['HabOpContestaCompraSaque'] = false;
     dados['HabOpProgramaFidelidade'] = false;
     dados['HabOpSeguro'] = false;
@@ -5871,21 +5871,24 @@ function ehCartBloqLiberadoViaCPF(dados, indice){
 
 function SeDataEloMais(dados) {
     
-    var wNow;
-    var wDataInicio;
+	
+    var wDataInicio='';
     var SeDataEloMais = false;
     var strAux = "";
-    
-    var wNow = formataDataAtual("yyyyMMddhhmm") ; //ddMMyyyy
+    var wNow ="";
+
     
     if (dados['parametros']['HabDtEloMais'].length == 12 ){
-        wNow = Format(wNow, "YYYYMMDDHHNN")
+        wNow = formataDataAtual("yyyyMMddhhmm") ;
         wDataInicio = dados['parametros']['HabDtEloMais'].substring(0, 12);
+        if (wNow >= wDataInicio) { 
+        		SeDataEloMais = true;
+        }        			
     }
     
-    if (wNow >= wDataInicio) { 
-    	SeDataEloMais = true;
-    }
+    __Log('############ SeDataEloMais ');
+    __Log('############ wNow : ' + wNow);
+    __Log('############ wDataInicio : ' + wDataInicio);
 
     return SeDataEloMais;
     
@@ -8124,6 +8127,10 @@ function inicializaVariaveis(dados) {
 	dados.parametros.TEL_COB_0800 = '';
     dados.parametros.BIN_CORPORATE = '';
     dados.parametros.HabOpLimProm2Torres = '';
+    dados.parametros.HabOpFatura_Email = '';
+    dados.bHab_ENC_LASA = '';
+    dados.bHabReestruturacaoVDNs = '';
+    dados.SeDataEloMais = '';
 	dados.sBINCartao = ' ';
 	dados.habilita_GravarLog12k = false;
 	dados.vRetry='vazio';

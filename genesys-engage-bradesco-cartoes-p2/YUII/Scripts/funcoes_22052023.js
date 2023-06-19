@@ -5673,6 +5673,9 @@ function SeDataEloMais(dados) {
         wNow = Format(wNow, "YYYYMMDDHHNN")
         wDataInicio = dados['parametros']['HabDtEloMais'].substring(0, 12);
     }
+    __Log('############ SeDataEloMais  ');
+    __Log('############ wNow : ' + wNow);
+    __Log('############ wDataInicio : ' + wDataInicio);
     
     if (wNow >= wDataInicio) { 
     	SeDataEloMais = true;

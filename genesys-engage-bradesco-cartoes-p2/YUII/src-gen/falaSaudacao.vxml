@@ -188,7 +188,7 @@
 			</log>
     	</block>
     	<block>
-    		<goto next="#FalaSaudacaoORG" />
+    		<goto next="#setSeDataEloMais" />
     	</block>
 	</form>
 
@@ -336,6 +336,15 @@
     	<block>
     		<goto next="#FalaDesliga" />
     	</block>
+	</form>
+
+	<!-- This is the Assign block -->
+	<form id="setSeDataEloMais">
+		<block>
+			
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'SeDataEloMais',SeDataEloMais(AppState.io_dados))" />				
+			<goto next="#FalaSaudacaoORG" />
+		</block>
 	</form>
 
 </vxml>

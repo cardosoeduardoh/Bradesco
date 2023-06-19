@@ -22,11 +22,11 @@ function getFrasesParametros(dados, parametroFrases) {
     return frases;
 }
 
-function getFrasesMenuPosLimite(dados){
-    
+function getFrasesMenuPosLimite(dados){   
+
     
     var ret = {};
-    var wNow = '20230526'//formataDataAtual('yyyyMMdd');  
+    var wNow = formataDataAtual('yyyyMMdd');  
     var wDif =  AppState.io_dados.UR80.AplDatecrlim2Expir.substring(4,12)+AppState.io_dados.UR80.AplDatecrlim2Expir.substring(2,4)+AppState.io_dados.UR80.AplDatecrlim2Expir.substring(0,2)
     var diferencaData = diferencaEntreDatas(wNow,wDif);
     var parametros = dados['parametros'];
