@@ -809,7 +809,7 @@ function getFrasesFalaSaldoCondicaoVencto_4(dados) {
 			ret["frases"].push({ "frase" : "ypiiCredor.wav"});
 		}
 	
-		if (parseInt(dados.UR80.AplSinalSldDevedor) != 1 && parseInt(dados.UR80.AplSinalVlrFatura) != 1 && dados.UR80.AplFlagDebConta == 'N' ) {
+		if (parseInt(dados.UR80.AplSinalSldDevedor) != 1 && parseInt(dados.UR80.AplSinalVlrFatura) != 1 && dados.UR80.AplFlagDebConta != 'S' ) {
 			ret["frases"].push({ "frase" : "cSilencio.wav"});
 		} else {
 			ret["frases"].push({ "frase" : "ypiiFatCartDebAuto.wav"});
@@ -874,9 +874,10 @@ function getFrasesFalaSaldoCondicaoVencto_6 (dados) {
 function getFraseFalaCartao(dados){
 
 	var frases = [];
-
+	__Log('########### dados.iIndiceORGValido :' + dados.iIndiceORGValido);
+	
 	frases.push({ 'frase' : 'ypiiParaCPFDigConstBaseCart.wav'});
-	frases.push({ 'frase' : nomeTipoCartao(dados, 0)});
+	frases.push({ 'frase' : nomeTipoCartao(dados, dados.iIndiceORGValido)});
 	frases.push({ 'frase' : 'ypiiPFAguardConsultCart.wav'});
 
 	return frases;

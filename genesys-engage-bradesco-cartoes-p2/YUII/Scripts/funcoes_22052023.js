@@ -5338,7 +5338,9 @@ function nomeTipoCartao(dados, cont) {
 	iLOGO = dados.UR8FCartoes[cont]['LOGO']; //val(AplUR8FCartoes(T_Fluxo).LOGO(val(iIndiceORGValido(T_Fluxo))))
 	iCartao = dados.UR8FCartoes[cont]['NumCartao'].substring(5, 11); //Mid(AplUR8FCartoes(T_Fluxo).NumCartao(val(iIndiceORGValido(T_Fluxo))), 4, 6)
 	//VALIDAR
-	//__Log('#### iORG : '+ lista[contador]['sORGCartao']);
+	__Log('########## iORG :' + iORG]);
+	__Log('########## iLOGO :' + iLOGO);
+	__Log('########## iCartao :' + iCartao);
 
 	switch (iORG) {
 		case '10':

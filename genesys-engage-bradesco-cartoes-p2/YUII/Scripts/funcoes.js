@@ -1699,7 +1699,7 @@ function iniciaVariaveis(dados) {
 	dados['iQtdeOpIndiceORGValidoAtivo'] = 0;
 	dados['iQtdeOpIndiceORGValidoBloqueado'] = 0;
 	dados['iQtdeOpIndiceORGValidoOutro'] = 0;
-	dados['iIndiceORGValido'] = '';
+	dados['iIndiceORGValido'] = 0;
 	dados['bDesativa_Atend_URASAC'] = false;
 	dados['iContIntervalo'] = 0;
 	dados['sListaORGsIdentCPF'] = '';
@@ -5545,120 +5545,123 @@ function nomeTipoCartao(dados, cont) {
 	//VALIDAR
 	iORG = dados.UR8FCartoes[cont]['ORG'];
 	iLOGO = dados.UR8FCartoes[cont]['LOGO']; //val(AplUR8FCartoes(T_Fluxo).LOGO(val(iIndiceORGValido(T_Fluxo))))
-	iCartao = dados.UR8FCartoes[cont]['NumCartao'].substring(5, 11); //Mid(AplUR8FCartoes(T_Fluxo).NumCartao(val(iIndiceORGValido(T_Fluxo))), 4, 6)
+	//iCartao = dados.UR8FCartoes[cont]['NumCartao'].substring(5, 11); //Mid(AplUR8FCartoes(T_Fluxo).NumCartao(val(iIndiceORGValido(T_Fluxo))), 4, 6)
+	iCartao = dados.UR8FCartoes[cont]['NumCartao'].substring(0, 6);
 	//VALIDAR
-	//__Log('#### iORG : '+ lista[contador]['sORGCartao']);
+	__Log('########## iORG :' + iORG);
+	__Log('########## iLOGO :' + iLOGO);
+	__Log('########## iCartao :' + iCartao);
 
 	switch (iORG) {
-		case '10':
+		case '010':
 			ret = "ypiiC&A.wav";
 			break;
-		case '11':
+		case '011':
 			ret = "ypiiC&AMastercard.wav";
 			break;
-		case '13':
+		case '013':
 			if (dados.parametros.HabDtVisaGold && iCartao == "428267") {
 				ret = "ypiiC&AVisaGold.wav";
 			} else {
 				ret = "ypiiC&Avisa.wav";
 			}
 			break;
-		case '14':
+		case '014':
 			ret = "ypiiIbicardMasterCard.wav";
 			break;
-		case '15':
+		case '015':
 			ret = "ypiiIBICArdVisa.wav";
 			break;
-		case '16':
+		case '016':
 			ret = "ypiiC&A.wav";
 			break;
-		case '17':
+		case '017':
 			ret = "ypiiDoTzMastercard.wav";
 			break;
-		case '18':
+		case '018':
 			ret = "ypiiIbicredo.wav";
 			break;
-		case '19':
+		case '019':
 			ret = "ypiiIBIcard.wav";
 			break;
-		case '20':
+		case '020':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '21':
+		case '021':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '22':
+		case '022':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '23':
+		case '023':
 			ret = "ypiiIbicredC&A.wav";
 			break;
-		case '24':
+		case '024':
 			ret = "ypiiC&A.wav";
 			break;
-		case '25':
+		case '025':
 			ret = "ypiiIBIcard.wav";
 			break;
-		case '26':
+		case '026':
 			ret = "ypiiClubeMapfre.wav";
 			break;
-		case '27':
+		case '027':
 			ret = "ypiiClubeMapfre.wav";
 			break;
-		case '28':
+		case '028':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '29':
+		case '029':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '30':
+		case '030':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '32':
+		case '032':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '33':
+		case '033':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '34':
+		case '034':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '36':
+		case '036':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '38':
+		case '038':
 			switch (iLOGO) {
-				case '22':
+				case '022':
 					ret = "ypiiMateusVisaNacional.wav";
 					break;
-				case '30':
+				case '030':
 					ret = "ypiiMateusMastercardInter.wav";
 					break;
-				case '38':
+				case '038':
 					if (SeDataEloMais(dados)) { //VALIDAR
 						ret = "ypiiMateusCartdEloMais.wav";
 					} else {
 						ret = "ypiiMateusEloInternacional.wav";
 					}
 					break;
-				case '48':
+				case '048':
 					ret = "ypiiMateusEloMais.wav";
 					break;
 			}
 			break;
-		case '40':
+		case '040':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '42':
+		case '042':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '44':
+		case '044':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '45':
+		case '045':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '46':
+		case '046':
 			if (dados.parametros.HabDtVisaGold && iCartao == "418049") {
 				ret = "ypiiMakroVisaGold.wav";
 			} else if (SeDataEloMais(dados) && iLOGO == '38') { //VALIDAR
@@ -5667,86 +5670,86 @@ function nomeTipoCartao(dados, cont) {
 				ret = "ypiiMakro.wav";
 			}
 			break;
-		case '47':
+		case '047':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '48':
+		case '048':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '49':
+		case '049':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '52':
+		case '052':
 			ret = "ypiiAngeloni.wav";
 			break;
-		case '53':
+		case '053':
 			ret = "ypiiAngeloniMastercard.wav";
 			break;
-		case '54':
+		case '054':
 			ret = "ypiiAngeloniVisa.wav";
 			break;
-		case '55':
+		case '055':
 			if (dados.parametros.HabDtVisaGold && iCartao == "422011") {
 				ret = "ypiiAngeloniVisaGold.wav";
 			} else {
 				ret = "ypiiAngeloniVisa.wav";
 			}
 			break;
-		case '56':
+		case '056':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '57':
+		case '057':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '59':
+		case '059':
 			if (dados.parametros.HabDtVisaGold && iCartao == "420339") {
 				ret = "ypiiBradescardVisaGold.wav";
 			} else {
 				ret = "ypiiBradescard.wav";
 			}
 			break;
-		case '61':
+		case '061':
 			ret = "ypiiCanalJeans.wav";
 			break;
-		case '62':
+		case '062':
 			ret = "ypiiCanalJeans.wav";
 			break;
-		case '63':
+		case '063':
 			ret = "ypiiCanalJeans.wav";
 			break;
-		case '64':
+		case '064':
 			ret = "ypiiCanalJeans.wav";
 			break;
-		case '65':
+		case '065':
 			ret = "ypiiCanalJeans.wav";
 			break;
-		case '67':
+		case '067':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '69':
+		case '069':
 			if (dados.parametros.HabDtVisaGold && iCartao == "457302") {
 				ret = "ypiiBradescardVisaGold.wav";
 			} else {
 				ret = "ypiiBradescard.wav";
 			}
 			break;
-		case '72':
+		case '072':
 			if (dados.parametros.HabDtVisaGold && iCartao == "457292") {
 				ret = "ypiiBradescardVisaGold.wav";
 			} else {
 				ret = "ypiiLuigiBertolli.wav";
 			}
 			break;
-		case '74':
+		case '074':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '77':
+		case '077':
 			ret = "ypiiCompcard.wav";
 			break;
-		case '79':
+		case '079':
 			ret = "ypiiBradescard.wav";
 			break;
-		case '81':
+		case '081':
 			if (dados.parametros.HabDtVisaGold && iCartao == "457294") {
 				ret = "ypiiCoopVisaGold.wav";
 			} else if (SeDataEloMais(dados) && iLOGO == '38') { //VALIDAR
@@ -5755,14 +5758,14 @@ function nomeTipoCartao(dados, cont) {
 				ret = "ypiiCoopcopil.wav";
 			}
 			break;
-		case '89':
+		case '089':
 			if (dados.parametros.HabDtVisaGold && iCartao == "418048") {
 				ret = "ypiiBradescardVisaGold.wav";
 			} else {
 				ret = "ypiiBradescard.wav";
 			}
 			break;
-		case '91':
+		case '091':
 			if (dados.parametros.HabDtVisaGold && iCartao == "457304") {
 				ret = "ypiiBradescardVisaGold.wav";
 			} else {
@@ -5799,7 +5802,7 @@ function nomeTipoCartao(dados, cont) {
 			ret = "ypiiFujioka.wav";
 			break;
 		case '122':
-			if (SeDataEloMais(dados) && iLOGO == '38') { //VALIDAR
+			if (SeDataEloMais(dados) && iLOGO == '038') { //VALIDAR
 				ret = "ypiiC&aEloMais.wav";
 			} else {
 				ret = "ypiiC&Aelo.wav";
@@ -5811,7 +5814,7 @@ function nomeTipoCartao(dados, cont) {
 		case '126':
 			if (dados.parametros.HabDtVisaGold && iCartao == "444666") {
 				ret = "ypiiBradescardVisaGold.wav";
-			} else if (SeDataEloMais(dados) && iLOGO == '38') { //VALIDAR1
+			} else if (SeDataEloMais(dados) && iLOGO == '038') { //VALIDAR1
 				ret = "ypiiSodimacEloMais.wav";
 			} else {
 				if (dados.parametros.HabReestruturacaoVDNs) {
@@ -8000,6 +8003,7 @@ function inicializaVariaveis(dados) {
     dados['NumB'] = AppState.DNIS;
 	dados['LogTick'] = '';
 	dados['MenuInoperante'] = false;
+	dados['iIndiceORGValido'] = 0;
 	dados['horaInicioChamada'] = formataDataAtual('yyyyMMdd') + ' ' + formataDataAtual('hh') + ':' + formataDataAtual('mm') + ':' + formataDataAtual('ss');
 
 	//Parametros

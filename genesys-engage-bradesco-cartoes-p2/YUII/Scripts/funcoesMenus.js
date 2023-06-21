@@ -359,6 +359,7 @@ function getFrasesMenu2Nivel (dados){
     __Log('############ parametros.HabOpSenhaCartaoCredito : ' + parametros.HabOpSenhaCartaoCredito );
     __Log('############ parametros.HabOpDesbloqueioCartao  : ' + parametros.HabOpDesbloqueioCartao );
     __Log('############ dados.UR80.AplCdBloqueio  : ' +  dados.UR80.AplCdBloqueio);   
+    __Log('############ dados.sCodBloqCartao  : ' +  dados.sCodBloqCartao); 
    
 
     
@@ -467,7 +468,7 @@ function getFrasesMenu2Nivel (dados){
     ret["frases1"].push({ "frase": "ypiiParcFatDig7.wav" });
     ret['opcoesValidas'] += '7';
 
-    if ((dados.UR80.AplCdBloqueio == "M" || dados.UR80.AplCdBloqueio == "J") && (PossuiOrgLogo(parametros.HabOpDesbloqueioCartao,dados.sORGCartao) || PossuiOrgLogo(parametros.HabOpDesbloqueioCartao,dados.strAuxORGLogo))){
+    if ((dados.sCodBloqCartao == "M" || dados.sCodBloqCartao == "J") && (PossuiOrgLogo(parametros.HabOpDesbloqueioCartao,dados.sORGCartao) || PossuiOrgLogo(parametros.HabOpDesbloqueioCartao,dados.strAuxORGLogo))){
         ret["frases"].push({ "frase": "ypiiParaDesblqCartDig8.wav" });
         ret["frases1"].push({ "frase": "ypiiParaDesblqCartDig8.wav" });
         ret['opcoesValidas'] += '8';

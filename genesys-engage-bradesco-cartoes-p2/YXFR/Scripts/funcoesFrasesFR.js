@@ -79,7 +79,7 @@ function getFrasesFaturaDetalhada(dados) {
     __Log("##### AplSaques = " + dados.UR85.AplSaques );
     __Log("##### AplTotFaturaNac = " + dados.UR85.AplTotFaturaNac );
     __Log("##### AplTotGeralFatura = " + dados.UR85.AplTotGeralFatura );
-    __Log("##### AplFlagDebConta = " + dados.UR85.AplFlagDebConta );
+    __Log("##### AplFlagDebConta = " + dados.UR80.AplFlagDebConta);
  
     frases.push({ "frase": "ypiiTotalComprasAte.wav" });
     frases.push({ "data": dados['UR85']['AplDataCorte']});
