@@ -105,7 +105,7 @@
       <loggingDetails>'############## AppState.io_dados.sListaORGsIdentCPF : ' + AppState.io_dados.sListaORGsIdentCPF + ' ' +&#xD;
 '############## AppState.io_dados.parametros.ListaBloqSemAtd : ' + AppState.io_dados.parametros.ListaBloqSemAtd </loggingDetails>
       <loggingDetails>'############## AppState.io_dados.UR8FCartoes : ' + JSON.stringify(AppState.io_dados.UR8FCartoes)</loggingDetails>
-      <conditions xmi:type="datatypes:BranchItem" xmi:id="_6oPcEKk-Ee2mo5e4-xidQA" name="Sim" expression="verCartaoOrgValido(AppState.io_dados)"/>
+      <conditions xmi:type="datatypes:BranchItem" xmi:id="_hYqbsBBsEe6Z28zbDdfqXw" name="Sim" expression="AppState.io_dados['sListaORGsIdentCPF'].indexOf(AppState.io_dados['UR8FCartoes'][0]['ORG'])>-1"/>
     </blocks>
     <blocks xmi:type="gvp:EcmaScriptBlock" xmi:id="_OywJcB_KEe2NEKKlQ5lR1g" name="setCartaoInfo" category="ECMA Script" script="try {&#xD;&#xA;&#x9;// your code&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;AppState.io_dados['sNumeroCartaoCPF'] = AppState.io_dados['UR8FCartoes'][0]['NumCartao']&#x9;;&#xD;&#xA;&#x9;AppState.io_dados['AplCliente']['IndTitAdic']=  AppState.io_dados['UR8FCartoes'][0]['IndTitAdic'];&#xD;&#xA;&#x9;AppState.io_dados['AplCliente']['CartaoNum']=  AppState.io_dados['sNumeroCartaoCPF'];&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;__Log('AppState.io_dados: ' + JSON.stringify(AppState.io_dados)); &#xD;&#xA;&#xD;&#xA;&#x9;&#xD;&#xA;} catch (error) {&#xD;&#xA;&#x9;// error handling code&#xD;&#xA;}"/>
     <blocks xmi:type="gvp:BranchingBlock" xmi:id="_vrA_8B_KEe2NEKKlQ5lR1g" name="verCartBloqLiberadoViaCPF" category="Branching">

@@ -159,7 +159,7 @@
 			</log>
     	</block>
     	<block>
-    		<goto next="#SetEventoDesligamento" />
+    		<goto next="#WS_UR80" />
     	</block>
 	</form>
 
@@ -186,7 +186,7 @@
 				<if cond="WS_UR80Subdialog.io_dados != 'undefined'">
   					<assign name="AppState.io_dados" expr="WS_UR80Subdialog.io_dados" /> 
   				</if>
-				<goto next="#setORG" />
+				<goto next="#ValidaRetorno_UR80" />
 			</filled>
 		</subdialog>
 		
@@ -216,7 +216,7 @@
 			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'strAuxORG', AppState.io_dados['UR80']['AplOrg'])" />
 			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sORGCartao', AppState.io_dados['UR80']['AplOrg'])" />
 			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sLogoCartao', AppState.io_dados['UR80']['AplLogo'])" />
-			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sCPFTitular', AppState.io_dados.UR80.AplNrCPF)" />
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sCPFTitular', AppState.io_dados.UR80.AplNrCPF.substring(0,11))" />
 			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sCartao', AppState.io_dados['UR80']['AplNumCartao'])" />
 			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sDiasAtraso', AppState.io_dados['UR80']['AplDiasAtraso'])" />
 			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'sCodBloqCartao', AppState.io_dados['UR80']['AplCdBloqueio'])" />				
@@ -946,25 +946,86 @@ __Log(&quot;##### AppState.io_dados.sCodBloqCartao  : &quot;+ AppState.io_dados.
 		</block>
 	</form>
 
-	<!-- This is the SetEventoDesligamento block in Disabled mode -->
-	<form id="SetEventoDesligamento">
-    	<block>
-    		<goto next="#SubEv1046" />
-    	</block>
+	<!-- This is the Branching block -->
+	<form id="ValidaRetorno_UR80">
+		<block>
+			<if cond="AppState.io_dados.UR80.codigoRetorno == '0'">
+				
+				<!-- This is the OutLink -->
+				<goto next="#setORG" />
+			</if>
+			<goto next="#set_EvDesligamento_1046_UR80" />
+		</block>
 	</form>
 
-	<!-- This is the SubEv1046 block in Disabled mode -->
-	<form id="SubEv1046">
-    	<block>
-    		<goto next="#SubEv3011" />
-    	</block>
-	</form>
-
-	<!-- This is the SubEv3011 block in Disabled mode -->
+	<!-- This is the Subdialog block -->
 	<form id="SubEv3011">
-    	<block>
-    		<goto next="#WS_UR80" />
-    	</block>
+
+		<subdialog name="SubEv3011Subdialog" fetchhint="prefetch"  src="../src-gen/Relatorio.vxml">
+    		<param name="varActionParentId" expr="'UR80'"/>
+			<param name="in_evento_numero" expr="'3011'" />
+			<param name="io_dados" expr="AppState.io_dados" />
+			<filled>
+				<if cond="SubEv3011Subdialog.io_dados != 'undefined'">
+  					<assign name="AppState.io_dados" expr="SubEv3011Subdialog.io_dados" /> 
+  				</if>
+				<goto next="#setDeriva_UR80" />
+			</filled>
+		</subdialog>
+		
+	</form>
+
+	<!-- This is the Subdialog block -->
+	<form id="FalaDeriva_UR80">
+
+		<subdialog name="FalaDeriva_UR80Subdialog" fetchhint="prefetch"  src="../src-gen/FalaDeriva.vxml">
+    		<param name="varActionParentId" expr="'UR80'"/>
+			<param name="io_dados" expr="AppState.io_dados" />
+			<filled>
+				<if cond="FalaDeriva_UR80Subdialog.io_dados != 'undefined'">
+  					<assign name="AppState.io_dados" expr="FalaDeriva_UR80Subdialog.io_dados" /> 
+  				</if>
+				<goto next="#Exit1_xx" />
+			</filled>
+		</subdialog>
+		
+	</form>
+
+	<!-- This is the Assign block -->
+	<form id="setDeriva_UR80">
+		<block>
+			
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'strAplCodRetDerivacao', 'DERIV_SISTEMA')" />
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'ePontoDerivacao', 'PD_CAC_QHOST')" />
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'strAplRazaoDerivacao', 'RAZAO_TIMEOUT_HOST')" />				
+			<goto next="#FalaDNK232_UR80" />
+		</block>
+	</form>
+
+	<!-- This is the Assign block -->
+	<form id="set_EvDesligamento_1046_UR80">
+		<block>
+			
+			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'ap_evDesligamento', '1046')" />				
+			<goto next="#SubEv3011" />
+		</block>
+	</form>
+
+	<!-- This is the Subdialog block -->
+	<form id="FalaDNK232_UR80">
+
+		<subdialog name="FalaDNK232_UR80Subdialog" fetchhint="prefetch"  src="../src-gen/PromptDinamico.vxml">
+    		<param name="varActionParentId" expr="'UR80'"/>
+			<param name="in_frases" expr="[{ 'frase' : 'cSistemaIndisponivelMomento.wav' }]" />
+			<param name="io_dados" expr="AppState.io_dados" />
+			<filled>
+				<if cond="FalaDNK232_UR80Subdialog.io_dados != 'undefined'">
+  					<assign name="AppState.io_dados" expr="FalaDNK232_UR80Subdialog.io_dados" /> 
+  				</if>
+				<goto next="#FalaDeriva_UR80" />
+			</filled>
+		</subdialog>
+		
 	</form>
 
 	<!-- This is the MocaDados block in Disabled mode -->

@@ -4819,7 +4819,8 @@ function getDerivacaoCartoes(dados) {
     
     __Log("### Bilhete ###  (" + uui + ")");
     var prefixo = dados['parametros']['derivacaoprefixogenesys_fis']; // 
-    if (!prefixo) {prefixo = "310";}
+    //if (!prefixo) {prefixo = "310";}
+    if (!prefixo) {prefixo = getPoloCode();}
         
     var destino = 'sip:';
     destino = destino + prefixo;
@@ -4857,7 +4858,9 @@ function setSaudacaoOrg(dados){
 	__Log('########### dados.SeDataEloMais :' + dados.SeDataEloMais);
 	__Log('########### dados.UR80.AplNumCartao :' + dados.UR80.AplNumCartao);
 	__Log('########### dados.bHab_ENC_LASA :' + dados.bHab_ENC_LASA);
+	__Log('########### dados.parametros.Hab_Enc_Lasa :' + dados.parametros.Hab_Enc_Lasa);
 	__Log('########### dados.bHabReestruturacaoVDNs :' + dados.bHabReestruturacaoVDNs);
+	__Log('########### dados.parametros.HabReestruturacaoVDN :' + dados.parametros.HabReestruturacaoVDN);
 	
 
 	switch(sORGCartao){
@@ -5548,6 +5551,7 @@ function nomeTipoCartao(dados, cont) {
 	//iCartao = dados.UR8FCartoes[cont]['NumCartao'].substring(5, 11); //Mid(AplUR8FCartoes(T_Fluxo).NumCartao(val(iIndiceORGValido(T_Fluxo))), 4, 6)
 	iCartao = dados.UR8FCartoes[cont]['NumCartao'].substring(0, 6);
 	//VALIDAR
+	__Log('########### nomeTipoCartao ');
 	__Log('########## iORG :' + iORG);
 	__Log('########## iLOGO :' + iLOGO);
 	__Log('########## iCartao :' + iCartao);
@@ -5664,7 +5668,7 @@ function nomeTipoCartao(dados, cont) {
 		case '046':
 			if (dados.parametros.HabDtVisaGold && iCartao == "418049") {
 				ret = "ypiiMakroVisaGold.wav";
-			} else if (SeDataEloMais(dados) && iLOGO == '38') { //VALIDAR
+			} else if (SeDataEloMais(dados) && iLOGO == '038') { //VALIDAR
 				ret = "ypiiMakroEloMais.wav";
 			} else {
 				ret = "ypiiMakro.wav";
@@ -5752,7 +5756,7 @@ function nomeTipoCartao(dados, cont) {
 		case '081':
 			if (dados.parametros.HabDtVisaGold && iCartao == "457294") {
 				ret = "ypiiCoopVisaGold.wav";
-			} else if (SeDataEloMais(dados) && iLOGO == '38') { //VALIDAR
+			} else if (SeDataEloMais(dados) && iLOGO == '038') { //VALIDAR
 				ret = "ypiiCoopFacilEloMais.wav";
 			} else {
 				ret = "ypiiCoopcopil.wav";
@@ -5773,14 +5777,14 @@ function nomeTipoCartao(dados, cont) {
 			}
 			break;
 		case '101':
-			if (dados.parametros.Hab_ENC_LASA) {
+			if (dados['bHab_ENC_LASA']) {
 				ret = "ypiiBradescard.wav";
 			} else {
 				ret = "ypiiLojAmericanas.wav";
 			}
 			break;
 		case '102':
-			if (dados.parametros.Hab_ENC_LASA) {
+			if (dados['bHab_ENC_LASA']) {
 				ret = "ypiiBradescard.wav";
 			} else {
 				ret = "ypiiLojAmericanas.wav";
@@ -5874,7 +5878,7 @@ function ehCartBloqLiberadoViaCPF(dados, indice){
 
 function SeDataEloMais(dados) {
     
-	
+	 __Log('############ dados.parametros.HabDtEloMais : ' + dados.parametros.HabDtEloMais);
     var wDataInicio='';
     var SeDataEloMais = false;
     var strAux = "";
@@ -5937,7 +5941,8 @@ function setIndiceORGValido(dados) {
 
 function fn_NomeCartaoNumB(dados){
 	
-	var eAtendimento = dados['eTipoAtendimento'];
+	var eAtendimento = dados['eAtendimento'];
+	                          
 	var ret = '';
 
     switch (eAtendimento){
@@ -6003,7 +6008,9 @@ function fn_NomeCartaoNumB(dados){
     
     dados['NomeCartaoNumB'] = ret;
     __Log('dados.NomeCartaoNumB : ' + dados['NomeCartaoNumB']);
-
+    __Log('dados.eTipoAtendimento : ' + dados['eTipoAtendimento']);
+    __Log('dados.eAtendimento : ' + dados['eAtendimento']);
+        
     return dados;
     
 }
@@ -7999,8 +8006,10 @@ function inicializaVariaveis(dados) {
 	//dados['nsuSessao'] = new Date().getFullYear() + '' + new Date().getTime() + 'P2';
 	dados['ani'] = getANITratado(AppState.ANI);
 	dados['dnis'] = AppState.DNIS;
-	dados['NumA'] = getANITratado(AppState.ANI);
-    dados['NumB'] = AppState.DNIS;
+	dados['dnis'] = dados['dnis'].substring(dados['dnis'].length - 4);
+	dados['NumB'] = AppState.DNIS;
+	dados['NumB'] = dados['NumB'].substring(dados['NumB'].length - 4);
+    dados['NumA'] = getANITratado(AppState.ANI);
 	dados['LogTick'] = '';
 	dados['MenuInoperante'] = false;
 	dados['iIndiceORGValido'] = 0;
