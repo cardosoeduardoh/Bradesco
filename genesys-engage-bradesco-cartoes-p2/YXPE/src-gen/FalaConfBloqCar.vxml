@@ -301,8 +301,13 @@ __Log(&quot;##### AppState.io_dados.sCodBloqCartao  : &quot;+ AppState.io_dados.
 						AppState.io_dados['sCartao'] = AppState.listaCartoesBloqueio[cartaoEscolhido - 2]['NumCartao'];
 						AppState.io_dados['sDiasAtraso'] = AppState.listaCartoesBloqueio[cartaoEscolhido - 2]['DiasAtraso'];
 						AppState.io_dados['sCodBloqCartao'] = AppState.listaCartoesBloqueio[cartaoEscolhido - 2]['CodBloqCartao'];
-						AppState.io_dados['sCPFTitular'] = AppState.io_dados.UR8F.NumCartaoCPF;
-						
+						//AppState.io_dados['sCPFTitular'] = AppState.io_dados.UR8F.NumCartaoCPF;
+						if(AppState.io_dados.UR8F.NumCartaoCPF.length == 11){
+					             AppState.io_dados['sCPFTitular'] = AppState.io_dados.UR8F.NumCartaoCPF
+					    }else{
+					             AppState.io_dados['sCPFTitular'] =  AppState.io_dados.UR8F.NumCartaoCPF.substring(AppState.io_dados.UR8F.NumCartaoCPF.length -11)  
+					
+					   }
 						
 						
 						

@@ -412,7 +412,7 @@
 				<if cond="SubEv_2126Subdialog.io_dados != 'undefined'">
   					<assign name="AppState.io_dados" expr="SubEv_2126Subdialog.io_dados" /> 
   				</if>
-				<goto next="#S_RN40_0" />
+				<goto next="#R_RN40_0" />
 			</filled>
 		</subdialog>
 		
@@ -952,26 +952,6 @@
 		
 	</form>
 
-	<!-- This is the Assign block -->
-	<form id="S_RN40_0">
-		<block>
-			<script>
-				try {
-						// your code
-						
-						AddLogTick(AppState.io_dados,'TICK_LOG_MN2','0');
-						
-						__Log('############ AppState.io_dados.LogTick : ' + AppState.io_dados.LogTick);
-						
-					} catch (error) {
-						// error handling code
-						__Log('############ AppState.io_dados.LogTick Error : ' + error);
-					}
-			</script>	
-			<goto next="#Menu1Nivel" />
-		</block>
-	</form>
-
 	<!-- This is the Subdialog block -->
 	<form id="R_RN40_5">
 
@@ -1149,6 +1129,24 @@
 			</script>	
 			<goto next="#VerificaDigitos" />
 		</block>
+	</form>
+
+	<!-- This is the Subdialog block -->
+	<form id="R_RN40_0">
+
+		<subdialog name="R_RN40_0Subdialog" fetchhint="prefetch"  src="../src-gen/RelatorioRN40.vxml">
+    		<param name="varActionParentId" expr="'Menu2Nivel'"/>
+			<param name="StrInfo" expr="'0'" />
+			<param name="Tick" expr="'TICK_LOG_MN2'" />
+			<param name="io_dados" expr="AppState.io_dados" />
+			<filled>
+				<if cond="R_RN40_0Subdialog.io_dados != 'undefined'">
+  					<assign name="AppState.io_dados" expr="R_RN40_0Subdialog.io_dados" /> 
+  				</if>
+				<goto next="#Menu1Nivel" />
+			</filled>
+		</subdialog>
+		
 	</form>
 
 	<!-- This is the SetEv_2131 block in Disabled mode -->

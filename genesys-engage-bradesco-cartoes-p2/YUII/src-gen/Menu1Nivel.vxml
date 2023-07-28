@@ -745,12 +745,12 @@
 			<if cond="(AppState.ap_opcaoDigitada == '2' || AppState.ap_opcaoDigitada == 2) //&amp;&amp; AppState.io_dados.bHabOpcoesMenu1oNivel == true">
 				
 				<!-- This is the OutLink -->
-				<goto next="#Set_NavegacaoEventosTipoDTMF_M1N_opc2" />
+				<goto next="#R_RN40_OPC2" />
 			</if>
 			<if cond="(AppState.ap_opcaoDigitada == '8' || AppState.ap_opcaoDigitada == 8) //&amp;&amp; AppState.io_dados.bHabOpcoesMenu1oNivel == true">
 				
 				<!-- This is the OutLink -->
-				<goto next="#Set_NavegacaoEventosTipoDTMF_M1N_opc8" />
+				<goto next="#R_RN40_OPC8" />
 			</if>
 			<if cond="AppState.ap_opcaoDigitada.length == 11">
 				
@@ -1110,7 +1110,7 @@
 						__Log(&quot;##### Error(ECMA_Set_NavegacaoEventosTipoDTMF_InvalidaInputCartaoCPF): &quot; + error);
 					}
 			</script>	
-			<goto next="#setVar_Menu1Nivel_Tentativas_NoMatch" />
+			<goto next="#R_RN40_NoMatch" />
 		</block>
 	</form>
 
@@ -1202,6 +1202,60 @@
 			</if>
 			<goto next="#setEvento_Menu1Nivel_Tentativas" />
 		</block>
+	</form>
+
+	<!-- This is the Subdialog block -->
+	<form id="R_RN40_OPC8">
+
+		<subdialog name="R_RN40_OPC8Subdialog" fetchhint="prefetch"  src="../src-gen/RelatorioRN40.vxml">
+    		<param name="varActionParentId" expr="'Menu1Nivel'"/>
+			<param name="StrInfo" expr="AppState.ap_opcaoDigitada" />
+			<param name="Tick" expr="'TICK_LOG_MN1'" />
+			<param name="io_dados" expr="AppState.io_dados" />
+			<filled>
+				<if cond="R_RN40_OPC8Subdialog.io_dados != 'undefined'">
+  					<assign name="AppState.io_dados" expr="R_RN40_OPC8Subdialog.io_dados" /> 
+  				</if>
+				<goto next="#Set_NavegacaoEventosTipoDTMF_M1N_opc8" />
+			</filled>
+		</subdialog>
+		
+	</form>
+
+	<!-- This is the Subdialog block -->
+	<form id="R_RN40_OPC2">
+
+		<subdialog name="R_RN40_OPC2Subdialog" fetchhint="prefetch"  src="../src-gen/RelatorioRN40.vxml">
+    		<param name="varActionParentId" expr="'Menu1Nivel'"/>
+			<param name="StrInfo" expr="AppState.ap_opcaoDigitada" />
+			<param name="Tick" expr="'TICK_LOG_MN1'" />
+			<param name="io_dados" expr="AppState.io_dados" />
+			<filled>
+				<if cond="R_RN40_OPC2Subdialog.io_dados != 'undefined'">
+  					<assign name="AppState.io_dados" expr="R_RN40_OPC2Subdialog.io_dados" /> 
+  				</if>
+				<goto next="#Set_NavegacaoEventosTipoDTMF_M1N_opc2" />
+			</filled>
+		</subdialog>
+		
+	</form>
+
+	<!-- This is the Subdialog block -->
+	<form id="R_RN40_NoMatch">
+
+		<subdialog name="R_RN40_NoMatchSubdialog" fetchhint="prefetch"  src="../src-gen/RelatorioRN40.vxml">
+    		<param name="varActionParentId" expr="'Menu1Nivel'"/>
+			<param name="StrInfo" expr="AppState.ap_opcaoDigitada" />
+			<param name="Tick" expr="'TICK_LOG_MN1'" />
+			<param name="io_dados" expr="AppState.io_dados" />
+			<filled>
+				<if cond="R_RN40_NoMatchSubdialog.io_dados != 'undefined'">
+  					<assign name="AppState.io_dados" expr="R_RN40_NoMatchSubdialog.io_dados" /> 
+  				</if>
+				<goto next="#setVar_Menu1Nivel_Tentativas_NoMatch" />
+			</filled>
+		</subdialog>
+		
 	</form>
 
 </vxml>

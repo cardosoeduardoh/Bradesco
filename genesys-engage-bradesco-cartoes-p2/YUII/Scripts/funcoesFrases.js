@@ -707,6 +707,11 @@ function getFrasesFalaSaldoCondicaoVencto_1(dados) {
 	var ret = {};
 	ret["frases"] = [];
 	
+      var AplVlrSldParcial = parseInt(dados.UR80.AplVlrSldParcial);
+      var AplSinalVlrSldParcial	= parseInt(dados.UR80.AplSinalVlrSldParcial);
+     
+     __Log('########### AplVlrSldParcial :' + AplVlrSldParcial);
+     __Log('########### AplSinalVlrSldParcial :' + AplSinalVlrSldParcial);
 	__Log('########### dados.UR80.AplSinalVlrSldParcial :' + dados.UR80.AplSinalVlrSldParcial);
 	__Log('########### dados.UR80.AplDataVencto :' + dados.UR80.AplDataVencto);
 	
@@ -714,12 +719,12 @@ function getFrasesFalaSaldoCondicaoVencto_1(dados) {
 	ret["frases"].push({ "valor" : dados.UR80.AplVlrFatura}); // Grande chance de dar problemas (extenso)
 	ret["frases"].push({ "frase" : "ypiiEM.wav"});
 	ret["frases"].push({ "data" : dados.UR80.AplDataVencto.substring(0,2) + dados.UR80.AplDataVencto.substring(3,5)});
-	if(parseInt(dados.UR80.AplVlrSldParcial) == 0 ) {
+	if(AplVlrSldParcial == 0 ) {
 		ret["frases"].push({ "frase" : "ypiiAteMomNaoConstValLancFat.wav"});
 	} else if (parseInt(dados.UR80.AplVlrSldParcial) > 0) {
 		ret["frases"].push({ "frase" : "ypiiSeuSaldoParParaProxVencEDe.wav"});
 		ret["frases"].push({ "valor" : dados.UR80.AplVlrSldParcial}); // Grande chance de dar problemas (extenso)
-		if (parseInt(dados.UR80.AplSinalVlrSldParcial ) == 1) {
+		if (AplSinalVlrSldParcial == 1) {
 			ret["frases"].push({ "frase" : "ypiiCredor.wav"});
 		} else {
 			ret["frases"].push({ "frase" : "ypiiDevedor.wav"});
@@ -733,14 +738,20 @@ function getFrasesFalaSaldoCondicaoVencto_2(dados) {
 	var ret = {};
 	ret["frases"] = [];
 	
+	 var AplVlrSldParcial = parseInt(dados.UR80.AplVlrSldParcial);
+     var AplSinalVlrSldParcial	= parseInt(dados.UR80.AplSinalVlrSldParcial);
+    
+    __Log('########### AplVlrSldParcial :' + AplVlrSldParcial);
+    __Log('########### AplSinalVlrSldParcial :' + AplSinalVlrSldParcial);
+	__Log('########### dados.UR80.AplDataVencto :' + dados.UR80.AplDataVencto);		
 	__Log('########### dados.UR80.AplVlrSldParcial :' + dados.UR80.AplVlrSldParcial);
 	
-	if(parseInt(dados.UR80.AplVlrSldParcial) == 0 ) {
+	if(AplVlrSldParcial == 0 ) {
 		ret["frases"].push({ "frase" : "ypiiAteMomNaoConstValLancFat.wav"});
 	} else if (parseInt(dados.UR80.AplVlrSldParcial) > 0) {
 		ret["frases"].push({ "frase" : "ypiiSeuSaldoParParaProxVencEDe.wav"});
 		ret["frases"].push({ "valor" : dados.UR80.AplVlrSldParcial}); // Grande chance de dar problemas (extenso)
-		if (parseInt(dados.UR80.AplSinalVlrSldParcial ) == 1) {
+		if (AplSinalVlrSldParcial == 1) {
 			ret["frases"].push({ "frase" : "ypiiCredor.wav"});
 		} else {
 			ret["frases"].push({ "frase" : "ypiiDevedor.wav"});
@@ -753,11 +764,16 @@ function getFrasesFalaSaldoCondicaoVencto_3(dados) {
 	
 	var ret = {};
 	ret["frases"] = [];
-	
+	var AplVlrSldParcial = parseInt(dados.UR80.AplVlrSldParcial);
+    var AplSinalVlrSldParcial	= parseInt(dados.UR80.AplSinalVlrSldParcial);
+   
+   __Log('########### AplVlrSldParcial :' + AplVlrSldParcial);
+   __Log('########### AplSinalVlrSldParcial :' + AplSinalVlrSldParcial);
+	__Log('########### dados.UR80.AplDataVencto :' + dados.UR80.AplDataVencto);	
 	__Log('########### dados.UR80.AplDataVencto :' + dados.UR80.AplDataVencto);
 	__Log('########### dados.UR80.AplVlrSldParcial :' + dados.UR80.AplVlrSldParcial);
 	
-	if(parseInt(dados.UR80.AplVlrSldParcial) > 0 ) {
+	if(AplVlrSldParcial > 0 ) {
 		ret["frases"].push({ "frase" : "ypiiObrigPagDe.wav"});
 		ret["frases"].push({ "valor" : dados.UR80.AplVlrFatura}); // Grande chance de dar problemas (extenso)
 		ret["frases"].push({ "frase" : "ypiiEM.wav"});
@@ -765,7 +781,7 @@ function getFrasesFalaSaldoCondicaoVencto_3(dados) {
 		ret["frases"].push({ "frase" : "ypiiSuaFatNaoEstFec.wav"});
 		ret["frases"].push({ "frase" : "ypiiSeuSaldoParParaProxVencEDe.wav"});
 		ret["frases"].push({ "valor" : dados.UR80.AplVlrSldParcial}); // Grande chance de dar problemas (extenso)
-		if (parseInt(dados.UR80.AplSinalVlrSldParcial ) == 1) {
+		if (AplSinalVlrSldParcial == 1) {
 			ret["frases"].push({ "frase" : "ypiiCredor.wav"});
 		} else {
 			ret["frases"].push({ "frase" : "ypiiDevedor.wav"});
@@ -782,12 +798,15 @@ function getFrasesFalaSaldoCondicaoVencto_4(dados) {
 	var ret = {};
 	ret["frases"] = [];
 	
+    var AplVlrSldParcial = parseInt(dados.UR80.AplVlrSldParcial);
+	
 	__Log('########### dados.UR80.AplDataVencto :' + dados.UR80.AplDataVencto);
 	__Log('########### dados.UR80.AplVlrFatura :' + dados.UR80.AplVlrFatura);
 	__Log('########### dados.UR80.AplSinalSldDevedor :' + dados.UR80.AplSinalSldDevedor);
 	__Log('########### dados.UR80.AplVlrSldParcial :' + dados.UR80.AplVlrSldParcial);
+	__Log('########### AplVlrSldParcial :' + AplVlrSldParcial);
 	
-	if(parseInt(dados.UR80.AplVlrSldParcial) == 0 ) {
+	if(AplVlrSldParcial == 0 ) {
 		ret["frases"].push({ "frase" : "ypiiNaoSaldoParaPagEm.wav"});
 	} else if (dados.UR80.AplSinalSldDevedor != '1') {
 		ret["frases"].push({ "frase" : "ypiiValFatVencEm.wav"});
@@ -797,7 +816,7 @@ function getFrasesFalaSaldoCondicaoVencto_4(dados) {
 	
 	ret["frases"].push({ "data" : dados.UR80.AplDataVencto.substring(0,2) + dados.UR80.AplDataVencto.substring(3, 5) });
 	
-	if (parseInt(dados.UR80.AplVlrSldParcial ) == 0) {
+	if (AplVlrSldParcial == 0) {
 		ret["frases"].push({ "frase" : "cSilencio.wav"});
 	} else {
 		ret["frases"].push({ "frase" : "cEDe.wav"});
@@ -823,10 +842,13 @@ function getFrasesFalaSaldoCondicaoVencto_5 (dados) {
 	var ret = {};
 	ret["frases"] = [];
 	
+	var AplVlrSldParcial = parseInt(dados.UR80.AplVlrSldParcial);
+	
 	__Log('########### dados.UR80.AplVlrSldParcial :' + dados.UR80.AplVlrSldParcial);
 	__Log('########### dados.UR80.AplDataVencto :' + dados.UR80.AplDataVencto);
+	__Log('########### AplVlrSldParcial :' + AplVlrSldParcial);
 	
-	if (parseInt(dados.UR80.AplVlrSldParcial) == 0) {
+	if (AplVlrSldParcial == 0) {
 		ret["frases"].push({ "frase" : "ypiiNaoSaldoParaPagEm.wav"});
 	} else if (dados.UR80.AplSinalSldDevedor != '1') {
 		ret["frases"].push({"frase" : "ypiiAteMomNaoConstPagFatVecEm.wav"});
@@ -835,7 +857,7 @@ function getFrasesFalaSaldoCondicaoVencto_5 (dados) {
 	}
 	ret["frases"].push({ "data" : dados.UR80.AplDataVencto.substring(0,2) + dados.UR80.AplDataVencto.substring(3, 5) });
 	
-	if (parseInt(dados.UR80.AplVlrSldParcial) == 0){
+	if (AplVlrSldParcial == 0){
 		ret["frases"].push({"frase" : "cSilencio.wav"});
 	} else if (dados.UR80.AplSinalVlrFatura != '1'){
 		ret["frases"].push({"frase" : "ypiiNoValorDe.wav"});
@@ -852,17 +874,21 @@ function getFrasesFalaSaldoCondicaoVencto_6 (dados) {
 	
 	var ret = {};
 	ret["frases"] = [];
-	
+	var AplVlrSldParcial = parseInt(dados.UR80.AplVlrSldParcial);
+    var AplSinalVlrSldParcial	= parseInt(dados.UR80.AplSinalVlrSldParcial);
+   
+   __Log('########### AplVlrSldParcial :' + AplVlrSldParcial);
+   __Log('########### AplSinalVlrSldParcial :' + AplSinalVlrSldParcial);
 	__Log('########### dados.UR80.AplVlrSldParcial :' + dados.UR80.AplVlrSldParcial);
 	__Log('########### dados.UR80.AplDataVencto :' + dados.UR80.AplDataVencto);
 	
-	if (parseInt(dados.UR80.AplVlrSldParcial) == 0) {
+	if (AplVlrSldParcial == 0) {
 		ret["frases"].push({"frase" : "ypiiAteMomNaoConstValLancFat.wav"});
 	} else {
 		ret["frases"].push({"frase" : "ypiiSeuSaldoParParaProxVencEDe.wav"});
 		ret["frases"].push({"valor" : dados.UR80.AplVlrSldParcial}); // Grande chance de dar problemas (extenso)
 	
-		if (dados.UR80.AplSinalVlrSldParcial == '1') {
+		if (AplSinalVlrSldParcial == '1') {
 			ret["frases"].push({"frase" : "ypiiCredor.wav"});
 		} else {
 			ret["frases"].push({"frase" : "ypiiDevedor.wav"});

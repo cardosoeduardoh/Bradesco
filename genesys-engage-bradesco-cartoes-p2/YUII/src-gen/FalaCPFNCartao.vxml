@@ -382,31 +382,34 @@
 					
 					
 					
+					     var  posicao = AppState.io_dados.posicao_org.split(';')
+					   __Log('#############posicao : ' + JSON.stringify(posicao));
 					
 						var cont = (AppState.io_dados.idxMenuCartao / 10) * 7 + (AppState.ap_opcaoDigitada - 2) //(idxMenuCartao / 10) * 7 + (n - 2);
 						   				if(AppState.ap_opcaoDigitada == '2'){
-					     							cont = AppState.io_dados.posicao_org.substring(0,1)
+					     							cont =posicao[0];
 										}else if(AppState.ap_opcaoDigitada == '3'){
-					     							cont = AppState.io_dados.posicao_org.substring(1,2)
+					     							cont = posicao[1];
 										}else if(AppState.ap_opcaoDigitada == '4'){
-					     							cont = AppState.io_dados.posicao_org.substring(2,3)
+					     							cont = posicao[2];
 										}else if(AppState.ap_opcaoDigitada == '5'){
-					    							cont = AppState.io_dados.posicao_org.substring(3,4)
+					    							cont = posicao[3];
 										}else if(AppState.ap_opcaoDigitada == '6'){
-					   								 cont = AppState.io_dados.posicao_org.substring(4,5)
+					   								 cont = posicao[4];
 										}else if(AppState.ap_opcaoDigitada == '7'){
-					   								cont = AppState.io_dados.posicao_org.substring(5,6)
+					   								cont = posicao[5];
 										}else if(AppState.ap_opcaoDigitada == '8'){
-					    							cont = AppState.io_dados.posicao_org.substring(6,7)
+					    							cont = posicao[6];
 										}
 						
 						//AppState.io_dados['sNumeroCartaoCPF'] = AppState.io_dados['listaCartoesAtivos'][cont]['NumCartao'];
 					    AppState.io_dados['sNumeroCartaoCPF'] = AppState.io_dados['UR8FCartoes'][cont]['NumCartao'];
-						AppState.io_dados['strAplTitAdic'] = AppState.io_dados['listaCartoesAtivos'][cont]['IndTitAdic'];
+						AppState.io_dados['strAplTitAdic'] = AppState.io_dados['UR8FCartoes'][cont]['IndTitAdic'];
 						
 						//AppState.io_dados.LogTick += 'TICK_LOG_MCPFNCARTAO_' + AppState.ap_opcaoDigitada + ';';
 						
-						__Log('############# Numero do Cartao no Atendimento: ' + JSON.stringify(AppState.io_dados['sNumeroCartaoCPF']));
+						__Log('############# Numero do Cartao no Atendimento : ' + JSON.stringify(AppState.io_dados['sNumeroCartaoCPF']));
+						__Log('############# AppState.io_dados.strAplTitAdic : ' + JSON.stringify(AppState.io_dados.strAplTitAdic));
 						
 						// your code
 					} catch (error) {

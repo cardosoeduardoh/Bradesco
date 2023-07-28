@@ -395,7 +395,7 @@
 						AppState.UR8F.msgRetorno = 'Error: ' + JSON.stringify(error);
 					}
 			</script>	
-			<goto next="#Verifica_chaveRestart" />
+			<goto next="#ECMA_Set_Navegacao_Operacoes" />
 		</block>
 	</form>
 
@@ -454,45 +454,6 @@
 		</block>
 	</form>
 
-	<!-- This is the Assign block -->
-	<form id="ECMA_Set_Navegacao_Operacoes">
-		<block>
-			<log gvp:level="1">
-				<value expr="'############# AppState.io_dados.UR8F : ' + JSON.stringify(AppState.io_dados.UR8F)"/>
-			</log>
-    	</block>
-		<block>
-			<script>
-				try {
-					
-					   	var dataAtual = getDataAtual();
-					
-						AppState.objNavegacao = {
-							codigoServico: AppState.ap_nomeServico,
-							timestampInicio: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;
-							timestampFim: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;
-							sequencia: 1,
-							status: AppState.UR8F.codigoRetorno,
-							chavesPesquisa: [],
-							dadosOperacao: [
-								{
-									Request: AppState.objJsonRequest,
-									Response: AppState.objResponseAPI
-								}
-							]
-						}
-					
-						AppState.io_dados.objSessao.inLogOperacao.push(AppState.objNavegacao);
-					
-						__Log(&quot;##### objNavegacao: &quot;+ JSON.stringify(AppState.objNavegacao));
-					} catch (error) {
-						__Log(&quot;##### Error(ECMA_Set_Navegacao_OperacoesUR8F): &quot; + error);
-					}
-			</script>	
-			<goto next="#Exit1_UR8F" />
-		</block>
-	</form>
-
 	<!-- This is the Branching block -->
 	<form id="Verifica_chaveRestart">
 		<block>
@@ -548,7 +509,7 @@
 						__Log(&quot;##### Error(ECMA_LOG GERAL TODOS CARTOES): &quot; + error);
 					}
 			</script>	
-			<goto next="#ECMA_Set_Navegacao_Operacoes" />
+			<goto next="#ECMA_Set_Navegacao_Operacoes_old" />
 		</block>
 	</form>
 
@@ -603,6 +564,52 @@
 			</if>
 			<goto next="#AutenticarCanal" />
 		</block>
+	</form>
+
+	<!-- This is the Assign block -->
+	<form id="ECMA_Set_Navegacao_Operacoes">
+		<block>
+			<log gvp:level="1">
+				<value expr="'############# AppState.io_dados.UR8F : ' + JSON.stringify(AppState.io_dados.UR8F)"/>
+			</log>
+    	</block>
+		<block>
+			<script>
+				try {
+					
+					   	var dataAtual = getDataAtual();
+					
+						AppState.objNavegacao = {
+							codigoServico: AppState.ap_nomeServico,
+							timestampInicio: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;
+							timestampFim: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;
+							sequencia: 1,
+							status: AppState.UR8F.codigoRetorno,
+							chavesPesquisa: [],
+							dadosOperacao: [
+								{
+									Request: AppState.objJsonRequest,
+									Response: AppState.objResponseAPI
+								}
+							]
+						}
+					
+						AppState.io_dados.objSessao.inLogOperacao.push(AppState.objNavegacao);
+					
+						__Log(&quot;##### objNavegacao: &quot;+ JSON.stringify(AppState.objNavegacao));
+					} catch (error) {
+						__Log(&quot;##### Error(ECMA_Set_Navegacao_OperacoesUR8F): &quot; + error);
+					}
+			</script>	
+			<goto next="#Verifica_chaveRestart" />
+		</block>
+	</form>
+
+	<!-- This is the ECMA_Set_Navegacao_Operacoes_old block in Disabled mode -->
+	<form id="ECMA_Set_Navegacao_Operacoes_old">
+    	<block>
+    		<goto next="#Exit1_UR8F" />
+    	</block>
 	</form>
 
 </vxml>

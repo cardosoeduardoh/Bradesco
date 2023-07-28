@@ -373,7 +373,7 @@
 			
 			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'ePontoDerivacao', 'PD_INFO_SAQUE')" />
 			<assign name="AppState.io_dados" expr="adicionaDados(AppState.io_dados, 'strAplRazaoDerivacao' ,  'RAZAO_SOLIC_ATENDENTE')" />				
-			<goto next="#R_RN40_" />
+			<goto next="#R_RN40_3" />
 		</block>
 	</form>
 
@@ -760,16 +760,16 @@
 	</form>
 
 	<!-- This is the Subdialog block -->
-	<form id="R_RN40_">
+	<form id="R_RN40_3">
 
-		<subdialog name="R_RN40_Subdialog" fetchhint="prefetch"  src="../../YUII/src-gen/RelatorioRN40.vxml">
+		<subdialog name="R_RN40_3Subdialog" fetchhint="prefetch"  src="../../YUII/src-gen/RelatorioRN40.vxml">
     		<param name="varActionParentId" expr="'MenuVendas'"/>
 			<param name="StrInfo" expr="'3'" />
 			<param name="Tick" expr="'TICK_LOG_MVENDAS'" />
 			<param name="io_dados" expr="AppState.io_dados" />
 			<filled>
-				<if cond="R_RN40_Subdialog.io_dados != 'undefined'">
-  					<assign name="AppState.io_dados" expr="R_RN40_Subdialog.io_dados" /> 
+				<if cond="R_RN40_3Subdialog.io_dados != 'undefined'">
+  					<assign name="AppState.io_dados" expr="R_RN40_3Subdialog.io_dados" /> 
   				</if>
 				<goto next="#Set_strAplRazaoDerivacao" />
 			</filled>

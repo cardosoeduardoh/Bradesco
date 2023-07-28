@@ -76,7 +76,7 @@
       <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_teFD4HsHEe27lI_DW0lJ8g" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'UR8F', AppState.UR8F)"/>
       <assignData xmi:type="datatypes:KeyValuePairItem" xmi:id="_teFD4XsHEe27lI_DW0lJ8g" Key="io_dados" Value="adicionaDados(AppState.io_dados, 'chaveRestartUR8F', completaComEspacos(&quot;&quot;, 20))"/>
     </blocks>
-    <blocks xmi:type="gvp:EcmaScriptBlock" xmi:id="_SvkZNOwVEeyXpfaF3zzwcg" name="ECMA_Set_Navegacao_Operacoes" category="ECMA Script" script="try {&#xD;&#xA;&#xD;&#xA;   &#x9;var dataAtual = getDataAtual();&#xD;&#xA;&#xD;&#xA;&#x9;AppState.objNavegacao = {&#xD;&#xA;&#x9;&#x9;codigoServico: AppState.ap_nomeServico,&#xD;&#xA;&#x9;&#x9;timestampInicio: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;&#xD;&#xA;&#x9;&#x9;timestampFim: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;&#xD;&#xA;&#x9;&#x9;sequencia: 1,&#xD;&#xA;&#x9;&#x9;status: AppState.UR8F.codigoRetorno,&#xD;&#xA;&#x9;&#x9;chavesPesquisa: [],&#xD;&#xA;&#x9;&#x9;dadosOperacao: [&#xD;&#xA;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Request: AppState.objJsonRequest,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Response: AppState.objResponseAPI&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;]&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;AppState.io_dados.objSessao.inLogOperacao.push(AppState.objNavegacao);&#xD;&#xA;&#xD;&#xA;&#x9;__Log(&quot;##### objNavegacao: &quot;+ JSON.stringify(AppState.objNavegacao));&#xD;&#xA;} catch (error) {&#xD;&#xA;&#x9;__Log(&quot;##### Error(ECMA_Set_Navegacao_OperacoesUR8F): &quot; + error);&#xD;&#xA;}">
+    <blocks xmi:type="gvp:EcmaScriptBlock" xmi:id="_SvkZNOwVEeyXpfaF3zzwcg" name="ECMA_Set_Navegacao_Operacoes_old" category="ECMA Script" enableStatus="Disabled" script="try {&#xD;&#xA;&#xD;&#xA;   &#x9;var dataAtual = getDataAtual();&#xD;&#xA;&#xD;&#xA;&#x9;AppState.objNavegacao = {&#xD;&#xA;&#x9;&#x9;codigoServico: AppState.ap_nomeServico,&#xD;&#xA;&#x9;&#x9;timestampInicio: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;&#xD;&#xA;&#x9;&#x9;timestampFim: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;&#xD;&#xA;&#x9;&#x9;sequencia: 1,&#xD;&#xA;&#x9;&#x9;status: AppState.UR8F.codigoRetorno,&#xD;&#xA;&#x9;&#x9;chavesPesquisa: [],&#xD;&#xA;&#x9;&#x9;dadosOperacao: [&#xD;&#xA;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Request: AppState.objJsonRequest,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Response: AppState.objResponseAPI&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;]&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;AppState.io_dados.objSessao.inLogOperacao.push(AppState.objNavegacao);&#xD;&#xA;&#xD;&#xA;&#x9;__Log(&quot;##### objNavegacao: &quot;+ JSON.stringify(AppState.objNavegacao));&#xD;&#xA;} catch (error) {&#xD;&#xA;&#x9;__Log(&quot;##### Error(ECMA_Set_Navegacao_OperacoesUR8F): &quot; + error);&#xD;&#xA;}">
       <loggingDetails>'############# AppState.io_dados.UR8F : ' + JSON.stringify(AppState.io_dados.UR8F)</loggingDetails>
     </blocks>
     <blocks xmi:type="gvp:BranchingBlock" xmi:id="_J8ShkG8uEe2ltMn4qahFKQ" name="Verifica_chaveRestart" category="Branching">
@@ -99,6 +99,9 @@
       <loggingDetails>'######### AppState.ap_tentativas : ' + AppState.ap_tentativas</loggingDetails>
       <conditions xmi:type="datatypes:BranchItem" xmi:id="_etGeFuReEe24TZ0h0uGYhw" name="Nao" expression="AppState.ap_tentativas > 2" postAction="AppState.ap_tentativas +1"/>
     </blocks>
+    <blocks xmi:type="gvp:EcmaScriptBlock" xmi:id="_DnAlQB8cEe6l6LE5ZToDsw" name="ECMA_Set_Navegacao_Operacoes" category="ECMA Script" script="try {&#xD;&#xA;&#xD;&#xA;   &#x9;var dataAtual = getDataAtual();&#xD;&#xA;&#xD;&#xA;&#x9;AppState.objNavegacao = {&#xD;&#xA;&#x9;&#x9;codigoServico: AppState.ap_nomeServico,&#xD;&#xA;&#x9;&#x9;timestampInicio: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;&#xD;&#xA;&#x9;&#x9;timestampFim: dataAtual.substring(0,23).replace('T',' '), // &quot;9999-12-31 23:59:59.999&quot;&#xD;&#xA;&#x9;&#x9;sequencia: 1,&#xD;&#xA;&#x9;&#x9;status: AppState.UR8F.codigoRetorno,&#xD;&#xA;&#x9;&#x9;chavesPesquisa: [],&#xD;&#xA;&#x9;&#x9;dadosOperacao: [&#xD;&#xA;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Request: AppState.objJsonRequest,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Response: AppState.objResponseAPI&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;]&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;AppState.io_dados.objSessao.inLogOperacao.push(AppState.objNavegacao);&#xD;&#xA;&#xD;&#xA;&#x9;__Log(&quot;##### objNavegacao: &quot;+ JSON.stringify(AppState.objNavegacao));&#xD;&#xA;} catch (error) {&#xD;&#xA;&#x9;__Log(&quot;##### Error(ECMA_Set_Navegacao_OperacoesUR8F): &quot; + error);&#xD;&#xA;}">
+      <loggingDetails>'############# AppState.io_dados.UR8F : ' + JSON.stringify(AppState.io_dados.UR8F)</loggingDetails>
+    </blocks>
     <links xmi:type="gvp:CallflowOutputLink" xmi:id="_U2U90HlhEeSt1OQz5cZgzA" fromBlock="_0TDncMlhEeKE2tP5OBlA8w" toBlock="_UR_hsHlhEeSt1OQz5cZgzA"/>
     <links xmi:type="gvp:CallflowOutputLink" xmi:id="_80X6sI_yEeyINtSlKwVMZg" fromBlock="_UR_hsHlhEeSt1OQz5cZgzA" toBlock="_8LbrYI_yEeyINtSlKwVMZg"/>
     <links xmi:type="gvp:CallflowOutputLink" xmi:id="_IoqoII_zEeyINtSlKwVMZg" fromBlock="_8LbrYI_yEeyINtSlKwVMZg" toBlock="_ICZSUI_zEeyINtSlKwVMZg"/>
@@ -108,7 +111,7 @@
     <links xmi:type="gvp:CallflowOutputLink" xmi:id="_3XK1sI_zEeyINtSlKwVMZg" fromBlock="_kA0FAI_zEeyINtSlKwVMZg" toBlock="_2d9VwI_zEeyINtSlKwVMZg"/>
     <links xmi:type="gvp:CallflowOutputLink" xmi:id="_sdz_II_2EeyINtSlKwVMZg" fromBlock="_2d9VwI_zEeyINtSlKwVMZg" toBlock="_LcLcJY_0EeyINtSlKwVMZg"/>
     <links xmi:type="gvp:CallflowOutputLink" xmi:id="_5wolsEGjEe2knYdQlefiBA" fromBlock="_ICZSUI_zEeyINtSlKwVMZg" toBlock="_0ZXkGcgAEe2D9NMeYHulYg"/>
-    <links xmi:type="gvp:CallflowOutputLink" xmi:id="_Qtl2QG8uEe2ltMn4qahFKQ" fromBlock="_QBeBsI_zEeyINtSlKwVMZg" toBlock="_J8ShkG8uEe2ltMn4qahFKQ"/>
+    <links xmi:type="gvp:CallflowOutputLink" xmi:id="_Qtl2QG8uEe2ltMn4qahFKQ" fromBlock="_QBeBsI_zEeyINtSlKwVMZg" toBlock="_DnAlQB8cEe6l6LE5ZToDsw"/>
     <links xmi:type="gvp:CallflowOutputLink" xmi:id="_fBHmQG8uEe2ltMn4qahFKQ" name="Segue fluxo" fromBlock="_J8ShkG8uEe2ltMn4qahFKQ" toBlock="_LcLcJY_0EeyINtSlKwVMZg"/>
     <links xmi:type="gvp:CallflowOutputLink" xmi:id="_gdIRQG8uEe2ltMn4qahFKQ" name="default" fromBlock="_J8ShkG8uEe2ltMn4qahFKQ" toBlock="_gCuNMG8uEe2ltMn4qahFKQ"/>
     <links xmi:type="gvp:CallflowOutputLink" xmi:id="_do_gQG8vEe2ltMn4qahFKQ" fromBlock="_1jhcMG8uEe2ltMn4qahFKQ" toBlock="_SvkZNOwVEeyXpfaF3zzwcg"/>
@@ -120,6 +123,7 @@
     <links xmi:type="gvp:CallflowOutputLink" xmi:id="_2HWv4MgAEe2D9NMeYHulYg" fromBlock="_0ZXkG8gAEe2D9NMeYHulYg" toBlock="_8LbrYI_yEeyINtSlKwVMZg"/>
     <links xmi:type="gvp:CallflowOutputLink" xmi:id="_gVyTIOReEe24TZ0h0uGYhw" name="default" fromBlock="_etGeFeReEe24TZ0h0uGYhw" toBlock="_0ZXkG8gAEe2D9NMeYHulYg"/>
     <links xmi:type="gvp:CallflowOutputLink" xmi:id="_gncq4OReEe24TZ0h0uGYhw" name="Nao" fromBlock="_etGeFeReEe24TZ0h0uGYhw" toBlock="_2d9VwI_zEeyINtSlKwVMZg"/>
+    <links xmi:type="gvp:CallflowOutputLink" xmi:id="_FettwB8cEe6l6LE5ZToDsw" fromBlock="_DnAlQB8cEe6l6LE5ZToDsw" toBlock="_J8ShkG8uEe2ltMn4qahFKQ"/>
     <namespaces xmi:type="datatypes:Property" xmi:id="_zxAqVclhEeKE2tP5OBlA8w" name="gvp" value="http://www.genesyslab.com/2006/vxml21-extension"/>
     <systemProperties xmi:type="datatypes:Property" xmi:id="_zxAqVslhEeKE2tP5OBlA8w" name="RetainInputTypeVariableDefaultValue" value="false"/>
   </gvp:CallflowDiagram>
@@ -152,7 +156,7 @@
     <children xmi:type="notation:Shape" xmi:id="_QBfP0I_zEeyINtSlKwVMZg" type="2013" element="_QBeBsI_zEeyINtSlKwVMZg" fontName="Segoe UI">
       <children xmi:type="notation:DecorationNode" xmi:id="_QBfP0o_zEeyINtSlKwVMZg" type="8025"/>
       <children xmi:type="notation:DecorationNode" xmi:id="_QBfP04_zEeyINtSlKwVMZg" type="8026"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QBfP0Y_zEeyINtSlKwVMZg" x="380" y="748"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QBfP0Y_zEeyINtSlKwVMZg" x="380" y="612"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_dg6CUI_zEeyINtSlKwVMZg" type="1006" element="_dg5bQI_zEeyINtSlKwVMZg" fontName="Segoe UI">
       <children xmi:type="notation:DecorationNode" xmi:id="_dg6CUo_zEeyINtSlKwVMZg" type="4008"/>
@@ -220,6 +224,11 @@
       <children xmi:type="notation:DecorationNode" xmi:id="_etGeEuReEe24TZ0h0uGYhw" type="4020"/>
       <children xmi:type="notation:DecorationNode" xmi:id="_etGeE-ReEe24TZ0h0uGYhw" type="4021"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_etGeFOReEe24TZ0h0uGYhw" x="646" y="442"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_Dm_-MB8cEe6l6LE5ZToDsw" type="2013" element="_DnAlQB8cEe6l6LE5ZToDsw" fontName="Segoe UI">
+      <children xmi:type="notation:DecorationNode" xmi:id="_Dm_-MR8cEe6l6LE5ZToDsw" type="8025"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_Dm_-Mh8cEe6l6LE5ZToDsw" type="8026"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Dm_-Mx8cEe6l6LE5ZToDsw" x="380" y="714"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_RF4M8oobEeG_nt9_QYQUcg"/>
     <edges xmi:type="notation:Connector" xmi:id="_U2WL8HlhEeSt1OQz5cZgzA" type="3001" element="_U2U90HlhEeSt1OQz5cZgzA" source="_0VP_0MlhEeKE2tP5OBlA8w" target="_UR9sgHlhEeSt1OQz5cZgzA" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
@@ -302,7 +311,7 @@
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_5wols0GjEe2knYdQlefiBA" points="[2, 0, 6, -111]$[2, 136, 6, 25]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_5wpMwEGjEe2knYdQlefiBA" id="(0.5363636363636364,1.0)"/>
     </edges>
-    <edges xmi:type="notation:Connector" xmi:id="_QtnEYG8uEe2ltMn4qahFKQ" type="3001" element="_Qtl2QG8uEe2ltMn4qahFKQ" source="_QBfP0I_zEeyINtSlKwVMZg" target="_J8ShkW8uEe2ltMn4qahFKQ" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
+    <edges xmi:type="notation:Connector" xmi:id="_QtnEYG8uEe2ltMn4qahFKQ" type="3001" element="_Qtl2QG8uEe2ltMn4qahFKQ" source="_QBfP0I_zEeyINtSlKwVMZg" target="_Dm_-MB8cEe6l6LE5ZToDsw" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
       <children xmi:type="notation:DecorationNode" xmi:id="_QtnrcG8uEe2ltMn4qahFKQ" type="4074">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_QtnrcW8uEe2ltMn4qahFKQ" x="5" y="5"/>
       </children>
@@ -402,6 +411,14 @@
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_gndR8uReEe24TZ0h0uGYhw" points="[-19, 25, 491, -349]$[-19, 55, 491, -319]$[-511, 55, -1, -319]$[-511, 319, -1, -55]$[-510, 319, 0, -55]$[-510, 349, 0, -25]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gnd5AOReEe24TZ0h0uGYhw" id="(0.32727272727272727,0.94)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gnd5AeReEe24TZ0h0uGYhw" id="(0.4090909090909091,0.18)"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_FewKAB8cEe6l6LE5ZToDsw" type="3001" element="_FettwB8cEe6l6LE5ZToDsw" source="_Dm_-MB8cEe6l6LE5ZToDsw" target="_J8ShkW8uEe2ltMn4qahFKQ" roundedBendpointsRadius="10" routing="Rectilinear" closestDistance="true" lineColor="16711680">
+      <children xmi:type="notation:DecorationNode" xmi:id="_FexYIB8cEe6l6LE5ZToDsw" type="4074">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_FexYIR8cEe6l6LE5ZToDsw" x="5" y="5"/>
+      </children>
+      <styles xmi:type="notation:FontStyle" xmi:id="_FewKAR8cEe6l6LE5ZToDsw" fontName="Segoe UI"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_FewKAh8cEe6l6LE5ZToDsw" points="[4, 0, 0, -111]$[4, 86, 0, -25]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Fe0bcB8cEe6l6LE5ZToDsw" id="(0.4636363636363636,1.0)"/>
     </edges>
   </notation:Diagram>
 </xmi:XMI>

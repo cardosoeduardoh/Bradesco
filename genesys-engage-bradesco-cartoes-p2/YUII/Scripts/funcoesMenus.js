@@ -577,8 +577,7 @@ function getFrasesFalaCPFNCartao(dados) {
 	for (var i = 2; i < 9; i++) {   
 		 dados = setIndiceORGValido(dados);
 	     var iORGvalido = parseInt(dados["iIndiceORGValido"], 10);     
-	     __Log('##### iORGvalido :' + iORGvalido);
-	     
+	     __Log('##### iORGvalido :' + iORGvalido);     
         
         if (iORGvalido >= 0) {
         	ret["frases"].push({ "frase" : "ypiiParaCart.wav" });
@@ -588,7 +587,12 @@ function getFrasesFalaCPFNCartao(dados) {
             //ret["frases"].push(dados["UR8FCartoes"][iORGvalido]["NumCartao"].substring(dados["UR8FCartoes"][iORGvalido]["NumCartao"].length - 4));
             ret["frases"].push({ "frase" : "cDigite" + i.toString() + ".wav" });
             ret["opcoesValidas"] += i.toString();
-            dados["posicao_org"] += iORGvalido;
+            if(dados["posicao_org"] == undefined || dados["posicao_org"] == "" || dados["posicao_org"] == " "){
+            	dados["posicao_org"] += iORGvalido;            	
+            }else{
+            	dados["posicao_org"] += ';' + iORGvalido;            	
+            }
+            
         }
 	}
 	if (dados["strListaIndiceORGValidoAux"] && dados["strListaIndiceORGValidoAux"] != "" ) {
