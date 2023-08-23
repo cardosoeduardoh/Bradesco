@@ -53,7 +53,7 @@ function getFrases_MenuFatParcPagto(dados) {
         ret["opcoesValidas"] += "7";        	
     } 
    
-    if(dados["parametros"]["HabMFatPagtoRetMP"]){
+    if(dados["parametros"]["HabMFatPagtoRetMP"]==true){
         ret["frases"].push({ "frase": "ypiiVoltMenuPrincDig0.wav" });
         ret["opcoesValidas"] += "0";
     }
@@ -160,7 +160,7 @@ function getFrases_MParcelamento(dados) {
 	ret['retryTentativaNoMatch'] = true;
 	ret['retryTentativaNoInput'] = true;
 	
-	if (dados['parametros']['HabPlanosParcela']) {
+	if (dados['parametros']['HabPlanosParcela']==true) {
 		
 		if (dados['UR1A']['NroOcor'] > 0) {
 			
@@ -179,7 +179,7 @@ function getFrases_MParcelamento(dados) {
 	ret["frases"].push({ "frase": "ypiiParaAntecCanceAltParcFatDig3.wav" });
 	ret["opcoesValidas"] += "3";
 	
-	if (dados.parametros.HabMParcelRetMP) {
+	if (dados.parametros.HabMParcelRetMP==true) {
 		
 		ret["frases"].push({ "frase": "ypiioltMenuAntDig0.wav" });
 		ret["opcoesValidas"] += "0";

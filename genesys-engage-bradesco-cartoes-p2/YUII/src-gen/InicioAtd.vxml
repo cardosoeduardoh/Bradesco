@@ -68,6 +68,7 @@
 		AppState.SCRIPTSDIR = initSystemTypeVariable('SCRIPTSDIR','../Scripts');
 		AppState.VOXFILEDIR = initSystemTypeVariable('VOXFILEDIR','../Resources/Prompts');
 		AppState.ap_frases = '';
+		AppState.VFraseEmergencial = '';
 	</script>
 
 		
@@ -221,7 +222,8 @@
 	<form id="SetFalaSaudacao">
 		<block>
 			
-			<assign name="AppState.ap_frases" expr="getFraseHorarioSaudacao(AppState.io_dados)" />				
+			<assign name="AppState.ap_frases" expr="getFraseHorarioSaudacao(AppState.io_dados)" />
+			<assign name="AppState.VFraseEmergencial" expr="AppState.io_dados.parametros.HabFraseEmergencial.indexOf(AppState.io_dados['dnis'])" />				
 			<goto next="#FalaSaudacao" />
 		</block>
 	</form>
@@ -257,11 +259,13 @@
 		<block>
 			<log gvp:level="1">
 				<value expr="'#### AppState.io_dados.parametros.HabFraseEmergencial :' + AppState.io_dados.parametros.HabFraseEmergencial + '  ' + 
-'#### AppState.io_dados.parametros.FraseEmergencial :' + AppState.io_dados.parametros.FraseEmergencial"/>
+'#### AppState.io_dados.parametros.FraseEmergencial :' + AppState.io_dados.parametros.FraseEmergencial + '  ' + 
+'#### AppState.VFraseEmergencial :' + AppState.VFraseEmergencial + '  ' + 
+'#### AppState.io_dados.dnis : ' + AppState.io_dados.dnis"/>
 			</log>
     	</block>
 		<block>
-			<if cond="AppState.io_dados.parametros.HabFraseEmergencial == true">
+			<if cond="AppState.VFraseEmergencial &gt; -1">
 				
 				<!-- This is the OutLink -->
 				<goto next="#SetFalaFraseParametro" />
