@@ -8140,6 +8140,7 @@ function inicializaVariaveis(dados) {
     dados.parametros.BIN_CORPORATE = '';
     dados.parametros.HabOpLimProm2Torres = '';
     dados.parametros.HabOpFatura_Email = '';
+    dados.parametros.ListaParceriasSemFiltroVendas = '';
     dados.bHab_ENC_LASA = '';
     dados.bHabReestruturacaoVDNs = '';
     dados.SeDataEloMais = '';
@@ -8853,6 +8854,7 @@ function SetaVDNDadosReestruturacao(dados) {
                 sParamBalanceamentoVDN = "VDN_TESTA_BILHETE"
             } else if (dados.bPIDOk || dados.bSenhaCHIPOk) {
                 if (dados.UR80.AplVlrSldParcial > 0 && dados.UR80.AplCdBloqueio.replace(/\s/g, '') == "" && ! ehParceriaSemFiltroVendas(dados)) {
+                //if (dados.UR80.AplVlrSldParcial > 0 && dados.UR80.AplCdBloqueio.replace(/\s/g, '') == "" ) {
                     strCAC = "VDN_ATENDENTE_SOLIC" + defineGrupoVDN(dados);
                     strVendas = "VDN_ATENDENTE_VENDA" + defineGrupoVDN(dados);
                     strAux = "VDN_ATENDENTE_VENDA" + defineGrupoVDN(dados);
@@ -8862,7 +8864,8 @@ function SetaVDNDadosReestruturacao(dados) {
                     sParamBalanceamentoVDN = "VDN_ATENDENTE_SOLIC";
                 }
             } else {
-                if (dados.UR80.AplVlrSldParcial > 0 && dados.UR80.AplCdBloqueio.replace(/\s/g, '') == "" && ! ehParceriaSemFiltroVendas(dados)) {
+            	if (dados.UR80.AplVlrSldParcial > 0 && dados.UR80.AplCdBloqueio.replace(/\s/g, '') == "" && ! ehParceriaSemFiltroVendas(dados)) {
+                //if (dados.UR80.AplVlrSldParcial > 0 && dados.UR80.AplCdBloqueio.replace(/\s/g, '') == "") {
                     strCAC = "VDN_ATENDENTE_SOLIC" + defineGrupoVDN(dados) + "_PIDNOK";
                     strVendas = "VDN_ATENDENTE_VENDA" + defineGrupoVDN(dados) + "_PIDNOK";
                     strAux = "VDN_ATENDENTE_VENDA" + defineGrupoVDN(dados) + "_PIDNOK";
@@ -9208,7 +9211,8 @@ function SetaVDNDados(dados) {
             break; 
         case 'PD_CAC':
             if ( dados.bPIDOk || dados.bSenhaCHIPOk ) {
-                if (dados.UR80.AplVlrSldParcial > 0 && dados.UR80.AplCdBloqueio.replace(/\s/g, '') == "" && !ehParceriaSemFiltroVendas(dados)) {
+            	if (dados.UR80.AplVlrSldParcial > 0 && dados.UR80.AplCdBloqueio.replace(/\s/g, '') == "" && !ehParceriaSemFiltroVendas(dados)) {
+                //if (dados.UR80.AplVlrSldParcial > 0 && dados.UR80.AplCdBloqueio.replace(/\s/g, '') == "" ) {
                     strCAC = 'VDN_CAC';
                     strVendas = 'VDN_Vendas_CAC';
                     strAux = 'VDN_Vendas_CAC';
@@ -9217,7 +9221,8 @@ function SetaVDNDados(dados) {
                     strAux = 'VDN_CAC';
                 }
             } else {
-                if (dados.UR80.AplVlrSldParcial > 0 && dados.UR80.AplCdBloqueio.replace(/\s/g, '') == "" && !ehParceriaSemFiltroVendas(dados)) {
+            	if (dados.UR80.AplVlrSldParcial > 0 && dados.UR80.AplCdBloqueio.replace(/\s/g, '') == "" && !ehParceriaSemFiltroVendas(dados)) {
+                //if (dados.UR80.AplVlrSldParcial > 0 && dados.UR80.AplCdBloqueio.replace(/\s/g, '') == "" ) {
                     strCAC = 'VDN_CAC_PIDNOK';
                     strVendas = 'VDN_Vendas_CAC_PIDNOK';
                     strAux = 'VDN_Vendas_CAC_PIDNOK';
@@ -9264,7 +9269,7 @@ function defineGrupoVDN(dados){
 		dados.sListaORGs_CAN ='';
 	}
 	
-	__Log('############# dados.bEhAtendimentoCampSaque :' + ados.bEhAtendimentoCampSaque);
+	__Log('############# dados.bEhAtendimentoCampSaque :' + dados.bEhAtendimentoCampSaque);
 	__Log('############# dados.ePontoDerivacao :' + dados.ePontoDerivacao );
     __Log('############# dados.bEhAtendimentoServiceDesk :' + dados.bEhAtendimentoServiceDesk);
 	__Log('############# dados.bEhAtendimentoServiceDesk_0800 :' + dados.bEhAtendimentoServiceDesk_0800);
@@ -9375,9 +9380,9 @@ function ehParceriaSemFiltroVendas(dados) {
 
     var parametros = dados['parametros'];
     
-    var strORGLogo = dados['sORGCartao'] + dados['sLogoCartao'] + ";";
-    var strORG = ";" + dados['sORGCartao'] + ";";
-    var strORG1 = ";" + dados['sORGCartao'] + ";";
+    var strORGLogo = dados['sORGCartao'] + dados['sLogoCartao'];
+    var strORG = dados['sORGCartao'] ;
+    var strORG1 = dados['sORGCartao'] ;
     
     if (parametros['ListaParceriasSemFiltroVendas'].indexOf(strORGLogo) > -1) {
         return true;
